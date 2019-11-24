@@ -64,3 +64,6 @@ typings/
 Frontend/node_modules
 Frontend/.cache
 Frontend/dist
+
+# Backend ignores
+Backend/node_modules
