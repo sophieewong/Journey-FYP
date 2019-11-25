@@ -1,7 +1,3 @@
-.header {
-    color: pink;
+@import "./Pages/Home/home";
+@import "./Pages/ItineraryPlanner/itinerary-planner";
 
-    &:hover {
-        background-color: yellow;;
-    }
-}

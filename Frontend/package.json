@@ -14,5 +14,8 @@
   "devDependencies": {
     "cssnano": "^4.1.10",
     "sass": "^1.23.7"
+  },
+  "dependencies": {
+    "lit-html": "^1.1.2"
   }
 }

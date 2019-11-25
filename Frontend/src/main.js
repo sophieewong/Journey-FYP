@@ -17,6 +17,5 @@
 //     });
 // }
 
-import home from "./Pages/home";
-
-document.getElementById("root").innerHTML = home();
+import Home from "./Pages/Home/Home";
+import ItineraryPlanner from "./Pages/ItineraryPlanner/ItineraryPlanner";
