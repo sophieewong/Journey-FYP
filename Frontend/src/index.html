@@ -6,32 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="main.scss">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Libre+Franklin|Pacifico&display=swap"
+        rel="stylesheet">
     <title>Journey - Holiday Itinerary</title>
 </head>
 
 <body>
     <div id="root">
 
-        <main id="page-home">
-            <h1>Journey</h1>
-            <h2>Find your next adventure</h2>
-            <button id="itinerary-btn" class="itinerary-btn btn">
-                Itinerary Planner
-            </button>
-            <button id="discovery-btn" class="discovery-btn btn">
-                Discover Destinations
-            </button>
+        <main id="page-home" class="overlay">
+            <div class="homepage-container">
+
+                <div id="page-home-header" class="header">
+                    <div class="centered-container logo-container">
+                        <p class="logo">Journey</p>
+                    </div>
+                </div>
+                <div class="homepage-content">
+                    <div class="title-container centered-container">
+                        <h1>Create your next adventure</h1>
+                    </div>
+                    <div class="buttons-container centered-container">
+                        <button id="itinerary-btn" class="itinerary-btn btn">
+                            Itinerary Planner
+                        </button>
+                        <button id="discovery-btn" class="discovery-btn btn">
+                            Discover Destinations
+                        </button>
+                    </div>
+                </div>
+            </div>
         </main>
 
 
         <main id="page-itinerary-planner">
-            <h1 id="page-itinerary-planner-site-title">Journey</h1>
+            <div class="logo-container">
+                <p class="logo" id="page-itinerary-planner-site-title">Journey</p>
+            </div>
             <h2>Itinierary Planner</h2>
             <div id="page-itinerary-planner-trips">
 
             </div>
         </main>
     </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <p>WORK ON FOOTER!!!!!!</p>
+        </div>
+    </footer>
 
 
     <script src="main.js"></script>
