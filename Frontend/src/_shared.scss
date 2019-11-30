@@ -8,11 +8,13 @@ $body-text: 'Josefin Sans', sans-serif;
 // colours
 $white: #ffffff;
 $blue: #1BA8F1;
+$grey: #C4C4C4;
 
 
 // media query
-$tablet-breakpoint: 768px;
-$desktop-breakpoint: 1200px;
+$mobile-breakpoint: 320px;
+$tablet-breakpoint: 720px;
+$desktop-breakpoint: 1024px;
 
 // mixin
 @mixin padded-container {
@@ -22,6 +24,38 @@ $desktop-breakpoint: 1200px;
 
     @media screen and (min-width: $tablet-breakpoint) {
         padding: 0 5rem;
+    }
+}
+
+//global classes
+.tabs {
+    @include padded-container;
+
+    @media screen and (min-width: $desktop-breakpoint) {
+        padding: 0 7rem !important;
+    }
+
+    .tab {
+        font-family: $body-text;
+        background-color: $white;
+        color: $grey;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: .5rem 1rem .5rem 0;
+        font-size: 1.25rem;
+        min-width: 15%;
+        // text-align: left;
+    }
+
+    // .active {
+    //     border-bottom: 3px solid $blue;
+    //     color: black;
+    // }
+
+    .active {
+        border-bottom: 3px solid $blue;
+        color: black;
     }
 }
 

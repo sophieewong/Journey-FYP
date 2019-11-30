@@ -12,7 +12,9 @@ class ItineraryPlanner {
     constructor() {
         this.element = document.getElementById('page-itinerary-planner');
         this.heroContainer = document.getElementById('page-itinerary-planner-hero-container');
-        this.tripsContainer = document.getElementById('page-itinerary-planner-trips');
+        // this.tripsContainer = document.getElementById('page-itinerary-planner-trips');
+        this.tripsUpcomingContainer = document.getElementById('page-itinerary-planner-upcoming-trips');
+        this.tripsPastContainer = document.getElementById('page-itinerary-planner-past-trips');
 
         this.hide();
         this.setupPageBanner();
@@ -36,25 +38,52 @@ class ItineraryPlanner {
         const trips = [
             {
                 name: "New York, USA",
-                date: "25/11/2019 - 10/11/2019",
-                duration: "14 Days"
+                date: "10/11/2019 - 25/11/2019",
+                duration: 14,
+                status: "past",
             },
             {
                 name: "My Winter Trip",
-                date: "25/1/2019 - 10/122019",
-                duration: "14 Days"
+                date: "25/10/2019 - 10/11/2019",
+                duration: 16,
+                status: "past"
             },
             {
                 name: "Lads Night Out, Magaluf",
-                date: "25/11/2019 - 10/14/2019",
-                duration: "14 Days"
+                date: "25/11/2020 - 10/14/2020",
+                duration: 16,
+                status: "upcoming"
             }
         ];
 
         trips.forEach(trip => {
-            this.tripsContainer.appendChild(
-                new TripPreview(trip.name, trip.date, trip.duration).getHTMLElement()
-            );
+            if (trip.status === "past") {
+                this.tripsPastContainer.appendChild(
+                    new TripPreview(trip.name, trip.date, trip.duration).getHTMLElement()
+                );
+            } else {
+                this.tripsUpcomingContainer.appendChild(
+                    new TripPreview(trip.name, trip.date, trip.duration).getHTMLElement()
+                );
+            }
+        });
+
+        this.upcomingTab = document.getElementById('upcoming-btn');
+        this.upcomingTab.addEventListener('click', () => {
+            this.tripsUpcomingContainer.style.display = 'flex';
+            console.log("upcoming")
+            this.tripsPastContainer.style.display = 'none';
+            this.upcomingTab.classList += " active";
+            this.pastTab.classList.remove("active");
+        });
+
+        this.pastTab = document.getElementById('past-btn');
+        this.pastTab.addEventListener('click', () => {
+            this.tripsPastContainer.style.display = 'flex';
+            console.log("past")
+            this.tripsUpcomingContainer.style.display = 'none';
+            this.pastTab.classList += " active";
+            this.upcomingTab.classList.remove("active");
         });
     }
 

@@ -18,10 +18,15 @@
 .add-itinerary-button-container {
     display: flex;
     justify-content: flex-end;
+    @include padded-container;
 
     .add-itinerary-btn {
         color: $white;
         background-color: $blue;
         outline-color: $blue;
     }
+}
+
+#page-itinerary-planner-past-trips {
+    display: none;
 }

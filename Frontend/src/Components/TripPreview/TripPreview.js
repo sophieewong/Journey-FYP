@@ -8,7 +8,7 @@ class TripPreview {
         this.element.innerHTML = `
                 <h3>${name}</h3>
                 <p>${date}</p>
-                <p class="itinerary-duration">${duration}</p>
+                <p class="itinerary-duration">${duration} days</p>
             `;
     }
 

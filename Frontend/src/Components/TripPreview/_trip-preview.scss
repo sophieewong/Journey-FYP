@@ -1,16 +1,17 @@
-#page-itinerary-planner-trips {
+.page-itinerary-planner-trips {
     @include padded-container;
     font-family: $body-text;
-
-    @media screen and (min-width: $tablet-breakpoint) {
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap; 
-        align-content: space-around;   
-    }
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-evenly;
 
     @media screen and (min-width: $desktop-breakpoint) {
-        flex-wrap: nowrap;    
+        align-content: space-around; 
+        flex-wrap: nowrap;  
+    }
+
+    @media screen and (max-width: $tablet-breakpoint) {
+        justify-content: center;
     }
 
     .itinerary-duration {
@@ -18,18 +19,23 @@
     }
 
     .component-trip-preview {
-        margin: 2.5rem;
+        margin: 1.5rem 0;
         padding: 1rem 3rem;
         border-radius: 2rem;
         background-color: lightgray;
         width: 230px;
-        height: 230px; 
+        height: 175px; 
 
         @media screen and (min-width: $tablet-breakpoint) {
-            margin: 1.5rem;
-            width: 170px;
-            height: 175px;   
+            margin: 1.5rem;  
+        }
+
+        @media screen and (min-width: $desktop-breakpoint) {
+            min-width: 170px;
+            width: 400px;   
         }
     }
 }
+
+
 
