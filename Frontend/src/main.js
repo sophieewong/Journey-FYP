@@ -5,7 +5,7 @@
 //     .then(displayAttractions);
 
 // /**
-//  * 
+//  *
 //  * @param {{name: string, attractionType: string, category: string, hours: string, entryFee: number, rating: number}[]} attractions
 //  */
 // const displayAttractions = (attractions) => {
@@ -17,6 +17,6 @@
 //     });
 // }
 
-import { togglePage } from "./utils";
-import itineraryPlanner from "./Pages/ItineraryPlanner/ItineraryPlanner";
-import home from "./Pages/Home/Home";
+import itineraryPlanner from './Pages/ItineraryPlanner/ItineraryPlanner';
+import home from './Pages/Home/Home';
+import itineraryCreator from './Pages/ItineraryCreator/ItineraryCreator';

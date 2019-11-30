@@ -1,13 +1,14 @@
 // Pages
-@import "./Pages/Home/home";
-@import "./Pages/ItineraryPlanner/itinerary-planner";
+@import './Pages/Home/home';
+@import './Pages/ItineraryPlanner/itinerary-planner';
+@import './Pages/ItineraryCreator/itinerary-creator';
 
 // Components
-@import "./Components/TripPreview/trip-preview";
-@import "./Components/MobileNavigation/mobile-navigation";
-@import "./Components/DesktopNavigation/desktop-navigation";
-@import "./Components/Buttons/buttons";
-@import "./Components/HeroBanner/hero-banner";
+@import './Components/TripPreview/trip-preview';
+@import './Components/MobileNavigation/mobile-navigation';
+@import './Components/DesktopNavigation/desktop-navigation';
+@import './Components/Buttons/buttons';
+@import './Components/HeroBanner/hero-banner';
 
 // Shared
-@import "shared";
+@import 'shared';
