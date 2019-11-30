@@ -1,0 +1,27 @@
+.page-itinerary-planner-container {
+    position: relative;
+    height: 100%;
+}
+
+.hero-image-itinerary-planner {
+    background: linear-gradient(0deg, rgba(21, 21, 21, 0.38), rgba(21, 21, 21, 0.38)),url("https://i0.wp.com/criteriaforsuccess.com/wp-content/uploads/2018/11/adult-business-car-1252500.jpg?fit=4894%2C3028&ssl=1");
+    font-family: $page-heading;
+    color: $white;
+    font-size: .5rem;
+
+    h1 {
+        font-weight: 100; 
+        letter-spacing: 4px;
+    }
+}
+
+.add-itinerary-button-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .add-itinerary-btn {
+        color: $white;
+        background-color: $blue;
+        outline-color: $blue;
+    }
+}

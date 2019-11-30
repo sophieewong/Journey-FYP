@@ -1,21 +1,19 @@
 class TripPreview {
     constructor(name, date, duration) {
-        this.name = name;
-        this.date = date;
-        this.duration = duration;
+        // this - creates new instance and store the element to 'this', which is specific to the class.
+        // or specific to its widest scope
+        this.element = document.createElement('div');
+        this.element.classList += "component-trip-preview";
+
+        this.element.innerHTML = `
+                <h3>${name}</h3>
+                <p>${date}</p>
+                <p class="itinerary-duration">${duration}</p>
+            `;
     }
 
     getHTMLElement() {
-        const element = document.createElement('div');
-        element.classList += "component-trip-preview";
-
-        element.innerHTML = `
-                <h3>${this.name}</h3>
-                <p>${this.date}</p>
-                <p>${this.duration}</p>
-            `;
-
-        return element;
+        return this.element;
     }
 }
 

@@ -2,6 +2,7 @@ import itineraryPlanner from "../ItineraryPlanner/ItineraryPlanner";
 import MobileNavigation from "../../Components/MobileNavigation/MobileNavigation";
 import DesktopNavigation from "../../Components/DesktopNavigation/DesktopNavigation";
 
+import { togglePage } from "../../utils";
 
 class Home {
     constructor() {
@@ -13,7 +14,7 @@ class Home {
         const mobileNavigation = new MobileNavigation();
         const desktopNavigation = new DesktopNavigation();
 
-        // load mobile nav element onto page
+        // load navigation elements onto page
         header.appendChild(mobileNavigation.getHTMLElement());
         header.appendChild(desktopNavigation.getHTMLElement());
 
@@ -21,13 +22,10 @@ class Home {
         // setup mobile nav events after the element has loaded
         mobileNavigation.setupEventListeners();
 
-        header.appendChild(new DesktopNavigation().getHTMLElement());
-
         const itineraryButton = document.getElementById('itinerary-btn');
 
         itineraryButton.addEventListener('click', () => {
-            this.hide();
-            itineraryPlanner.show();
+            togglePage(this, itineraryPlanner);
         });
 
         document.getElementById('component-mobile-navigation-itinerary-planner').addEventListener('click', () => {

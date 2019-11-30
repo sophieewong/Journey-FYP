@@ -17,5 +17,6 @@
 //     });
 // }
 
-import Home from "./Pages/Home/Home";
-import ItineraryPlanner from "./Pages/ItineraryPlanner/ItineraryPlanner";
+import { togglePage } from "./utils";
+import itineraryPlanner from "./Pages/ItineraryPlanner/ItineraryPlanner";
+import home from "./Pages/Home/Home";

@@ -11,6 +11,8 @@ body, html {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+
+        // display: none;
     }
 
     .overlay {
@@ -28,7 +30,7 @@ body, html {
         justify-content: center;
     }
 
-    .homepage-container {
+    .page-home-container {
         position: relative;
         align-items: center;
         height: 100%;
@@ -52,6 +54,8 @@ body, html {
     }
 
     .logo-container {
+        display: flex;
+        justify-content: center;
 
         @media screen and (min-width: $tablet-breakpoint) {
             display: flex;
@@ -59,13 +63,14 @@ body, html {
         }
 
         .logo {
-            font-family: $logo;
-            font-size: 3rem;
-            text-decoration: underline;
-            color: $white;
-            margin: 2rem 0;
-            transform: rotate(-6.5deg);
+            margin: 3rem 0 2rem 0;
             cursor: pointer;
+
+            @media screen and (min-width: $tablet-breakpoint) {
+                margin: 5rem 0 2rem 0;
+                width: 119px;
+                height: 37px;
+            }
         }
     }
 

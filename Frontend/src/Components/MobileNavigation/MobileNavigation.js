@@ -13,14 +13,12 @@ class MobileNavigation {
                 <ul>
                     <li id="component-mobile-navigation-about-us">About Us</li>
                     <li id="component-mobile-navigation-itinerary-planner">Itinerary Planner</li>
-                    <li id="component-mobile-navigation-discovery">Discover Destinations</li>
+                    <li id="component-mobile-navigation-discover-destinations">Discover Destinations</li>
                     <li id="component-mobile-navigation-bucket-list">Bucket List</li>
                 </ul>
                 <img id="component-mobile-navigation-close-menu-button" src="${closeMenuImage}" alt="Cross to Close Menu">
             </nav>
         `;
-
-
     }
 
     getHTMLElement() {

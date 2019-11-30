@@ -1,21 +1,26 @@
 import home from "../Home/Home";
 import TripPreview from "../../Components/TripPreview/TripPreview";
+import HeroBanner from "../../Components/HeroBanner/HeroBanner";
+import MobileNavigation from "../../Components/MobileNavigation/MobileNavigation";
+
+import { togglePage } from "../../utils";
+
+// import ItineraryPlannerHeroImage from "../../img/ItineraryPlanner.jpg"
+
 
 class ItineraryPlanner {
     constructor() {
         this.element = document.getElementById('page-itinerary-planner');
+        this.heroContainer = document.getElementById('page-itinerary-planner-hero-container');
         this.tripsContainer = document.getElementById('page-itinerary-planner-trips');
 
         this.hide();
-
-        const siteTitle = document.getElementById('page-itinerary-planner-site-title');
-
-        siteTitle.addEventListener('click', () => {
-            this.hide();
-            home.show();
-        });
-
+        this.setupPageBanner();
         this.setupTrips();
+
+        const mobileNavigation = new MobileNavigation();
+        this.element.appendChild(mobileNavigation.getHTMLElement());
+        mobileNavigation.setupEventListeners();
     }
 
     show() {
@@ -52,8 +57,20 @@ class ItineraryPlanner {
             );
         });
     }
+
+    setupPageBanner() {
+        // pass in variables to new instance, then load the element to create new instance
+        const heroBanner = new HeroBanner("itinerary-planner", "Itinerary Planner");
+
+        this.heroContainer.appendChild(heroBanner.getHTMLElement());
+
+        heroBanner.onLogoClicked(() => {
+            togglePage(this, home);
+        });
+    }
 }
 
+// Create new instance of a page in page file 
 const itineraryPlanner = new ItineraryPlanner();
 
 export default itineraryPlanner;
