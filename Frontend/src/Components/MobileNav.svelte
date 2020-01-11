@@ -1,5 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
+  import { slide } from "svelte/transition";
   let isNavigationOpen = false;
 </script>
 
@@ -21,11 +22,7 @@
     }
   }
 
-  .closed {
-    display: none;
-  }
-
-  .open {
+  .navigation {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -76,32 +73,34 @@
   }
 </style>
 
-<nav class="container">
+<div class="container">
   <img
     on:click={() => (isNavigationOpen = true)}
     src="./images/MobileMenu.png"
     alt="Mobile Menu Button" />
 
-  <nav class:closed={!isNavigationOpen} class:open={isNavigationOpen}>
-    <ul>
-      <li class="nav-item">
-        <Link to="/about">About Us</Link>
-      </li>
-      <li class="nav-item">
-        <Link to="/itinerary-planner">Itinerary Planner</Link>
-      </li>
-      <li class="nav-item login-button">
-        <Link to="/login">
-          <img src="./images/UserAccountMobile.png" alt="Click to login" />
-          Login
-        </Link>
-      </li>
-    </ul>
+  {#if isNavigationOpen}
+    <nav class="navigation" transition:slide>
+      <ul>
+        <li class="nav-item">
+          <Link to="/about">About Us</Link>
+        </li>
+        <li class="nav-item">
+          <Link to="/itinerary-planner">Itinerary Planner</Link>
+        </li>
+        <li class="nav-item login-button">
+          <Link to="/login">
+            <img src="./images/UserAccountMobile.png" alt="Click to login" />
+            Login
+          </Link>
+        </li>
+      </ul>
 
-    <img
-      class="close-button"
-      on:click={() => (isNavigationOpen = false)}
-      src="./images/CloseBtn.png"
-      alt="Cross to Close Menu" />
-  </nav>
-</nav>
+      <img
+        class="close-button"
+        on:click={() => (isNavigationOpen = false)}
+        src="./images/CloseBtn.png"
+        alt="Cross to Close Menu" />
+    </nav>
+  {/if}
+</div>

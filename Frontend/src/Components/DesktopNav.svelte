@@ -1,3 +1,7 @@
+<script>
+  import { Link } from "svelte-routing";
+</script>
+
 <style type="text/scss">
   @import "../styles/shared";
 
@@ -20,6 +24,11 @@
         cursor: pointer;
         list-style-type: none;
 
+        :global(a) {
+          text-decoration: none;
+          color: $white;
+        }
+
         .component-desktop-navigation-login-button {
           width: 30px;
           height: 30px;
@@ -35,13 +44,19 @@
 
 <nav class="component-desktop-navigation">
   <ul>
-    <li>About Us</li>
-    <li>Itinerary Planner</li>
     <li>
-      <img
-        class="component-desktop-navigation-login-button"
-        src="./images/UserAccount.png"
-        alt="Click to login" />
+      <Link to="/about">About Us</Link>
+    </li>
+    <li>
+      <Link to="/itinerary-planner">Itinerary Planner</Link>
+    </li>
+    <li>
+      <Link to="/login">
+        <img
+          class="component-desktop-navigation-login-button"
+          src="./images/UserAccount.png"
+          alt="Click to login" />
+      </Link>
     </li>
   </ul>
 </nav>
