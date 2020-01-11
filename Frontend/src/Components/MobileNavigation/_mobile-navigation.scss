@@ -1,50 +1,62 @@
-@import "shared";
+@import 'shared';
 
 .component-mobile-navigation {
-        position: fixed;
-        bottom: 1rem;
-        right: 2rem;
-    
-    @media screen and (min-width: $tablet-breakpoint) {
-        display: none;
-    }
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
 
-    img {
-        cursor: pointer;
-    }
+  @media screen and (min-width: $tablet-breakpoint) {
+    display: none;
+  }
+
+  img {
+    cursor: pointer;
+  }
 }
 
 .component-mobile-navigation-closed {
-    display: none;
+  display: none;
 }
 
 .component-mobile-navigation-open {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background-color: $white;
+  overflow: hidden;
+  width: 100vw;
+  height: 60vh;
+  opacity: 1;
+  display: block;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    color: black;
+    list-style: none;
+    margin: 3rem 3rem;
+    font-family: $body-text;
+    cursor: pointer;
+  }
+
+  #component-mobile-navigation-close-menu-button {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    background-color: $white;
-    overflow: hidden;
-    width: 100vw;
-    height: 60vh;
-    opacity: 1;
-    display: block;
+    bottom: 1rem;
+    right: 1rem;
+  }
 
-    ul {
-        padding: 0;
-    }
-    
-    li {
-        color: black;
-        list-style: none;
-        margin: 3rem 3rem;
-        font-family: $body-text;
-        cursor: pointer;
-    }
+  #component-mobile-navigation-login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    img {
-        position:fixed;
-        bottom: 1rem;
-        right: 1rem;
-    }
+  #component-mobile-navigation-account-button {
+    width: 25px;
+    height: 25px;
+    margin-right: 1rem;
+  }
 }
