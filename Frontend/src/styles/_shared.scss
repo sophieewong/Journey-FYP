@@ -1,0 +1,81 @@
+// fonts
+$logo: "Pacifico", cursive;
+$page-heading: "Libre Franklin", san serif;
+$body-text: "Josefin Sans", sans-serif;
+
+// colours
+$white: #ffffff;
+$blue: #1ba8f1;
+$grey: #c4c4c4;
+
+// media query
+$mobile-breakpoint: 320px;
+$tablet-breakpoint: 720px;
+$desktop-breakpoint: 1024px;
+
+// mixin
+@mixin padded-container {
+  position: relative;
+  height: 100%;
+  padding: 0 3rem;
+
+  @media screen and (min-width: $tablet-breakpoint) {
+    padding: 0 5rem;
+  }
+}
+
+//global classes
+.tabs {
+  @include padded-container;
+
+  @media screen and (min-width: $desktop-breakpoint) {
+    padding: 0 7rem !important;
+  }
+
+  .tab {
+    font-family: $body-text;
+    background-color: $white;
+    color: $grey;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem 0.5rem 0;
+    font-size: 1.25rem;
+    min-width: 15%;
+    // text-align: left;
+  }
+
+  // .active {
+  //     border-bottom: 3px solid $blue;
+  //     color: black;
+  // }
+
+  .active {
+    border-bottom: 3px solid $blue;
+    color: black;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  width: 17rem;
+  height: 3.5rem;
+  margin: 1.5rem;
+  border-radius: 0.75rem;
+  font-family: $body-text;
+  font-size: 1.25rem;
+  box-shadow: none;
+  cursor: pointer;
+  border: none;
+}
+
+.primary-btn {
+  background-color: $blue;
+  outline-color: $blue;
+  color: $white;
+  box-shadow: 0px 4px 4px #5ac1f6;
+}

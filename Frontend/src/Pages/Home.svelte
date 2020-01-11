@@ -1,0 +1,93 @@
+<script>
+  import { fade } from "svelte/transition";
+  import Logo from "../Components/Logo.svelte";
+  import Navigation from "../Components/Navigation.svelte";
+</script>
+
+<style type="text/scss">
+  @import "../styles/shared";
+
+  .overlay {
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 0px;
+    top: 0px;
+    background-image: linear-gradient(
+        0deg,
+        rgba(21, 21, 21, 0.38),
+        rgba(21, 21, 21, 0.38)
+      ),
+      url("https://images.unsplash.com/photo-1470089504205-f6ece216c2f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+  }
+
+  .page-home-container {
+    position: relative;
+    align-items: center;
+    // height: 100%;
+    text-align: center;
+    padding: 0 1rem;
+
+    @media screen and (min-width: $tablet-breakpoint) {
+      padding: 0 5rem;
+    }
+  }
+
+  .title-container {
+    h1 {
+      color: $white;
+      font-family: $page-heading;
+      font-weight: lighter;
+      letter-spacing: 8px;
+      font-size: 24px;
+      margin: 0;
+      text-align: center;
+      line-height: 3rem;
+
+      @media screen and (min-width: $desktop-breakpoint) {
+        font-size: 2.75rem;
+        line-height: 6rem;
+      }
+    }
+  }
+
+  .homepage-content {
+    padding-top: 3rem;
+
+    @media screen and (min-width: $desktop-breakpoint) {
+      padding-top: 6rem;
+    }
+  }
+
+  .centered-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+</style>
+
+<div class="overlay">
+  <div class="header">
+    <Logo />
+    <Navigation />
+  </div>
+  <div class="page-home-container">
+
+    <div class="homepage-content" transition:fade={{ duration: 1500 }}>
+      <div class="title-container centered-container">
+        <h1>Create your next adventure that is uniquely tailored to you.</h1>
+      </div>
+      <div class="buttons-container centered-container">
+        <button class="primary-btn btn">Itinerary Planner</button>
+      </div>
+    </div>
+  </div>
+</div>

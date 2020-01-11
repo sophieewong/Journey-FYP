@@ -1,22 +1,7 @@
-// const attractionsContainer = document.getElementById("attractions");
+import App from "./App.svelte";
 
-// fetch("/api/get/attractions")
-//     .then((response) => response.json())
-//     .then(displayAttractions);
+const app = new App({
+  target: document.body
+});
 
-// /**
-//  *
-//  * @param {{name: string, attractionType: string, category: string, hours: string, entryFee: number, rating: number}[]} attractions
-//  */
-// const displayAttractions = (attractions) => {
-//     console.log(JSON.parse(attractions))
-//     attractions.forEach(attraction => {
-//         const attractionDiv = document.createElement("div");
-//         attractionDiv.innerText = attraction.name;
-//         attractionsContainer.appendChild(attractionDiv)
-//     });
-// }
-
-import itineraryPlanner from './Pages/ItineraryPlanner/ItineraryPlanner';
-import home from './Pages/Home/Home';
-import itineraryCreator from './Pages/ItineraryCreator/ItineraryCreator';
+export default app;
