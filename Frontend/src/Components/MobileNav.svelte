@@ -30,7 +30,7 @@
     background-color: $white;
     overflow: hidden;
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     opacity: 1;
     display: block;
 
@@ -65,6 +65,14 @@
     align-items: center;
     justify-content: center;
 
+    .login-btn {
+      border: 1px solid black;
+      border-radius: 7px;
+      padding: 0.5rem 3rem;
+      display: flex;
+      align-items: center;
+    }
+
     img {
       width: 25px;
       height: 25px;
@@ -89,9 +97,9 @@
           <a href="#/itineraries">Itinerary Planner</a>
         </li>
         <li class="nav-item login-button">
-          <a href="#/login">
+          <a href="#/login" class="login-btn">
             <img src="./images/UserAccountMobile.png" alt="Click to login" />
-            Login
+            Login / Sign Up
           </a>
         </li>
       </ul>
