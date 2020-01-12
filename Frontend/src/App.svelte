@@ -1,12 +1,15 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import Router from "svelte-spa-router";
 
-  //Pages
   import Home from "./Pages/Home.svelte";
+  import Itineraries from "./Pages/Itineraries.svelte";
+  import NotFound from "./Pages/NotFound.svelte";
+
+  const routes = {
+    "/": Home,
+    "/itineraries": Itineraries,
+    "*": NotFound
+  };
 </script>
 
-<main class="app">
-  <Router>
-    <Route path="/" component={Home} />
-  </Router>
-</main>
+<Router {routes} />

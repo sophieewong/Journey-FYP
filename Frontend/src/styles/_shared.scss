@@ -7,9 +7,10 @@ $body-text: "Josefin Sans", sans-serif;
 $white: #ffffff;
 $blue: #1ba8f1;
 $grey: #c4c4c4;
+$boxshadow-blue: #5ac1f6;
 
 // media query
-$mobile-breakpoint: 320px;
+$mobile-breakpoint: 550px;
 $tablet-breakpoint: 720px;
 $desktop-breakpoint: 1024px;
 
@@ -78,4 +79,5 @@ $desktop-breakpoint: 1024px;
   outline-color: $blue;
   color: $white;
   box-shadow: 0px 4px 4px #5ac1f6;
+  text-decoration: none;
 }

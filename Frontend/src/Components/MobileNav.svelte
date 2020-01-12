@@ -1,6 +1,6 @@
 <script>
-  import { Link } from "svelte-routing";
   import { slide } from "svelte/transition";
+
   let isNavigationOpen = false;
 </script>
 
@@ -83,16 +83,16 @@
     <nav class="navigation" transition:slide>
       <ul>
         <li class="nav-item">
-          <Link to="/about">About Us</Link>
+          <a href="#/about">About Us</a>
         </li>
         <li class="nav-item">
-          <Link to="/itinerary-planner">Itinerary Planner</Link>
+          <a href="#/itineraries">Itinerary Planner</a>
         </li>
         <li class="nav-item login-button">
-          <Link to="/login">
+          <a href="#/login">
             <img src="./images/UserAccountMobile.png" alt="Click to login" />
             Login
-          </Link>
+          </a>
         </li>
       </ul>
 

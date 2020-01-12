@@ -12,6 +12,11 @@
     display: flex;
     justify-content: center;
 
+    :hover {
+      transform: scale(1.2);
+      transition: transform 0.5s ease;
+    }
+
     @media screen and (min-width: $tablet-breakpoint) {
       display: flex;
       justify-content: left;
@@ -31,5 +36,7 @@
 </style>
 
 <div class="centered-container logo-container">
-  <img class="logo" src="./images/JourneyLogo.png" alt="Journey Logo" />
+  <a href="#/">
+    <img class="logo" src="./images/JourneyLogo.png" alt="Journey Logo" />
+  </a>
 </div>

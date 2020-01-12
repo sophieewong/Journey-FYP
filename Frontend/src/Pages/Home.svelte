@@ -1,7 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import Logo from "../Components/Logo.svelte";
-  import Navigation from "../Components/Navigation.svelte";
+  import Header from "../Components/Header.svelte";
 </script>
 
 <style type="text/scss">
@@ -25,7 +24,6 @@
   .page-home-container {
     position: relative;
     align-items: center;
-    // height: 100%;
     text-align: center;
     padding: 0 1rem;
 
@@ -65,28 +63,45 @@
     justify-content: center;
   }
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 6rem;
-    padding-right: 6rem;
+  .buttons-container {
+    :global(a) {
+      background-color: $blue;
+      outline-color: $blue;
+      color: $white;
+      box-shadow: 0px 4px 4px $boxshadow-blue;
+      width: 17rem;
+      height: 3.5rem;
+      margin: 1.5rem;
+      border-radius: 0.75rem;
+      font-family: $body-text;
+      font-size: 1.25rem;
+      box-shadow: none;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+
+      &:hover {
+        background-color: transparent;
+        color: $blue;
+        border: 1px solid $blue;
+        border-radius: 10px;
+      }
+    }
   }
 </style>
 
 <div class="overlay">
-  <div class="header">
-    <Logo />
-    <Navigation />
-  </div>
+  <Header />
   <div class="page-home-container">
-
-    <div class="homepage-content" transition:fade={{ duration: 1500 }}>
+    <div class="homepage-content" in:fade={{ duration: 1500 }}>
       <div class="title-container centered-container">
         <h1>Create your next adventure that is uniquely tailored to you.</h1>
       </div>
       <div class="buttons-container centered-container">
-        <button class="primary-btn btn">Itinerary Planner</button>
+        <a href="#/itineraries" class="primary-btn btn">Itinerary Planner</a>
       </div>
     </div>
   </div>
