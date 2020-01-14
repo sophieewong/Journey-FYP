@@ -1,0 +1,34 @@
+<script>
+  export let title;
+</script>
+
+<style type="text/scss">
+  @import "../styles/shared";
+
+  .text-field-title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 27px;
+    letter-spacing: 0.1em;
+    font-family: $body-text;
+  }
+
+  input {
+    width: 25rem;
+    height: 3rem;
+    background: #eeeeee;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-family: $body-text;
+
+    @media screen and (max-width: $tablet-breakpoint) {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="text-input-field">
+  <p class="text-field-title">{title}</p>
+  <input type="text" />
+</div>

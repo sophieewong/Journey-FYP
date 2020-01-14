@@ -52,7 +52,7 @@
 </section>
 <section class="itinerary-creator-button">
   <div class="planner-btn-container">
-    <a href="#/itinerary-creator" class="primary-btn btn">+ Add Itinerary</a>
+    <a href="#/new-itinerary" class="primary-btn btn">+ Add Itinerary</a>
   </div>
 </section>
 <section class="itineraries-lists">

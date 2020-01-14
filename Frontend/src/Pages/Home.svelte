@@ -64,7 +64,7 @@
   }
 
   .buttons-container {
-    :global(a) {
+    a {
       background-color: $blue;
       outline-color: $blue;
       color: $white;
