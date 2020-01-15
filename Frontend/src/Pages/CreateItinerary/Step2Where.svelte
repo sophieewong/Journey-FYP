@@ -1,6 +1,7 @@
 <script>
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
+  import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
 </script>
 
 <style type="text/scss">
@@ -14,6 +15,13 @@
       margin-left: 3rem;
     }
   }
+
+  .buttons {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 4rem;
+  }
 </style>
 
 <section class="itinerary-creator-header">
@@ -26,18 +34,7 @@
   <div class="itinerary-creator-field">
     <TextInputField title="Where would you like to go?" />
   </div>
-  <div class="create-itinerary-button">
-    <a
-      href="#/new-itinerary"
-      class="start-itinerary-title-button primary-btn btn">
-      Back
-    </a>
-  </div>
-  <div class="create-itinerary-button">
-    <a
-      href="#/new-itinerary/when"
-      class="start-itinerary-title-button primary-btn btn">
-      Next
-    </a>
-  </div>
+  <ItineraryCreatorButtons
+    prevPageLink={'#/new-itinerary'}
+    nextPageLink={'#/new-itinerary/when'} />
 </section>

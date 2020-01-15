@@ -61,13 +61,6 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
-
-    &:hover {
-      background-color: transparent;
-      color: $blue;
-      border: 1px solid $blue;
-      border-radius: 10px;
-    }
   }
 
   .create-itinerary-button {

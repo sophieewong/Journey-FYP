@@ -80,4 +80,19 @@ $desktop-breakpoint: 1024px;
   color: $white;
   box-shadow: 0px 4px 4px #5ac1f6;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondary-btn {
+  background-color: transparent;
+  outline-color: $blue;
+  color: $blue;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $blue;
+  border-radius: 10px;
 }
