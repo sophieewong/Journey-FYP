@@ -72,6 +72,11 @@ $desktop-breakpoint: 1024px;
   box-shadow: none;
   cursor: pointer;
   border: none;
+
+  &:hover {
+    transition: transform 0.5s ease;
+    transform: scale(1.1);
+  }
 }
 
 .primary-btn {
@@ -95,4 +100,5 @@ $desktop-breakpoint: 1024px;
   justify-content: center;
   border: 1px solid $blue;
   border-radius: 10px;
+  box-shadow: 0px 4px 4px $boxshadow-blue;
 }

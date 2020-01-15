@@ -6,10 +6,15 @@
 <style type="text/scss">
   @import "../styles/shared";
 
+  .buttons {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 4rem;
+  }
   .next-button {
     width: 17rem;
     height: 3.5rem;
-    // margin: 2rem 0;
     font-size: 1.5rem;
   }
 

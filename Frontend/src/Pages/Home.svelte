@@ -88,6 +88,8 @@
         color: $blue;
         border: 1px solid $blue;
         border-radius: 10px;
+        transition: transform 0.5s ease;
+        transform: scale(1.1);
       }
     }
   }

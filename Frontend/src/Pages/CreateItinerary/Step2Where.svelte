@@ -15,13 +15,6 @@
       margin-left: 3rem;
     }
   }
-
-  .buttons {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 4rem;
-  }
 </style>
 
 <section class="itinerary-creator-header">
@@ -32,7 +25,7 @@
 </section>
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
-    <TextInputField title="Where would you like to go?" />
+    <TextInputField title="Where is your next city destination?" />
   </div>
   <ItineraryCreatorButtons
     prevPageLink={'#/new-itinerary'}

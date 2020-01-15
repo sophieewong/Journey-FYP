@@ -44,23 +44,8 @@
   }
 
   .start-itinerary-title-button {
-    background-color: $blue;
-    outline-color: $blue;
-    color: $white;
-    box-shadow: 0px 4px 4px $boxshadow-blue;
-    width: 17rem;
-    height: 3.5rem;
-    margin: 2rem 0;
-    border-radius: 0.75rem;
-    font-family: $body-text;
     font-size: 1.75rem;
-    box-shadow: none;
-    cursor: pointer;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
+    margin-left: 0;
   }
 
   .create-itinerary-button {
