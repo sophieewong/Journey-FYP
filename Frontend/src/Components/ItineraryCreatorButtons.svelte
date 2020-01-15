@@ -4,7 +4,7 @@
 </script>
 
 <style type="text/scss">
-  @import "../../styles/shared";
+  @import "../styles/shared";
 
   .next-button {
     width: 17rem;
