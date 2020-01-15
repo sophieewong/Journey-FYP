@@ -73,15 +73,13 @@
       margin-bottom: 3rem;
 
       a {
-        padding: 1rem 3rem;
-
         &:hover {
           background-color: transparent;
           color: $blue;
           border: 1px solid $blue;
           border-radius: 10px;
           transition: transform 0.5s ease;
-          transform: scale(1.5);
+          transform: scale(1.1);
         }
       }
     }
