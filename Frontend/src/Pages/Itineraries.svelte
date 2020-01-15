@@ -17,8 +17,6 @@
 
     a {
       display: flex;
-      width: 13rem;
-      height: 2.5rem;
       align-items: center;
       justify-content: center;
       text-decoration: none;

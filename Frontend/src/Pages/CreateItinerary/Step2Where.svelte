@@ -15,6 +15,18 @@
       margin-left: 3rem;
     }
   }
+
+  .buttons {
+    display: flex;
+    bottom: 0;
+    position: fixed;
+    margin-bottom: 4rem;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
 </style>
 
 <section class="itinerary-creator-header">

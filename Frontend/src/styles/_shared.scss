@@ -11,6 +11,7 @@ $boxshadow-blue: #5ac1f6;
 
 // media query
 $mobile-breakpoint: 550px;
+$sm-tablet-breakpoint: 600px;
 $tablet-breakpoint: 720px;
 $desktop-breakpoint: 1024px;
 
@@ -63,8 +64,8 @@ $desktop-breakpoint: 1024px;
 }
 
 .btn {
-  width: 17rem;
-  height: 3.5rem;
+  // max-width: 17rem;
+  // height: 3.5rem;
   margin: 1.5rem;
   border-radius: 0.75rem;
   font-family: $body-text;
@@ -72,6 +73,11 @@ $desktop-breakpoint: 1024px;
   box-shadow: none;
   cursor: pointer;
   border: none;
+  padding: 1.25rem 1.5rem;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100%;
+  }
 
   &:hover {
     transition: transform 0.5s ease;
@@ -94,11 +100,10 @@ $desktop-breakpoint: 1024px;
   background-color: transparent;
   outline-color: $blue;
   color: $blue;
+  box-shadow: 0px 4px 4px $boxshadow-blue;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid $blue;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px $boxshadow-blue;
 }

@@ -46,6 +46,12 @@
   .start-itinerary-title-button {
     font-size: 1.75rem;
     margin-left: 0;
+    width: 17rem;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-right: 0;
+      width: 100%;
+    }
   }
 
   .create-itinerary-button {
