@@ -73,6 +73,7 @@
       margin-bottom: 3rem;
 
       a {
+        margin-left: 0;
         &:hover {
           background-color: transparent;
           color: $blue;

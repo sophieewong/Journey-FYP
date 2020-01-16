@@ -16,17 +16,14 @@
     }
   }
 
-  //   .buttons {
-  //     display: flex;
-  //     bottom: 0;
-  //     position: fixed;
-  //     margin-bottom: 4rem;
-
-  //     @media screen and (max-width: $mobile-breakpoint) {
-  //       flex-direction: column;
-  //       justify-content: center;
-  //     }
-  //   }
+  .itinerary-step-title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 27px;
+    letter-spacing: 0.1em;
+    font-family: $body-text;
+  }
 </style>
 
 <section class="itinerary-creator-header">
@@ -37,9 +34,13 @@
 </section>
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
-    <TextInputField title="Where is your next city destination?" />
+    <div class="itinerary-title-field">
+      <p class="itinerary-step-title">
+        Add the places you'd like to visit to build your itinerary.
+      </p>
+    </div>
   </div>
   <ItineraryCreatorButtons
-    prevPageLink={'#/new-itinerary'}
-    nextPageLink={'#/new-itinerary/when'} />
+    prevPageLink={'#/new-itinerary/refine'}
+    nextPageLink={'#/new-itinerary/overview'} />
 </section>

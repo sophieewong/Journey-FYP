@@ -66,13 +66,17 @@
   .buttons-container {
     a {
       font-size: 1.25rem;
-      width: 50%;
+      width: 40%;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        width: 50%;
+      }
+
+      @media screen and (min-width: $desktop-breakpoint) {
+        width: 30%;
+      }
 
       &:hover {
-        background-color: transparent;
-        color: $blue;
-        border: 1px solid $blue;
-        border-radius: 10px;
         transition: transform 0.5s ease;
         transform: scale(1.1);
       }
