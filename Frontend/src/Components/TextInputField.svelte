@@ -1,5 +1,6 @@
 <script>
   export let title;
+  export let value = "";
 </script>
 
 <style type="text/scss">
@@ -30,5 +31,5 @@
 
 <div class="text-input-field">
   <p class="text-field-title">{title}</p>
-  <input type="text" />
+  <input type="text" bind:value />
 </div>

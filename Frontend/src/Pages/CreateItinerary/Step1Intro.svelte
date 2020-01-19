@@ -1,6 +1,8 @@
 <script>
-  import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
+
+  export let onNextStep;
+  let name = "";
 </script>
 
 <style type="text/scss">
@@ -62,9 +64,6 @@
   }
 </style>
 
-<section class="itinerary-creator-header">
-  <ItineraryCreatorHeader />
-</section>
 <section class="itinerary-steps">
   <!-- Add itinerary steps component -->
 </section>
@@ -74,13 +73,13 @@
     <h2>Create an itinerary personalised to your own wants & needs.</h2>
   </div>
   <div class="itinerary-creator-field">
-    <TextInputField title="Name your Itinerary:" />
+    <TextInputField title="Name your Itinerary:" bind:value={name} />
   </div>
   <div class="create-itinerary-button">
-    <a
-      href="#/new-itinerary/where"
+    <button
+      on:click={() => onNextStep(name)}
       class="start-itinerary-title-button primary-btn btn">
       Start
-    </a>
+    </button>
   </div>
 </section>

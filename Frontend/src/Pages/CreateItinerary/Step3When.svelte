@@ -3,6 +3,15 @@
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
   import Datepicker from "../../External/Datepicker/Datepicker.svelte";
+
+  let startDateSelected = new Date();
+  let endDateSelected = new Date();
+  let endDateChosen = false;
+
+  $: if (!endDateChosen || endDateSelected < startDateSelected) {
+    endDateSelected.setDate(startDateSelected.getDate() + 1);
+    endDateSelected = endDateSelected;
+  }
 </script>
 
 <style type="text/scss">
@@ -35,12 +44,29 @@
 </section>
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
-    <div class="itinerary-title-field">
+    <div class="itinerary-title-container">
       <p class="itinerary-step-title">When is the trip?</p>
     </div>
-  </div>
-  <div>
-    <Datepicker start={new Date(2020, 1, 1)} end={new Date(2020, 3, 4)} />
+    <div class="itinerary-place-container">
+      <p class="itinerary-place-title">To place</p>
+    </div>
+    <div class="start-date-container">
+      <p>Start Date</p>
+      <Datepicker
+        start={new Date(2000, 1, 1)}
+        end={new Date(2090, 12, 31)}
+        format={'#{D} #{M} #{d} #{Y}'}
+        bind:selected={startDateSelected} />
+    </div>
+    <div class="end-date-container">
+      <p>End Date</p>
+      <Datepicker
+        start={startDateSelected}
+        bind:selected={endDateSelected}
+        bind:dateChosen={endDateChosen}
+        end={new Date(2090, 12, 31)}
+        format={'#{D} #{M} #{d} #{Y}'} />
+    </div>
   </div>
   <ItineraryCreatorButtons
     prevPageLink={'#/new-itinerary/where'}

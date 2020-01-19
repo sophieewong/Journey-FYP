@@ -2,6 +2,8 @@
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
+
+  export let destination = "";
 </script>
 
 <style type="text/scss">
@@ -29,17 +31,13 @@
   //   }
 </style>
 
-<section class="itinerary-creator-header">
-  <ItineraryCreatorHeader />
-</section>
 <section class="itinerary-steps">
   <!-- Add itinerary steps component -->
 </section>
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
-    <TextInputField title="Where is your next city destination?" />
+    <TextInputField
+      title="Where is your next city destination?"
+      bind:value={destination} />
   </div>
-  <ItineraryCreatorButtons
-    prevPageLink={'#/new-itinerary'}
-    nextPageLink={'#/new-itinerary/when'} />
 </section>

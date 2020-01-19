@@ -1,6 +1,6 @@
 <script>
-  export let prevPageLink;
-  export let nextPageLink;
+  export let onPrevClick;
+  export let onNextClick;
 </script>
 
 <style type="text/scss">
@@ -47,9 +47,13 @@
 
 <div class="buttons">
   <div class="back-button-container container">
-    <a href={prevPageLink} class="back-button secondary-btn btn">Back</a>
+    <button on:click={onPrevClick} class="back-button secondary-btn btn">
+      Back
+    </button>
   </div>
   <div class="next-button-container container">
-    <a href={nextPageLink} class="next-button primary-btn btn">Next</a>
+    <button on:click={onNextClick} class="next-button primary-btn btn">
+      Next
+    </button>
   </div>
 </div>
