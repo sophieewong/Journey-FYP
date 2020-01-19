@@ -2,6 +2,7 @@
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
+  import Datepicker from "../../External/Datepicker/Datepicker.svelte";
 </script>
 
 <style type="text/scss">
@@ -37,6 +38,9 @@
     <div class="itinerary-title-field">
       <p class="itinerary-step-title">When is the trip?</p>
     </div>
+  </div>
+  <div>
+    <Datepicker start={new Date(2020, 1, 1)} end={new Date(2020, 3, 4)} />
   </div>
   <ItineraryCreatorButtons
     prevPageLink={'#/new-itinerary/where'}
