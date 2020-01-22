@@ -2,12 +2,12 @@
   import ItineraryCreatorHeader from "../Components/ItineraryCreatorHeader.svelte";
   import ItineraryCreatorButtons from "../Components/ItineraryCreatorButtons.svelte";
 
-  import ItineraryCreatorName from "./CreateItinerary/Step1Intro.svelte";
-  import ItineraryCreatorWhere from "./CreateItinerary/Step2Where.svelte";
-  import ItineraryCreatorWhen from "./CreateItinerary/Step3When.svelte";
-  import ItineraryCreatorBudget from "./CreateItinerary/Step4Budget.svelte";
-  import ItineraryCreatorRefine from "./CreateItinerary/Step5Refine.svelte";
-  import ItineraryCreatorPOIs from "./CreateItinerary/Step6POIs.svelte";
+  import ItineraryCreatorName from "./CreateItinerary/ItineraryCreatorName.svelte";
+  import ItineraryCreatorWhere from "./CreateItinerary/ItineraryCreatorWhere.svelte";
+  import ItineraryCreatorWhen from "./CreateItinerary/ItineraryCreatorWhen.svelte";
+  import ItineraryCreatorBudget from "./CreateItinerary/ItineraryCreatorBudget.svelte";
+  import ItineraryCreatorRefine from "./CreateItinerary/ItineraryCreatorRefine.svelte";
+  import ItineraryCreatorPOIs from "./CreateItinerary/ItineraryCreatorPOIs.svelte";
 
   let name = "New Itinerary";
   let destination = "";
@@ -15,10 +15,10 @@
   let endDate = new Date();
   let budget = "Low";
   let categories = [
-  { name: "Theme Parks", selected: false },
-  { name: "Museums", selected: false},
-  { name: "Shopping & Markets", selected: false }
-];
+    { name: "Theme Parks", selected: false },
+    { name: "Museums", selected: false },
+    { name: "Shopping & Markets", selected: false }
+  ];
 
   let currentStep = 0;
 
@@ -48,7 +48,15 @@
 {:else if currentStep === 1}
   <ItineraryCreatorWhere bind:destination />
 {:else if currentStep === 2}
-  <ItineraryCreatorRefine bind:categories />
+  <ItineraryCreatorWhen {destination} />
+{:else if currentStep === 3}
+  <ItineraryCreatorBudget bind:budget {destination} />
+{:else if currentStep === 4}
+  <ItineraryCreatorRefine bind:categories {destination} />
+{:else if currentStep === 5}
+  <ItineraryCreatorPOIs />
+{:else}
+  <!-- Itinerary Generator -->
 {/if}
 
 {#if currentStep > 0}

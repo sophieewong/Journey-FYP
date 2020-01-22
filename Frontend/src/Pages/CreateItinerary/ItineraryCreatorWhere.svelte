@@ -1,7 +1,8 @@
 <script>
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
-  import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
+
+  export let destination = "";
 </script>
 
 <style type="text/scss">
@@ -15,30 +16,15 @@
       margin-left: 3rem;
     }
   }
-
-  .itinerary-step-title {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.5rem;
-    line-height: 27px;
-    letter-spacing: 0.1em;
-    font-family: $body-text;
-  }
 </style>
 
-<section class="itinerary-creator-header">
-  <ItineraryCreatorHeader />
-</section>
 <section class="itinerary-steps">
   <!-- Add itinerary steps component -->
 </section>
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
-    <div class="itinerary-title-field">
-      <p class="itinerary-step-title">What is the trip budget?</p>
-    </div>
+    <TextInputField
+      title="Where is your next city destination?"
+      bind:value={destination} />
   </div>
-  <ItineraryCreatorButtons
-    prevPageLink={'#/new-itinerary/when'}
-    nextPageLink={'#/new-itinerary/refine'} />
 </section>

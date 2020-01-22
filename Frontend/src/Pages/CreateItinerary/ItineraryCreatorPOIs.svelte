@@ -3,9 +3,7 @@
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
 
-  import getCategoryIcon from "../../utils/getCategoryIcon.js";
-
-  export let categories;
+  export let destination = "";
 </script>
 
 <style type="text/scss">
@@ -28,18 +26,6 @@
     letter-spacing: 0.1em;
     font-family: $body-text;
   }
-
-  .icon-container {
-    :global(path) {
-      fill: red;
-    }
-  }
-
-  .icon-container-selected {
-    :global(path) {
-      fill: blue;
-    }
-  }
 </style>
 
 <section class="itinerary-steps">
@@ -48,24 +34,10 @@
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
     <div class="itinerary-title-field">
-      <p class="itinerary-step-title">Refine your itinerary.</p>
+      <p class="itinerary-step-title">
+        Add the places you'd like to visit in {destination} to build your
+        itinerary.
+      </p>
     </div>
   </div>
-  <div>
-    {#each categories as category}
-      <h4>{category.name}</h4>
-      <div class="icon-container" class:icon-container={!category.selected} class:icon-container-selected={category.selected}>
-        {@html getCategoryIcon(category.name)}
-      </div>
-      <input
-        type="checkbox"
-        checked={category.selected}
-        on:change={event => {
-          category.selected = event.target.checked;
-        }} />
-    {/each}
-  </div>
-  <ItineraryCreatorButtons
-    prevPageLink={'#/new-itinerary/budget'}
-    nextPageLink={'#/new-itinerary/places'} />
 </section>

@@ -7,22 +7,15 @@
   @import "../styles/shared";
 
   .buttons {
-    margin-right: 3rem;
+    margin-right: 6rem;
+    margin-left: 6rem;
+    @media screen and (max-width: $desktop-breakpoint) {
+      margin-right: 3rem;
+      margin-left: 3rem;
+    }
 
     @media screen and (min-width: $sm-tablet-breakpoint) {
       display: flex;
-    }
-  }
-
-  .container {
-    width: 100%;
-
-    @media screen and (min-width: $sm-tablet-breakpoint) {
-      width: 50%;
-    }
-
-    @media screen and (min-width: $desktop-breakpoint) {
-      width: 30%;
     }
   }
 
@@ -41,6 +34,14 @@
 
     @media screen and (max-width: $sm-tablet-breakpoint) {
       margin-right: 0;
+    }
+  }
+
+  .btn {
+    padding: 1.5rem 5rem;
+
+    @media screen and (max-width: $sm-tablet-breakpoint) {
+      width: 100%;
     }
   }
 </style>

@@ -1,18 +1,18 @@
 <script>
-  import Month from './Month.svelte';
-  import NavBar from './NavBar.svelte';
-  import Popover from './Popover.svelte';
-  import { getMonths, areDatesEquivalent } from './lib/helpers';
-  import { formatDate, internationalize } from 'timeUtils';
-  import { keyCodes, keyCodesArray } from './lib/keyCodes';
-  import { onMount, createEventDispatcher } from 'svelte';
+  import Month from "./Month.svelte";
+  import NavBar from "./NavBar.svelte";
+  import Popover from "./Popover.svelte";
+  import { getMonths, areDatesEquivalent } from "./lib/helpers";
+  import { formatDate, internationalize } from "timeUtils";
+  import { keyCodes, keyCodesArray } from "./lib/keyCodes";
+  import { onMount, createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
   const today = new Date();
 
   let popover;
 
-  export let format = '#{m}/#{d}/#{Y}';
+  export let format = "#{m}/#{d}/#{Y}";
   export let start = new Date(1987, 9, 29);
   export let end = new Date(2020, 9, 29);
   export let selected = today;
@@ -21,47 +21,50 @@
   export let selectableCallback = null;
   export let weekStart = 0;
   export let daysOfWeek = [
-    ['Sunday', 'Sun'],
-    ['Monday', 'Mon'],
-    ['Tuesday', 'Tue'],
-    ['Wednesday', 'Wed'],
-    ['Thursday', 'Thu'],
-    ['Friday', 'Fri'],
-    ['Saturday', 'Sat']
+    ["Sunday", "Sun"],
+    ["Monday", "Mon"],
+    ["Tuesday", "Tue"],
+    ["Wednesday", "Wed"],
+    ["Thursday", "Thu"],
+    ["Friday", "Fri"],
+    ["Saturday", "Sat"]
   ];
   export let monthsOfYear = [
-    ['January', 'Jan'],
-    ['February', 'Feb'],
-    ['March', 'Mar'],
-    ['April', 'Apr'],
-    ['May', 'May'],
-    ['June', 'Jun'],
-    ['July', 'Jul'],
-    ['August', 'Aug'],
-    ['September', 'Sep'],
-    ['October', 'Oct'],
-    ['November', 'Nov'],
-    ['December', 'Dec']
+    ["January", "Jan"],
+    ["February", "Feb"],
+    ["March", "Mar"],
+    ["April", "Apr"],
+    ["May", "May"],
+    ["June", "Jun"],
+    ["July", "Jul"],
+    ["August", "Aug"],
+    ["September", "Sep"],
+    ["October", "Oct"],
+    ["November", "Nov"],
+    ["December", "Dec"]
   ];
 
-  export let style = '';
-  
+  export let style = "";
+
   // theming variables:
-  export let buttonBackgroundColor = '#fff';
-  export let buttonBorderColor = '#eee';
-  export let buttonTextColor = '#333';
-  export let highlightColor = '#f7901e';
-  export let dayBackgroundColor = 'none';
-  export let dayTextColor = '#4a4a4a';
-  export let dayHighlightedBackgroundColor = '#efefef';
-  export let dayHighlightedTextColor = '#4a4a4a';
+  export let buttonBackgroundColor = "#fff";
+  export let buttonBorderColor = "#eee";
+  export let buttonTextColor = "#333";
+  export let highlightColor = "#1ba8f1";
+  export let dayBackgroundColor = "none";
+  export let dayTextColor = "#4a4a4a";
+  export let dayHighlightedBackgroundColor = "#efefef";
+  export let dayHighlightedTextColor = "#4a4a4a";
 
   internationalize({ daysOfWeek, monthsOfYear });
-  let sortedDaysOfWeek = weekStart === 0 ? daysOfWeek : (() => {
-    let dow = daysOfWeek.slice();
-    dow.push(dow.shift());
-    return dow;
-  })();
+  let sortedDaysOfWeek =
+    weekStart === 0
+      ? daysOfWeek
+      : (() => {
+          let dow = daysOfWeek.slice();
+          dow.push(dow.shift());
+          return dow;
+        })();
 
   let highlighted = today;
   let shouldShakeDate = false;
@@ -93,7 +96,8 @@
   $: visibleMonth = months[monthIndex];
 
   $: visibleMonthId = year + month / 100;
-  $: lastVisibleDate = visibleMonth.weeks[visibleMonth.weeks.length - 1].days[6].date;
+  $: lastVisibleDate =
+    visibleMonth.weeks[visibleMonth.weeks.length - 1].days[6].date;
   $: firstVisibleDate = visibleMonth.weeks[0].days[0].date;
   $: canIncrementMonth = monthIndex < months.length - 1;
   $: canDecrementMonth = monthIndex > 0;
@@ -111,9 +115,10 @@
 
   export let formattedSelected;
   $: {
-    formattedSelected = typeof format === 'function'
-      ? format(selected)
-      : formatDate(selected, format);
+    formattedSelected =
+      typeof format === "function"
+        ? format(selected)
+        : formatDate(selected, format);
   }
 
   onMount(() => {
@@ -187,7 +192,7 @@
     selected = chosen;
     dateChosen = true;
     assignValueToTrigger(formattedSelected);
-    return dispatch('dateSelected', { date: chosen });
+    return dispatch("dateSelected", { date: chosen });
   }
 
   function handleKeyPress(evt) {
@@ -225,8 +230,8 @@
   }
 
   function registerClose() {
-    document.removeEventListener('keydown', handleKeyPress);
-    dispatch('close');
+    document.removeEventListener("keydown", handleKeyPress);
+    dispatch("close");
   }
 
   function close() {
@@ -238,61 +243,12 @@
     highlighted = getDefaultHighlighted();
     month = selected.getMonth();
     year = selected.getFullYear();
-    document.addEventListener('keydown', handleKeyPress);
-    dispatch('open');
+    document.addEventListener("keydown", handleKeyPress);
+    dispatch("open");
   }
-
 </script>
 
-<div 
-  class="datepicker" 
-  class:open="{isOpen}" 
-  class:closing="{isClosing}"
-  style={wrapperStyle}
->
-  <Popover
-    bind:this="{popover}"
-    bind:open="{isOpen}"
-    bind:shrink="{isClosing}"
-    {trigger}
-    on:opened="{registerOpen}"
-    on:closed="{registerClose}"
-  >
-    <div slot="trigger">
-      <slot>
-        {#if !trigger}
-        <button class="calendar-button" type="button">
-          {formattedSelected}
-        </button>
-        {/if}
-      </slot>
-    </div>
-    <div slot="contents">
-      <div class="calendar">
-        <NavBar 
-          {month}
-          {year}
-          {start}
-          {end}
-          {canIncrementMonth}
-          {canDecrementMonth}
-          {monthsOfYear}
-          on:monthSelected={e => changeMonth(e.detail)}
-          on:incrementMonth={e => incrementMonth(e.detail)} 
-        />
-        <div class="legend">
-          {#each sortedDaysOfWeek as day}
-          <span>{day[1]}</span>
-          {/each}
-        </div>
-        <Month {visibleMonth} {selected} {highlighted} {shouldShakeDate} {start}
-        {end} id={visibleMonthId} on:dateSelected={e => registerSelection(e.detail)} />
-      </div>
-    </div>
-  </Popover>
-</div>
-
-<style>
+<style type="text/scss">
   .datepicker {
     display: inline-block;
     margin: 0 auto;
@@ -312,6 +268,17 @@
     color: var(--button-text-color);
     border-radius: 7px;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  @media (max-width: 600px) {
+    .calendar-button {
+      width: 100%;
+    }
   }
 
   *,
@@ -328,6 +295,7 @@
     width: 100vw;
     padding: 10px;
     padding-top: 0;
+    font-family: Josefin Sans;
   }
 
   @media (min-width: 480px) {
@@ -350,3 +318,55 @@
     text-align: center;
   }
 </style>
+
+<div
+  class="datepicker"
+  class:open={isOpen}
+  class:closing={isClosing}
+  style={wrapperStyle}>
+  <Popover
+    bind:this={popover}
+    bind:open={isOpen}
+    bind:shrink={isClosing}
+    {trigger}
+    on:opened={registerOpen}
+    on:closed={registerClose}>
+    <div slot="trigger">
+      <slot>
+        {#if !trigger}
+          <button class="calendar-button" type="button">
+            {formattedSelected}
+          </button>
+        {/if}
+      </slot>
+    </div>
+    <div slot="contents">
+      <div class="calendar">
+        <NavBar
+          {month}
+          {year}
+          {start}
+          {end}
+          {canIncrementMonth}
+          {canDecrementMonth}
+          {monthsOfYear}
+          on:monthSelected={e => changeMonth(e.detail)}
+          on:incrementMonth={e => incrementMonth(e.detail)} />
+        <div class="legend">
+          {#each sortedDaysOfWeek as day}
+            <span>{day[1]}</span>
+          {/each}
+        </div>
+        <Month
+          {visibleMonth}
+          {selected}
+          {highlighted}
+          {shouldShakeDate}
+          {start}
+          {end}
+          id={visibleMonthId}
+          on:dateSelected={e => registerSelection(e.detail)} />
+      </div>
+    </div>
+  </Popover>
+</div>

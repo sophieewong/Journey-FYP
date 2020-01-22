@@ -3,8 +3,6 @@
   import Navigation from "../Components/Navigation.svelte";
   import HeroBanner from "../Components/HeroBanner.svelte";
   import ItinerariesTabs from "../Components/ItinerariesTabs.svelte";
-
-  //import search box <input type="text" placeholder="Search" />
 </script>
 
 <style type="text/scss">
@@ -35,10 +33,13 @@
 
   .itinerary-creator-button {
     display: block;
-    width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
     cursor: pointer;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      padding: 0 3rem;
+    }
   }
 </style>
 

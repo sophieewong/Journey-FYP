@@ -20,9 +20,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 2.5rem 0;
+    margin-right: 6rem;
+    margin-left: 6rem;
 
     @media screen and (max-width: $desktop-breakpoint) {
       padding: 2rem 0;
+      margin-right: 3rem;
+      margin-left: 3rem;
     }
   }
 </style>
