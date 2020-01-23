@@ -31,14 +31,17 @@
   }
 
   .icon-container {
+    border: 1px solid $blue;
+    background-color: transparent;
     :global(path) {
-      fill: red;
+      fill: $blue;
     }
   }
 
   .icon-container-selected {
+    background-color: $blue;
     :global(path) {
-      fill: blue;
+      fill: $white;
     }
   }
 </style>

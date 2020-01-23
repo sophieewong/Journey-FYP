@@ -17,7 +17,17 @@
   let categories = [
     { name: "Theme Parks", selected: false },
     { name: "Museums", selected: false },
-    { name: "Shopping & Markets", selected: false }
+    { name: "Nature & Wildlife", selected: false },
+    { name: "Shopping & Markets", selected: false },
+    { name: "Theatre & Entertainment", selected: false },
+    { name: "Historical", selected: false },
+    { name: "Food", selected: false },
+    { name: "Arts & Culture", selected: false },
+    { name: "Sports", selected: false },
+    { name: "Landmarks", selected: false },
+    { name: "Beaches, Coasts & Islands", selected: false },
+    { name: "City Views", selected: false },
+    { name: "Nightlife", selected: false }
   ];
 
   let currentStep = 0;
