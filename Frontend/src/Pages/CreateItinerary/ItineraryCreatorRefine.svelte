@@ -31,8 +31,19 @@
   }
 
   .icon-container {
-    border: 1px solid $blue;
+    border: 7px solid $blue;
     background-color: transparent;
+    border-radius: 7px;
+    width: 20rem;
+    height: 20rem;
+    padding: 2rem 3rem;
+
+    :global(svg) {
+      width: 75%;
+      height: 75%;
+      margin-left: 2.5rem;
+    }
+
     :global(path) {
       fill: $blue;
     }
@@ -40,9 +51,36 @@
 
   .icon-container-selected {
     background-color: $blue;
+    border-radius: 7px;
+    border: 7px solid $blue;
+    width: 20rem;
+    height: 20rem;
+    padding: 2rem 3rem;
+
+    :global(svg) {
+      width: 75%;
+      height: 75%;
+      margin-left: 2.5rem;
+    }
     :global(path) {
       fill: $white;
     }
+
+    .category-title {
+      color: $white;
+    }
+  }
+
+  .category-title {
+    text-align: center;
+    margin: 0.5rem 0 0 0;
+    font-family: $body-text;
+    font-size: 3em;
+    color: $blue;
+  }
+
+  .category-checkbox {
+    visibility: hidden;
   }
 </style>
 
@@ -57,19 +95,24 @@
   </div>
   <div>
     {#each categories as category}
-      <h4>{category.name}</h4>
       <div
         class="icon-container"
+        on:click={() => (category.selected = !category.selected)}
         class:icon-container={!category.selected}
         class:icon-container-selected={category.selected}>
         {@html getCategoryIcon(category.name)}
+        <label class="category-title" for={category.name}>
+          {category.name}
+        </label>
+        <input
+          name={category.name}
+          class="category-checkbox"
+          type="checkbox"
+          checked={category.selected}
+          on:change={event => {
+            category.selected = event.target.checked;
+          }} />
       </div>
-      <input
-        type="checkbox"
-        checked={category.selected}
-        on:change={event => {
-          category.selected = event.target.checked;
-        }} />
     {/each}
   </div>
 </section>
