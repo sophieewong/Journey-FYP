@@ -2,7 +2,6 @@
   import Logo from "../Components/Logo.svelte";
   import Navigation from "../Components/Navigation.svelte";
   import HeroBanner from "../Components/HeroBanner.svelte";
-  import ItinerariesTabs from "../Components/ItinerariesTabs.svelte";
 </script>
 
 <style type="text/scss">
@@ -54,6 +53,4 @@
     <a href="#/new-itinerary" class="primary-btn btn">+ Add Itinerary</a>
   </div>
 </section>
-<section class="itineraries-lists">
-  <ItinerariesTabs />
-</section>
+<section class="itineraries-lists" />
