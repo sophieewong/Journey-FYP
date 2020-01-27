@@ -2,6 +2,29 @@
   import Logo from "../Components/Logo.svelte";
   import Navigation from "../Components/Navigation.svelte";
   import HeroBanner from "../Components/HeroBanner.svelte";
+  import Tabs from "../Components/Tabs.svelte";
+
+  //This will eventually come from the backend as an api
+  let data = {
+    upcomingTrips: [
+      {
+        name: "CNY 2021",
+        location: "Kuala Lumpur, Malaysia",
+        duration: "14 Days",
+        date: "25/1/2021 - 10/2/2021"
+      }
+    ],
+    pastTrips: [
+      {
+        name: "York 2019",
+        location: "york, United Kingdom",
+        duration: "14 Days",
+        date: "25/11/2019 - 10/12/2019"
+      }
+    ]
+  };
+
+  let activeTab = 0;
 </script>
 
 <style type="text/scss">
@@ -53,4 +76,36 @@
     <a href="#/new-itinerary" class="primary-btn btn">+ Add Itinerary</a>
   </div>
 </section>
-<section class="itineraries-lists" />
+
+<Tabs
+  tabs={['Upcoming', 'Past']}
+  {activeTab}
+  onTabClicked={tab => (activeTab = tab)} />
+
+<!-- create an upcoming array & a past array, return objects based on which tab is selected -->
+
+{#if activeTab === 0}
+  <div>
+    {#each data.upcomingTrips as { name, location, duration, startDate, endDate }}
+      <!--<TripPreview name location startDate endDate/>-->
+      <h4>{name}</h4>
+      <p>{location}</p>
+      <p>{duration}</p>
+    {:else}
+      <p>No upcoming trips found :(</p>
+    {/each}
+  </div>
+{/if}
+
+{#if activeTab === 1}
+  <div>
+    {#each data.pastTrips as { name, location, duration, startDate, endDate }}
+      <!--<TripPreview name location startDate endDate/>-->
+      <h4>{name}</h4>
+      <p>{location}</p>
+      <p>{duration}</p>
+    {:else}
+      <p>No past trips found :(</p>
+    {/each}
+  </div>
+{/if}
