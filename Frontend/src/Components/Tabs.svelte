@@ -12,10 +12,6 @@
     font-family: $body-text;
     font-size: 1.5em;
     padding: 0 0.5rem;
-
-    @media screen and (max-width: $tablet-breakpoint) {
-      justify-content: space-between;
-    }
   }
 
   li {
@@ -42,15 +38,16 @@
   }
 
   nav {
-    margin-bottom: 1.5rem;
-    margin-right: 6rem;
-    margin-left: 6rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
 
-    @media screen and (max-width: $desktop-breakpoint) {
-      margin-bottom: 3rem;
-      margin-right: 3rem;
-      margin-left: 3rem;
-    }
+  .left-tab {
+    margin-right: 20px;
+  }
+
+  .right-tab {
+    margin-left: 20px;
   }
 </style>
 
@@ -61,6 +58,7 @@
     -->
     {#if activeTab > 0}
       <li
+        class="left-tab"
         on:click={() => {
           activeTab = activeTab - 1;
           onTabClicked(activeTab);
@@ -76,6 +74,7 @@
     -->
     {#if activeTab < tabs.length - 1}
       <li
+        class="right-tab"
         on:click={() => {
           activeTab = activeTab + 1;
           onTabClicked(activeTab);
@@ -85,19 +84,3 @@
     {/if}
   </ul>
 </nav>
-
-<!-- <nav>
-  <ul>
-    {#each tabs as tab}
-      <li
-        class:active={tab === activeTab}
-        on:click={() => {
-          activeTab = tab;
-          onTabClicked(tab);
-        }}>
-        {tab}
-      </li>
-      <div class="desktop-arrow">></div>
-    {/each}
-  </ul>
-</nav> -->
