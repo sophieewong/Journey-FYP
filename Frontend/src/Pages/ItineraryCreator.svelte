@@ -31,7 +31,7 @@
     { name: "Nightlife", selected: false }
   ];
 
-  let currentStep = 0;
+  let currentStep = 4;
 </script>
 
 <section class="itinerary-creator-header">

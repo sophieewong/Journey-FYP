@@ -30,18 +30,32 @@
     font-family: $body-text;
   }
 
+  .icons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border: 7px solid $blue;
     background-color: transparent;
     border-radius: 7px;
-    width: 20rem;
-    height: 20rem;
-    padding: 2rem 3rem;
+    // padding: 2rem 3rem;
+    margin: 10px;
+    width: 10rem;
+    padding: 2rem;
+    height: auto;
+    flex-basis: 10rem;
 
     :global(svg) {
-      width: 75%;
-      height: 75%;
-      margin-left: 2.5rem;
+      width: 100%;
+      height: auto;
+      // margin-left: 2.5rem;
     }
 
     :global(path) {
@@ -51,17 +65,6 @@
 
   .icon-container-selected {
     background-color: $blue;
-    border-radius: 7px;
-    border: 7px solid $blue;
-    width: 20rem;
-    height: 20rem;
-    padding: 2rem 3rem;
-
-    :global(svg) {
-      width: 75%;
-      height: 75%;
-      margin-left: 2.5rem;
-    }
     :global(path) {
       fill: $white;
     }
@@ -75,7 +78,7 @@
     text-align: center;
     margin: 0.5rem 0 0 0;
     font-family: $body-text;
-    font-size: 3em;
+    font-size: 1.5em;
     color: $blue;
   }
 
@@ -93,12 +96,11 @@
       <p class="itinerary-step-title">Refine your itinerary.</p>
     </div>
   </div>
-  <div>
+  <div class="icons">
     {#each categories as category}
       <div
-        class="icon-container"
         on:click={() => (category.selected = !category.selected)}
-        class:icon-container={!category.selected}
+        class="icon-container"
         class:icon-container-selected={category.selected}>
         {@html getCategoryIcon(category.name)}
         <label class="category-title" for={category.name}>
