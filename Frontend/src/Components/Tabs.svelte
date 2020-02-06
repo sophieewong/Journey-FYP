@@ -40,14 +40,18 @@
   nav {
     margin-top: 2rem;
     margin-bottom: 2rem;
+
+    ul {
+      padding-left: 0;
+    }
   }
 
   .left-tab {
-    margin-right: 20px;
+    margin-right: 2.5rem;
   }
 
   .right-tab {
-    margin-left: 20px;
+    margin-left: 2.5rem;
   }
 </style>
 
