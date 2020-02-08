@@ -58,7 +58,7 @@
 {:else if currentStep === 4}
   <ItineraryCreatorRefine bind:categories {destination} />
 {:else if currentStep === 5}
-  <ItineraryCreatorPOIs />
+  <ItineraryCreatorPOIs {destination} {budget} {categories} />
 {:else}
   <!-- Itinerary Generator -->
 {/if}

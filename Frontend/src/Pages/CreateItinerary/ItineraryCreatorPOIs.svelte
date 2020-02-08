@@ -4,6 +4,21 @@
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
 
   export let destination = "";
+  export let budget;
+  export let categories;
+
+  let places = [];
+
+  // asks BE for data, returns a promise
+  fetch("/api/places/" + destination)
+    // once promise is resolved
+    .then(response => {
+      // return the promised data and converts to json
+      return response.json();
+    })
+    .then(data => {
+      places = data;
+    });
 </script>
 
 <style type="text/scss">
@@ -38,6 +53,11 @@
         Add the places you'd like to visit in {destination} to build your
         itinerary.
       </p>
+      {#each places as { name, category, image }}
+        <h2>{name}</h2>
+        <h4>{category}</h4>
+        <img src={image} alt={name} />
+      {:else}No places found :({/each}
     </div>
   </div>
 </section>
