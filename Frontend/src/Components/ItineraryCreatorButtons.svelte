@@ -1,6 +1,8 @@
 <script>
   export let onPrevClick;
   export let onNextClick;
+
+  // let destination = "";
 </script>
 
 <style type="text/scss">
@@ -17,6 +19,11 @@
     @media screen and (min-width: $sm-tablet-breakpoint) {
       display: flex;
     }
+
+    @media screen and (max-width: $sm-tablet-breakpoint) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
   }
 
   .back-button {
@@ -31,6 +38,7 @@
   .next-button {
     font-size: 1.5rem;
     margin-left: 0;
+    margin-bottom: 0;
 
     @media screen and (max-width: $sm-tablet-breakpoint) {
       margin-right: 0;

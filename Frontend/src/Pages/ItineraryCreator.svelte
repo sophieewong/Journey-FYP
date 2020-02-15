@@ -34,14 +34,31 @@
   let currentStep = 0;
 </script>
 
+<style type="text/scss">
+  @import "../styles/shared";
+
+  .itinerary-creator-tabs {
+    padding-left: 6rem;
+    padding-right: 6rem;
+
+    @media screen and (max-width: $desktop-breakpoint) {
+      padding: 0.25rem 0;
+      margin-right: 3rem;
+      margin-left: 3rem;
+    }
+  }
+</style>
+
 <section class="itinerary-creator-header">
   <ItineraryCreatorHeader itineraryTitle={name} />
 </section>
 
-<Tabs
-  tabs={['Name', 'Where', 'When', 'Budget', 'Refine', 'Places']}
-  activeTab={currentStep}
-  onTabClicked={tab => (currentStep = tab)} />
+<section class="itinerary-creator-tabs">
+  <Tabs
+    tabs={['Name', 'Where', 'When', 'Budget', 'Refine', 'Places']}
+    activeTab={currentStep}
+    onTabClicked={tab => (currentStep = tab)} />
+</section>
 
 {#if currentStep === 0}
   <ItineraryCreatorName
@@ -63,7 +80,7 @@
   <!-- Itinerary Generator -->
 {/if}
 
-{#if currentStep > 0}
+{#if currentStep < 5}
   <ItineraryCreatorButtons
     onPrevClick={() => currentStep--}
     onNextClick={() => currentStep++} />

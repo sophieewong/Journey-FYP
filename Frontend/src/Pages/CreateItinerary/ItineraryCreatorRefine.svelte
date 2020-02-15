@@ -45,17 +45,16 @@
     border: 7px solid $blue;
     background-color: transparent;
     border-radius: 7px;
-    // padding: 2rem 3rem;
     margin: 10px;
     width: 10rem;
     padding: 2rem;
     height: auto;
+    max-height: 11rem;
     flex-basis: 10rem;
 
     :global(svg) {
-      width: 100%;
+      width: 85%;
       height: auto;
-      // margin-left: 2.5rem;
     }
 
     :global(path) {
@@ -65,6 +64,7 @@
 
   .icon-container-selected {
     background-color: $blue;
+
     :global(path) {
       fill: $white;
     }

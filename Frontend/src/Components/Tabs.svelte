@@ -28,8 +28,8 @@
     color: $grey;
     padding: 0 1.5rem;
 
-    @media screen and (max-width: $tablet-breakpoint) {
-      display: none;
+    @media screen and (min-width: $lg-tablet-breakpoint) {
+      display: block;
     }
 
     &:last-child {
@@ -38,11 +38,12 @@
   }
 
   nav {
-    margin-top: 2rem;
+    margin-top: 0;
     margin-bottom: 2rem;
 
     ul {
       padding-left: 0;
+      margin-top: 0;
     }
   }
 
@@ -53,38 +54,95 @@
   .right-tab {
     margin-left: 2.5rem;
   }
+
+  .desktop-nav {
+    display: none;
+
+    @media screen and (min-width: $lg-tablet-breakpoint) {
+      display: block;
+    }
+  }
+
+  .mobile-nav {
+    @media screen and (min-width: $lg-tablet-breakpoint) {
+      display: none;
+    }
+  }
+
+  .two-tabs {
+    li {
+      cursor: pointer;
+    }
+  }
+
+  .not-clickable {
+    cursor: not-allowed;
+  }
 </style>
 
-<nav>
-  <ul>
-    <!--If there is a tab to the left of the active tab in the tabs array, show
+{#if tabs.length > 2}
+  <nav class="desktop-nav not-clickable">
+    <ul>
+      {#each tabs as tab}
+        <li class:active={tab === tabs[activeTab]}>{tab}</li>
+        <div class="desktop-arrow">></div>
+      {/each}
+    </ul>
+  </nav>
+
+  <nav class="mobile-nav not-clickable">
+    <ul>
+      <!--If there is a tab to the left of the active tab in the tabs array, show
         an <li> with that tabs name (tabs[activeTab - 1])
     -->
-    {#if activeTab > 0}
-      <li
-        class="left-tab"
-        on:click={() => {
-          activeTab = activeTab - 1;
-          onTabClicked(activeTab);
-        }}>
-        {tabs[activeTab - 1]}
-      </li>
-    {/if}
+      {#if activeTab > 0}
+        <li class="left-tab">{tabs[activeTab - 1]}</li>
+      {/if}
 
-    <li class="active">{tabs[activeTab]}</li>
+      <li class="active">{tabs[activeTab]}</li>
 
-    <!--If there is a tab to the right of the active tab in the tabs array, show
+      <!--If there is a tab to the right of the active tab in the tabs array, show
         an <li> with that tabs name (tabs[activeTab + 1])
     -->
-    {#if activeTab < tabs.length - 1}
-      <li
-        class="right-tab"
-        on:click={() => {
-          activeTab = activeTab + 1;
-          onTabClicked(activeTab);
-        }}>
-        {tabs[activeTab + 1]}
-      </li>
-    {/if}
-  </ul>
-</nav>
+      {#if activeTab < tabs.length - 1}
+        <li class="right-tab">{tabs[activeTab + 1]}</li>
+      {/if}
+    </ul>
+  </nav>
+{/if}
+
+{#if tabs.length < 3}
+  <nav class="two-tabs">
+    <ul>
+      <!--If there is a tab to the left of the active tab in the tabs array, show
+        an <li> with that tabs name (tabs[activeTab - 1])
+    -->
+      {#if activeTab > 0}
+        <li
+          class="left-tab"
+          on:click={() => {
+            activeTab = activeTab - 1;
+            onTabClicked(activeTab);
+          }}>
+          {tabs[activeTab - 1]}
+        </li>
+      {/if}
+
+      <li class="active">{tabs[activeTab]}</li>
+
+      <!--If there is a tab to the right of the active tab in the tabs array, show
+        an <li> with that tabs name (tabs[activeTab + 1])
+    -->
+      {#if activeTab < tabs.length - 1}
+        <li
+          class="right-tab"
+          on:click={() => {
+            activeTab = activeTab + 1;
+            onTabClicked(activeTab);
+          }}>
+          {tabs[activeTab + 1]}
+        </li>
+      {/if}
+    </ul>
+  </nav>
+{/if}

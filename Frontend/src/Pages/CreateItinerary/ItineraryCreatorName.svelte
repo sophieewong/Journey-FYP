@@ -36,7 +36,7 @@
   }
 
   .intinerary-creator-title {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 
     @media screen and (max-width: $tablet-breakpoint) {
       display: flex;
@@ -54,6 +54,16 @@
       margin-right: 0;
       width: 100%;
     }
+
+    &:disabled {
+      background-color: $grey;
+      outline-color: $grey;
+      color: $white;
+      box-shadow: 0px 4px 4px $grey;
+      transition: none;
+      transform: none;
+      cursor: not-allowed;
+    }
   }
 
   .create-itinerary-button {
@@ -64,9 +74,6 @@
   }
 </style>
 
-<section class="itinerary-steps">
-  <!-- Add itinerary steps component -->
-</section>
 <section class="itinerary-creator-content">
   <div class="intinerary-creator-title">
     <h1>Build Your Own Holiday Itinerary</h1>
@@ -78,7 +85,8 @@
   <div class="create-itinerary-button">
     <button
       on:click={() => onNextStep(name)}
-      class="start-itinerary-title-button primary-btn btn">
+      class="start-itinerary-title-button primary-btn btn"
+      disabled={!name}>
       Start
     </button>
   </div>

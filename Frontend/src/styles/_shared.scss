@@ -13,6 +13,7 @@ $boxshadow-blue: #5ac1f6;
 $mobile-breakpoint: 550px;
 $sm-tablet-breakpoint: 600px;
 $tablet-breakpoint: 720px;
+$lg-tablet-breakpoint: 825px;
 $desktop-breakpoint: 1024px;
 
 // mixin
@@ -86,6 +87,16 @@ $desktop-breakpoint: 1024px;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:disabled {
+    background-color: $grey;
+    outline-color: $grey;
+    color: $white;
+    box-shadow: 0px 4px 4px $grey;
+    transition: none;
+    transform: none;
+    cursor: not-allowed;
+  }
 }
 
 .secondary-btn {
@@ -98,4 +109,14 @@ $desktop-breakpoint: 1024px;
   align-items: center;
   justify-content: center;
   border: 1px solid $blue;
+
+  &:disabled {
+    background-color: $grey;
+    outline-color: $grey;
+    color: $white;
+    box-shadow: 0px 4px 4px $grey;
+    transition: none;
+    transform: none;
+    cursor: not-allowed;
+  }
 }
