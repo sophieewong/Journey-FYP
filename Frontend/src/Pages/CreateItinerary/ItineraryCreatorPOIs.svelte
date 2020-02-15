@@ -7,10 +7,18 @@
   export let budget;
   export let categories;
 
+  let chosenCategories = [];
+
+  categories.forEach(category => {
+    if (category.selected === true) {
+      chosenCategories.push(category.name);
+    }
+  });
+
   let places = [];
 
   // asks BE for data, returns a promise
-  fetch("/api/places/" + destination)
+  fetch(`/api/places/${destination}&categories=${chosenCategories.toString()}`)
     // once promise is resolved
     .then(response => {
       // return the promised data and converts to json
