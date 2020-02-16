@@ -1,8 +1,7 @@
 <script>
   export let onPrevClick;
   export let onNextClick;
-
-  // let destination = "";
+  export let disableNextButton = false;
 </script>
 
 <style type="text/scss">
@@ -61,7 +60,10 @@
     </button>
   </div>
   <div class="next-button-container container">
-    <button on:click={onNextClick} class="next-button primary-btn btn">
+    <button
+      on:click={onNextClick}
+      class="next-button primary-btn btn"
+      disabled={disableNextButton}>
       Next
     </button>
   </div>

@@ -80,8 +80,9 @@
   <!-- Itinerary Generator -->
 {/if}
 
-{#if currentStep < 5}
+{#if currentStep > 0}
   <ItineraryCreatorButtons
+    disableNextButton={destination === ''}
     onPrevClick={() => currentStep--}
     onNextClick={() => currentStep++} />
 {/if}

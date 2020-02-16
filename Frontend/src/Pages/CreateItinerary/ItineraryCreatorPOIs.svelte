@@ -25,7 +25,7 @@
       return response.json();
     })
     .then(data => {
-      places = data;
+      places = data.places;
     });
 </script>
 

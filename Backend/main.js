@@ -82,30 +82,34 @@ APICategoriesMap.set("Nightlife", [
 ]);
 
 const mapCategoriesToAPI = categoriesAsString => {
-  //categories = "Theme Parks,Museums,Sports"
+  try {
+    //categories = "Theme Parks,Museums,Sports"
 
-  //split categories by comma into an array becomes >
-  //new categories = ["Theme Parks", "Museums", "Sports"]
+    //split categories by comma into an array becomes >
+    //new categories = ["Theme Parks", "Museums", "Sports"]
 
-  console.log(categoriesAsString);
-  const categories = categoriesAsString.split(",");
-  console.log(categories);
-  //foreach category in the categories array >
-  //fourSquareIds = []
+    const categories = categoriesAsString.split(",");
 
-  let fourSquareCategoryIds = [];
-  categories.forEach(category => {
-    const APICategories = APICategoriesMap.get(category.replace(/"/g, "")); //["123","4789"]
+    //foreach category in the categories array >
+    //fourSquareIds = []
 
-    APICategories.forEach(id => {
-      fourSquareCategoryIds.push(id);
+    let fourSquareCategoryIds = [];
+    categories.forEach(category => {
+      const APICategories = APICategoriesMap.get(category.replace(/"/g, "")); //["123","4789"]
+
+      APICategories.forEach(id => {
+        fourSquareCategoryIds.push(id);
+      });
     });
-  });
 
-  //Give me the foursqaure ids map.get("CURRENT_CATEGRY")
-  //eg: map.get("Sports").forEach(id => fourSquareIds.push(id))
+    //Give me the foursqaure ids map.get("CURRENT_CATEGRY")
+    //eg: map.get("Sports").forEach(id => fourSquareIds.push(id))
 
-  return fourSquareCategoryIds.toString();
+    return fourSquareCategoryIds.toString();
+  } catch (error) {
+    console.error(error);
+    return "";
+  }
 };
 
 //server picks up when route's been hit,
@@ -154,7 +158,7 @@ app.get(
             });
           });
 
-          resFromBackend.json(placesFromFoursquare); // and sends response back with json data to FE
+          resFromBackend.json(places); // and sends response back with json data to FE
         }
       }
     );
