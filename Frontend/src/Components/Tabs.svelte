@@ -107,6 +107,7 @@
       {#if activeTab < tabs.length - 1}
         <li class="right-tab">{tabs[activeTab + 1]}</li>
       {/if}
+
     </ul>
   </nav>
 {/if}
