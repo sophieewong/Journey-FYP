@@ -39,6 +39,11 @@
       margin-right: 3rem;
       margin-left: 3rem;
     }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-right: 1.5rem;
+      margin-left: 1.5rem;
+    }
   }
 
   .itinerary-step-title {
@@ -55,26 +60,70 @@
     display: flex;
     justify-content: space-between;
     max-width: 27rem;
+
+    @media screen and (min-width: $desktop-breakpoint) {
+      margin: 4rem 0;
+      max-width: 35rem;
+    }
+
     img {
       border-radius: 11rem;
       width: 6.5rem;
       height: 6.5rem;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        width: 4.5rem;
+        height: 4.5rem;
+        margin-top: 1.5rem;
+      }
     }
   }
 
   .poi-profile {
     display: flex;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      width: 14rem;
+    }
+
+    @media screen and (min-width: $mobile-breakpoint) and (max-width: $tablet-breakpoint) {
+      width: 18rem;
+    }
   }
 
   .poi-details {
     display: flex;
     flex-direction: column;
     margin-left: 1.5rem;
+    font-family: $body-text;
   }
 
   .poi-name {
     margin-bottom: 0;
     margin-top: 1.5rem;
+    max-width: 22rem;
+    font-size: 18px;
+    letter-spacing: 0.1em;
+    font-style: normal;
+    font-weight: normal;
+
+    @media screen and (min-width: $desktop-breakpoint) {
+      font-size: 25px;
+    }
+
+    @media screen and (max-width: $sm-tablet-breakpoint) {
+      max-width: 14rem;
+    }
+  }
+
+  .poi-category-type {
+    font-style: italic;
+    font-weight: 100;
+    font-size: 15px;
+
+    @media screen and (min-width: $desktop-breakpoint) {
+      font-size: 20px;
+    }
   }
 
   .poi-checkbox {
@@ -83,11 +132,13 @@
 
   .checkbox-container {
     display: inline-block;
-    width: 4rem;
-    height: 4rem;
-    margin-left: 2rem;
+    width: 3rem;
+    height: 3rem;
+    // margin-left: 2rem;
     cursor: pointer;
     background-image: url("../../images/add.png");
+    background-size: cover;
+    margin-top: 1.5rem;
   }
   .poi-control-selected {
     background-image: url("../../images/selected.png");
@@ -104,26 +155,8 @@
         Add the places you'd like to visit in {destination} to build your
         itinerary.
       </p>
-      <!-- {#each places as { name, category, image }}
-        <div class="place-of-interest">
-          <img src={image} alt={name} />
-          <div class="poi-details">
-            <p class="poi-name">{name}</p>
-            <p class="poi-category-type">{category}</p>
-          </div>
-          <div class="poi-control">
-            <input
-              name={places.name}
-              class="poi-checkbox"
-              type="checkbox"
-              checked={places.selected}
-              on:change={event => {
-                places.selected = event.target.checked;
-              }} />
-          </div>
-        </div>
-      {:else}No places found :({/each} -->
-
+    </div>
+    <div class="places">
       {#each places as place}
         <div class="place-of-interest">
           <div class="poi-profile">
@@ -149,7 +182,6 @@
           </div>
         </div>
       {:else}No places found :({/each}
-
     </div>
   </div>
 </section>
