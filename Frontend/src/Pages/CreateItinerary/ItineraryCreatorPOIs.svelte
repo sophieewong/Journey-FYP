@@ -49,6 +49,49 @@
     letter-spacing: 0.1em;
     font-family: $body-text;
   }
+
+  .place-of-interest {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    max-width: 27rem;
+    img {
+      border-radius: 11rem;
+      width: 6.5rem;
+      height: 6.5rem;
+    }
+  }
+
+  .poi-profile {
+    display: flex;
+  }
+
+  .poi-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+  }
+
+  .poi-name {
+    margin-bottom: 0;
+    margin-top: 1.5rem;
+  }
+
+  .poi-checkbox {
+    visibility: hidden;
+  }
+
+  .checkbox-container {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    margin-left: 2rem;
+    cursor: pointer;
+    background-image: url("../../images/add.png");
+  }
+  .poi-control-selected {
+    background-image: url("../../images/selected.png");
+  }
 </style>
 
 <section class="itinerary-steps">
@@ -61,11 +104,52 @@
         Add the places you'd like to visit in {destination} to build your
         itinerary.
       </p>
-      {#each places as { name, category, image }}
-        <h2>{name}</h2>
-        <h4>{category}</h4>
-        <img src={image} alt={name} />
+      <!-- {#each places as { name, category, image }}
+        <div class="place-of-interest">
+          <img src={image} alt={name} />
+          <div class="poi-details">
+            <p class="poi-name">{name}</p>
+            <p class="poi-category-type">{category}</p>
+          </div>
+          <div class="poi-control">
+            <input
+              name={places.name}
+              class="poi-checkbox"
+              type="checkbox"
+              checked={places.selected}
+              on:change={event => {
+                places.selected = event.target.checked;
+              }} />
+          </div>
+        </div>
+      {:else}No places found :({/each} -->
+
+      {#each places as place}
+        <div class="place-of-interest">
+          <div class="poi-profile">
+            <img src={place.image} alt={place.name} />
+            <div class="poi-details">
+              <p class="poi-name">{place.name}</p>
+              <p class="poi-category-type">{place.category}</p>
+            </div>
+          </div>
+          <div
+            on:click={() => (place.selected = !place.selected)}
+            class="checkbox-container"
+            class:poi-control-selected={place.selected}>
+            <label class="poi-label" for={place.name} />
+            <input
+              name={place.name}
+              class="poi-checkbox"
+              type="checkbox"
+              checked={place.selected}
+              on:change={event => {
+                place.selected = event.target.checked;
+              }} />
+          </div>
+        </div>
       {:else}No places found :({/each}
+
     </div>
   </div>
 </section>

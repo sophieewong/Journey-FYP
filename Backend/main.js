@@ -277,7 +277,7 @@ app.get(
                   ? item.venue.categories[0].name
                   : "No Category",
               image:
-                "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/dc23cd051d2249a5903d25faf8eeee4c/BFV36537_CC2017_2IngredintDough4Ways-FB.jpg"
+                "https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-3.jpg"
             });
           });
 

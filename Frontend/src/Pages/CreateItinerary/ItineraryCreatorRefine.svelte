@@ -93,7 +93,9 @@
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
     <div class="itinerary-title-field">
-      <p class="itinerary-step-title">Refine your itinerary.</p>
+      <p class="itinerary-step-title">
+        Please select at least one category to refine your itinerary.
+      </p>
     </div>
   </div>
   <div class="icons">

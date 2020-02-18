@@ -30,7 +30,6 @@
     { name: "City Views", selected: false },
     { name: "Nightlife", selected: false },
     { name: "Entertainment & Events", selected: false }
-
   ];
 
   let currentStep = 0;
