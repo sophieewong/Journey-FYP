@@ -183,4 +183,37 @@ FoursquareAPICategories.set("Entertainment & Events", [
   "52f2ab2ebcbc57f1066b8b3d"
 ]);
 
-module.exports = FoursquareAPICategories;
+const mapCategoriesToFoursquareAPI = categoriesAsString => {
+  try {
+    //categories = "Theme Parks,Museums,Sports"
+
+    //split categories by comma into an array becomes >
+    //new categories = ["Theme Parks", "Museums", "Sports"]
+
+    const categories = categoriesAsString.split(",");
+
+    //foreach category in the categories array >
+    //fourSquareIds = []
+
+    let fourSquareCategoryIds = [];
+    categories.forEach(category => {
+      const APICategories = FoursquareAPICategories.get(
+        category.replace(/"/g, "")
+      ); //["123","4789"]
+
+      APICategories.forEach(id => {
+        fourSquareCategoryIds.push(id);
+      });
+    });
+
+    //Give me the foursqaure ids map.get("CURRENT_CATEGRY")
+    //eg: map.get("Sports").forEach(id => fourSquareIds.push(id))
+
+    return fourSquareCategoryIds.toString();
+  } catch (error) {
+    console.error(error);
+    return "";
+  }
+};
+
+module.exports = mapCategoriesToFoursquareAPI;

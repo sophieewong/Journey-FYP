@@ -18,6 +18,9 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, "../Frontend/public/")));
 
 //server picks up when route's been hit,call places Controller function
-app.get("/api/places/:destination&categories=:categories", placesController);
+app.get(
+  "/api/places/:destination&categories=:categories&budget=:budget",
+  placesController
+);
 
-app.listen(5000, () => console.log("server has started"));
+app.listen(3000, () => console.log("server has started"));

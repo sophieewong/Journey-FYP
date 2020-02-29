@@ -3,6 +3,7 @@
   import TextInputField from "../../Components/TextInputField.svelte";
 
   export let destination = "";
+  export let budget = "All";
 </script>
 
 <style type="text/scss">
@@ -114,34 +115,38 @@
 
   <div class="itinerary-creator-budget">
     <input
+      bind:group={budget}
       type="radio"
       name="budget"
-      value="all"
+      value="All"
       class="budget-high"
       id="all-budget"
       checked="checked" />
     <label for="all-budget">Include all cost range</label>
     <br />
     <input
+      bind:group={budget}
       type="radio"
       name="budget"
-      value="low"
+      value="Low"
       class="budget-low"
       id="low-budget" />
     <label for="low-budget">Low: Free - £20</label>
     <br />
     <input
+      bind:group={budget}
       type="radio"
       name="budget"
-      value="medium"
+      value="Medium"
       class="budget-med"
       id="medium-budget" />
     <label for="medium-budget">Medium: £20 - £50</label>
     <br />
     <input
+      bind:group={budget}
       type="radio"
       name="budget"
-      value="high"
+      value="High"
       class="budget-high"
       id="high-budget" />
     <label for="high-budget">High: £50++</label>

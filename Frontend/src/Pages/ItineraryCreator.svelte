@@ -14,7 +14,7 @@
   let destination = "";
   let startDate = new Date();
   let endDate = new Date();
-  let budget = "Low";
+  let budget = "All";
   let categories = [
     { name: "Theme Parks", selected: false },
     { name: "Museums", selected: false },

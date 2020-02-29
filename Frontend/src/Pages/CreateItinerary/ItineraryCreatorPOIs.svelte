@@ -4,7 +4,7 @@
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
 
   export let destination = "";
-  export let budget;
+  export let budget = "All";
   export let categories;
 
   let chosenCategories = [];
@@ -18,7 +18,9 @@
   let places = [];
 
   // asks BE for data, returns a promise
-  fetch(`/api/places/${destination}&categories=${chosenCategories.toString()}`)
+  fetch(
+    `/api/places/${destination}&categories=${chosenCategories.toString()}&budget=${budget}`
+  )
     // once promise is resolved
     .then(response => {
       // return the promised data and converts to json
