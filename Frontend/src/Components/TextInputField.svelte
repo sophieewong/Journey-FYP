@@ -1,6 +1,8 @@
 <script>
   export let title;
   export let value = "";
+
+  let textFieldFocused = true;
 </script>
 
 <style type="text/scss">
@@ -27,9 +29,25 @@
       width: 100%;
     }
   }
+
+  .warning {
+    border: 5px solid red;
+  }
+
+  .warning-text {
+    color: red;
+    font-family: $body-text;
+  }
 </style>
 
 <div class="text-input-field">
   <p class="text-field-title">{title}</p>
-  <input type="text" bind:value />
+  <input
+    type="text"
+    bind:value
+    class:warning={!textFieldFocused && value === ''}
+    on:focusout={() => (textFieldFocused = false)} />
+  {#if !textFieldFocused && value === ''}
+    <p class="warning-text">Please fill out the field before proceeding.</p>
+  {/if}
 </div>

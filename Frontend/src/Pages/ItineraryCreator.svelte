@@ -11,13 +11,13 @@
   import ItineraryCreatorPOIs from "./CreateItinerary/ItineraryCreatorPOIs.svelte";
 
   let name = "New Itinerary";
-  let destination = "";
+  let destination = "London";
   let startDate = new Date();
   let endDate = new Date();
   let budget = "All";
   let categories = [
     { name: "Theme Parks", selected: false },
-    { name: "Museums", selected: false },
+    { name: "Museums", selected: true },
     { name: "Nature & Wildlife", selected: false },
     { name: "Shopping & Markets", selected: false },
     { name: "Theatre & Movies", selected: false },
@@ -31,6 +31,11 @@
     { name: "Nightlife", selected: false },
     { name: "Entertainment & Events", selected: false }
   ];
+
+  $: categoryHasBeenSelected =
+    categories.filter(category => {
+      return category.selected;
+    }).length > 0;
 
   let currentStep = 0;
 </script>
@@ -83,7 +88,7 @@
 
 {#if currentStep > 0}
   <ItineraryCreatorButtons
-    disableNextButton={destination === ''}
+    disableNextButton={destination === '' || !categoryHasBeenSelected}
     onPrevClick={() => currentStep--}
     onNextClick={() => currentStep++} />
 {/if}
