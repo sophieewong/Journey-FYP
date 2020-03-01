@@ -7,6 +7,9 @@
   export let budget = "All";
   export let categories;
 
+  export let onPOIClicked;
+  export let chosenPlaces = [];
+
   let chosenCategories = [];
 
   categories.forEach(category => {
@@ -147,9 +150,6 @@
   }
 </style>
 
-<section class="itinerary-steps">
-  <!-- Add itinerary steps component -->
-</section>
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
     <div class="itinerary-title-field">
@@ -158,10 +158,15 @@
         itinerary.
       </p>
     </div>
+
     <div class="places">
       {#each places as place}
         <div class="place-of-interest">
-          <div class="poi-profile">
+          <div
+            class="poi-profile"
+            on:click={() => {
+              onPOIClicked(place);
+            }}>
             <img src={place.image} alt={place.name} />
             <div class="poi-details">
               <p class="poi-name">{place.name}</p>
@@ -169,7 +174,19 @@
             </div>
           </div>
           <div
-            on:click={() => (place.selected = !place.selected)}
+            on:click={() => {
+              place.selected = !place.selected;
+              if (place.selected) {
+                chosenPlaces.push(place);
+                chosenPlaces = chosenPlaces;
+              } else if (place.selected === false) {
+                let index = chosenPlaces.indexOf(place);
+                if (index > -1) {
+                  chosenPlaces.splice(index, 1);
+                  chosenPlaces = chosenPlaces;
+                }
+              }
+            }}
             class="checkbox-container"
             class:poi-control-selected={place.selected}>
             <label class="poi-label" for={place.name} />
