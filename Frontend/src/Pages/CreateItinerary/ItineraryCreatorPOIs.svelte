@@ -200,7 +200,11 @@
               }} />
           </div>
         </div>
-      {:else}No places found :({/each}
+      {:else}
+        No places found for {destination}. 😔
+        <br />
+        Please enter another destination to explore.
+      {/each}
     </div>
   </div>
 </section>

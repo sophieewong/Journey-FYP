@@ -125,8 +125,6 @@
   </header>
 
   <div class="POI-contents">
-    <!-- <img src={image} alt="image of {name}" />
-    <p>{name}, {destination}</p> -->
     <p class="category">{category}</p>
     <hr />
     <p class="description">{description}</p>
