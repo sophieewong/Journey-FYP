@@ -24,7 +24,29 @@
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
     <TextInputField
+      list="cities-input"
       title="Where is your next city destination?"
       bind:value={destination} />
+
+    <datalist id="cities-input">
+      <option value="Nottingham" />
+      <option value="Leeds" />
+      <option value="London" />
+      <option value="Leicester" />
+      <option value="York" />
+      <option value="Cambridge" />
+      <option value="Cardiff" />
+      <option value="Bristol" />
+      <option value="Singapore" />
+      <option value="NYC" />
+      <option value="Texas" />
+      <option value="Boston" />
+      <option value="Los Angeles" />
+      <option value="Jakarta" />
+      <option value="Bath" />
+      <option value="Beijing" />
+      <option value="Rome" />
+    </datalist>
+
   </div>
 </section>

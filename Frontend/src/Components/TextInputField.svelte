@@ -1,6 +1,7 @@
 <script>
   export let title;
   export let value = "";
+  export let list = "";
 
   let textFieldFocused = true;
 </script>
@@ -42,11 +43,21 @@
 
 <div class="text-input-field">
   <p class="text-field-title">{title}</p>
-  <input
-    type="text"
-    bind:value
-    class:warning={!textFieldFocused && value === ''}
-    on:focusout={() => (textFieldFocused = false)} />
+  {#if list === 'cities-input'}
+    <input
+      type="text"
+      list="cities-input"
+      bind:value
+      class:warning={!textFieldFocused && value === ''}
+      on:focusout={() => (textFieldFocused = false)} />
+  {:else}
+    <input
+      type="text"
+      bind:value
+      class:warning={!textFieldFocused && value === ''}
+      on:focusout={() => (textFieldFocused = false)} />
+  {/if}
+
   {#if !textFieldFocused && value === ''}
     <p class="warning-text">Please fill out the field before proceeding.</p>
   {/if}
