@@ -3,7 +3,9 @@
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
 
-  export let destination = "London";
+  // export let destination = "";
+  export let destination = "London"; //test data
+
   export let budget = "All";
   export let categories;
 

@@ -12,7 +12,9 @@
   import ItineraryCreatorPOIs from "./CreateItinerary/ItineraryCreatorPOIs.svelte";
 
   let name = "New Itinerary";
-  let destination = "London";
+  let destination = "London"; // test data
+  // let destination = "";
+
   let startDate = new Date();
   let endDate = new Date();
   let budget = "All";
@@ -40,7 +42,8 @@
       return category.selected;
     }).length > 0;
 
-  let currentStep = 5;
+  let currentStep = 5; //test data
+  // let currentStep = 0;
 
   let activePOI;
   let isModalOpened = false;

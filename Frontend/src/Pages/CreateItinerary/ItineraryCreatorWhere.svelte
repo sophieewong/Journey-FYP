@@ -22,6 +22,8 @@
   <!-- Add itinerary steps component -->
 </section>
 <section class="itinerary-creator-content">
+
+  <!--create datalist Input Field component-->
   <div class="itinerary-creator-field">
     <TextInputField
       list="cities-input"
