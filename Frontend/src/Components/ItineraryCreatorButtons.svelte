@@ -2,6 +2,7 @@
   export let onPrevClick;
   export let onNextClick;
   export let disableNextButton = false;
+  export let nextButtonName = "Next";
 </script>
 
 <style type="text/scss">
@@ -64,7 +65,7 @@
       on:click={onNextClick}
       class="next-button primary-btn btn"
       disabled={disableNextButton}>
-      Next
+      {nextButtonName}
     </button>
   </div>
 </div>

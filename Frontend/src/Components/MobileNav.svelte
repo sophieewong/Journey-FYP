@@ -1,5 +1,6 @@
 <script>
   import { slide } from "svelte/transition";
+  import LoginButton from "./LoginButton.svelte";
 
   let isNavigationOpen = false;
 </script>
@@ -97,10 +98,11 @@
           <a href="#/itineraries">Itinerary Planner</a>
         </li>
         <li class="nav-item login-button">
-          <a href="#/login" class="login-btn">
+          <!-- <a href="#/login" class="login-btn">
             <img src="./images/UserAccountMobile.png" alt="Click to login" />
             Login / Sign Up
-          </a>
+          </a> -->
+          <LoginButton />
         </li>
       </ul>
 

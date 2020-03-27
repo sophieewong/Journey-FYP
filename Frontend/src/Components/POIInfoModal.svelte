@@ -1,4 +1,5 @@
 <script>
+  import Modal from "./Modal.svelte";
   export let onClose;
   export let image;
   export let name;
@@ -100,45 +101,49 @@
   }
 </style>
 
-<section>
-  <header>
-    <div class="close-btn-container">
-      <button on:click={onClose} class="close-popup">
-        <img
-          class="itinerary-creator-close-button"
-          src="./images/close-white.png"
-          alt="Click to close {name} information popup box." />
-      </button>
-    </div>
-    <div
-      class="hero-banner"
-      style="background: linear-gradient(0deg, rgba(21, 21, 21, 0.38), rgba(21,
-      21, 21, 0.38)),url({image}); background-size: cover; background-position:
-      center; background-repeat: no-repeat; left: 0px; top: 0px;">
-      <div class="centered-container logo-container">
-        <img class="logo" src="./images/JourneyLogo.png" alt="Journey Logo" />
+<Modal title={name} {onClose}>
+  <section>
+    <header>
+      <div class="close-btn-container">
+        <button on:click={onClose} class="close-popup">
+          <img
+            class="itinerary-creator-close-button"
+            src="./images/close-white.png"
+            alt="Click to close {name} information popup box." />
+        </button>
       </div>
-      <div class="page-hero">
-        <h2 class="hero-title">{name}, {destination}</h2>
+      <div
+        class="hero-banner"
+        style="background: linear-gradient(0deg, rgba(21, 21, 21, 0.38),
+        rgba(21, 21, 21, 0.38)),url({image}); background-size: cover;
+        background-position: center; background-repeat: no-repeat; left: 0px;
+        top: 0px;">
+        <div class="centered-container logo-container">
+          <img class="logo" src="./images/JourneyLogo.png" alt="Journey Logo" />
+        </div>
+        <div class="page-hero">
+          <h2 class="hero-title">{name}, {destination}</h2>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <div class="POI-contents">
-    <p class="category">{category}</p>
-    <hr />
-    <p class="description">{description}</p>
-    <p class="opening-hours">
-      <b>Opeing Hours:</b>
-      {openingHours}
-    </p>
-    <p class="budget">
-      <b>Budget:</b>
-      {budget}
-    </p>
-    <p class="ratings">
-      <b>Ratings:</b>
-      {ratings}
-    </p>
-  </div>
-</section>
+    <div class="POI-contents">
+      <p class="category">{category}</p>
+      <hr />
+      <p class="description">{description}</p>
+      <p class="opening-hours">
+        <b>Opeing Hours:</b>
+        {openingHours}
+      </p>
+      <p class="budget">
+        <b>Budget:</b>
+        {budget}
+      </p>
+      <p class="ratings">
+        <b>Ratings:</b>
+        {ratings}
+      </p>
+    </div>
+  </section>
+
+</Modal>

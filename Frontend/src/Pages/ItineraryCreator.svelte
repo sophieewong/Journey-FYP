@@ -1,8 +1,8 @@
 <script>
+  import { auth } from "../stores.js";
   import ItineraryCreatorHeader from "../Components/ItineraryCreatorHeader.svelte";
   import ItineraryCreatorButtons from "../Components/ItineraryCreatorButtons.svelte";
   import Tabs from "../Components/Tabs.svelte";
-  import POIInfoModal from "../Components/POIInfoModal.svelte";
 
   import ItineraryCreatorName from "./CreateItinerary/ItineraryCreatorName.svelte";
   import ItineraryCreatorWhere from "./CreateItinerary/ItineraryCreatorWhere.svelte";
@@ -43,10 +43,41 @@
     }).length > 0;
 
   let currentStep = 5; //test data
-  // let currentStep = 0;
 
-  let activePOI;
-  let isModalOpened = false;
+  /** @type {{
+   *  name: string,
+   *  places: {
+   *    name: string,
+   *    image: string,
+   *    category: string
+   * }[]
+   * }} */
+
+  $: if (currentStep === 6) {
+    console.log(
+      JSON.stringify({
+        name: name,
+        places: chosenPlaces
+      })
+    );
+    //1 Ask backend to generate us an itinerary
+    fetch("/api/itinerary/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name,
+        places: chosenPlaces,
+        userId: $auth.userId,
+        authToken: $auth.authToken
+      })
+    })
+      .then(res => res.json())
+      .then(({ id }) => {
+        //3 Redirect to the /itinerary?{id}
+      });
+  }
 </script>
 
 <style type="text/scss">
@@ -64,61 +95,41 @@
   }
 </style>
 
-{#if isModalOpened === false}
-  <section class="itinerary-creator-header">
-    <ItineraryCreatorHeader itineraryTitle={name} />
-  </section>
+<section class="itinerary-creator-header">
+  <ItineraryCreatorHeader itineraryTitle={name} />
+</section>
 
-  <section class="itinerary-creator-tabs">
-    <Tabs
-      tabs={['Name', 'Where', 'When', 'Budget', 'Refine', 'Places']}
-      activeTab={currentStep}
-      onTabClicked={tab => (currentStep = tab)} />
-  </section>
+<section class="itinerary-creator-tabs">
+  <Tabs
+    tabs={['Name', 'Where', 'When', 'Budget', 'Refine', 'Places']}
+    activeTab={currentStep}
+    onTabClicked={tab => (currentStep = tab)} />
+</section>
 
-  {#if currentStep === 0}
-    <ItineraryCreatorName
-      onNextStep={itineraryName => {
-        name = itineraryName;
-        currentStep++;
-      }} />
-  {:else if currentStep === 1}
-    <ItineraryCreatorWhere bind:destination />
-  {:else if currentStep === 2}
-    <ItineraryCreatorWhen {destination} />
-  {:else if currentStep === 3}
-    <ItineraryCreatorBudget bind:budget {destination} />
-  {:else if currentStep === 4}
-    <ItineraryCreatorRefine bind:categories {destination} />
-  {:else if currentStep === 5}
-    <ItineraryCreatorPOIs
-      {destination}
-      {budget}
-      {categories}
-      onPOIClicked={POI => {
-        activePOI = POI;
-        isModalOpened = true;
-      }}
-      bind:chosenPlaces />
-  {:else}
-    <!-- Itinerary Generator -->
-  {/if}
-
-  {#if currentStep > 0}
-    <ItineraryCreatorButtons
-      disableNextButton={destination === '' || !categoryHasBeenSelected}
-      onPrevClick={() => currentStep--}
-      onNextClick={() => currentStep++} />
-  {/if}
+{#if currentStep === 0}
+  <ItineraryCreatorName
+    onNextStep={itineraryName => {
+      name = itineraryName;
+      currentStep++;
+    }} />
+{:else if currentStep === 1}
+  <ItineraryCreatorWhere bind:destination />
+{:else if currentStep === 2}
+  <ItineraryCreatorWhen {destination} />
+{:else if currentStep === 3}
+  <ItineraryCreatorBudget bind:budget {destination} />
+{:else if currentStep === 4}
+  <ItineraryCreatorRefine bind:categories {destination} />
+{:else if currentStep === 5}
+  <ItineraryCreatorPOIs {destination} {budget} {categories} bind:chosenPlaces />
+{:else}
+  <!-- Itinerary Generator -->
 {/if}
 
-{#if isModalOpened}
-  <POIInfoModal
-    onClose={() => (isModalOpened = false)}
-    image={activePOI.image}
-    name={activePOI.name}
-    {destination}
-    category={activePOI.category}
-    description={activePOI.description}
-    {budget} />
+{#if currentStep > 0}
+  <ItineraryCreatorButtons
+    disableNextButton={destination === '' || !categoryHasBeenSelected}
+    nextButtonName={currentStep === 5 ? 'Generate Itinerary' : 'Next'}
+    onPrevClick={() => currentStep--}
+    onNextClick={() => currentStep++} />
 {/if}

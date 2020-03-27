@@ -1,4 +1,5 @@
 <script>
+  import { auth } from "../stores.js";
   import Logo from "../Components/Logo.svelte";
   import Navigation from "../Components/Navigation.svelte";
   import HeroBanner from "../Components/HeroBanner.svelte";
@@ -43,6 +44,10 @@
   };
 
   let activeTab = 0;
+
+  $: if (!$auth.isAuthenticated) {
+    location.replace(location.protocol + "//" + location.host + "/");
+  }
 </script>
 
 <style type="text/scss">
@@ -107,9 +112,16 @@
     }
   }
 
+  .active-itinerary {
+    border-top: $blue 8px solid;
+  }
+
+  .past-itinerary {
+    border-top: $grey 8px solid;
+  }
+
   .itinerary {
-    border: $blue 2px solid;
-    box-shadow: 0px 4px 4px $boxshadow-blue;
+    box-shadow: 0px 4px 4px #8c8c8c;
     border-radius: 11px;
     margin-bottom: 2rem;
     padding: 1rem;
@@ -117,6 +129,11 @@
     width: 100%;
     font-family: $body-text;
     cursor: pointer;
+
+    &:hover {
+      transform: scale(1.025);
+      transition: transform 0.15s ease;
+    }
 
     h4 {
       margin-bottom: 0.5rem;
@@ -128,6 +145,20 @@
 
     @media screen and (min-width: $desktop-breakpoint) {
       max-width: 13rem;
+    }
+
+    img {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.5rem;
+    }
+
+    .destination-text {
+      color: #8c8c8c;
+    }
+
+    .time-label {
+      font-weight: 300;
     }
   }
 </style>
@@ -156,11 +187,20 @@
     <div class="itineraries">
       {#each data.upcomingTrips as { name, location, duration, startDate, endDate }}
         <!--<TripPreview name location startDate endDate/>-->
-        <div class="itinerary">
+        <div class="itinerary active-itinerary">
           <h4>{name}</h4>
-          <p>{location}</p>
-          <p>25/1/2021 - 10/2/2021</p>
-          <p>{duration}</p>
+          <p class="destination-text">
+            <img src="./images/destination.png" alt="Destination" />
+            {location}
+          </p>
+          <p class="time-label">
+            <img src="./images/calendar.png" alt="Calender" />
+            25/1/2021 - 10/2/2021
+          </p>
+          <p class="time-label">
+            <img src="./images/clock.png" alt="Duration" />
+            {duration}
+          </p>
         </div>
       {:else}
         <p>No upcoming trips found :(</p>
@@ -172,11 +212,20 @@
     <div class="itineraries">
       {#each data.pastTrips as { name, location, duration, startDate, endDate }}
         <!--<TripPreview name location startDate endDate/>-->
-        <div class="itinerary">
+        <div class="itinerary past-itinerary">
           <h4>{name}</h4>
-          <p>{location}</p>
-          <p>25/11/2019 - 10/12/2019</p>
-          <p>{duration}</p>
+          <p class="destination-text">
+            <img src="./images/destination.png" alt="Destination" />
+            {location}
+          </p>
+          <p class="time-label">
+            <img src="./images/calendar.png" alt="Calender" />
+            25/1/2021 - 10/2/2021
+          </p>
+          <p class="time-label">
+            <img src="./images/clock.png" alt="Duration" />
+            {duration}
+          </p>
         </div>
       {:else}
         <p>No past trips found :(</p>
