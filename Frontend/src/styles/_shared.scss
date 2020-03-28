@@ -121,3 +121,8 @@ $desktop-breakpoint: 1024px;
     cursor: not-allowed;
   }
 }
+
+.warning-text {
+  color: red;
+  font-family: $body-text;
+}

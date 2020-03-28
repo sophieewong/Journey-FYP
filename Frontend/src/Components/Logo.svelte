@@ -27,7 +27,7 @@
       cursor: pointer;
 
       @media screen and (min-width: $tablet-breakpoint) {
-        margin: 5rem 0 2rem 0;
+        margin: 2rem 0 2rem 0;
         width: 119px;
         height: 37px;
       }

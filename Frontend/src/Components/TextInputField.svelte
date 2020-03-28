@@ -34,11 +34,6 @@
   .warning {
     border: 5px solid red;
   }
-
-  .warning-text {
-    color: red;
-    font-family: $body-text;
-  }
 </style>
 
 <div class="text-input-field">

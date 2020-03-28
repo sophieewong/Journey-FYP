@@ -1,8 +1,15 @@
+<script>
+  import { firebase } from "@firebase/app";
+  import "@firebase/auth";
+
+  import { auth } from "../stores.js";
+</script>
+
 <style type="text/scss">
   @import "../styles/shared";
 
   .component-desktop-navigation {
-    margin-top: 3rem;
+    margin-top: 1rem;
     width: 100%;
 
     ul {
@@ -57,12 +64,29 @@
       <a href="#/itineraries">Itinerary Planner</a>
     </li>
     <li class="dekstop-nav-login-btn">
-      <a href="#/login">
+      <!-- <a href="#/login">
         <img
           class="component-desktop-navigation-login-button"
           src="./images/UserAccount.png"
           alt="Click to login" />
-      </a>
+      </a> -->
+
+      {#if $auth.isAuthenticated}
+        <a href="#/profile">
+          <img
+            class="component-desktop-navigation-login-button"
+            src="./images/UserAccount.png"
+            alt="Go to profile" />
+        </a>
+      {:else}
+        <a href="/#/login" class="login-btn">
+          <img
+            class="component-desktop-navigation-login-button"
+            src="./images/UserAccount.png"
+            alt="Click to login or sign up" />
+        </a>
+      {/if}
+
     </li>
   </ul>
 </nav>

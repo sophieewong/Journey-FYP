@@ -10,6 +10,7 @@
     justify-content: center;
     padding-left: 6rem;
     padding-right: 6rem;
+    position: relative;
   }
 </style>
 

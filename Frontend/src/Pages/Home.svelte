@@ -6,20 +6,30 @@
 <style type="text/scss">
   @import "../styles/shared";
 
-  .overlay {
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    left: 0px;
-    top: 0px;
-    background-image: linear-gradient(
-        0deg,
-        rgba(21, 21, 21, 0.38),
-        rgba(21, 21, 21, 0.38)
-      ),
-      url("https://images.unsplash.com/photo-1470089504205-f6ece216c2f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
-  }
+  // .overlay {
+  //   height: 100vh;
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   left: 0px;
+  //   top: 0px;
+  //   background-image: linear-gradient(
+  //       0deg,
+  //       rgba(21, 21, 21, 0.38),
+  //       rgba(21, 21, 21, 0.38)
+  //     ),
+  //     url("https://images.unsplash.com/photo-1470089504205-f6ece216c2f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+
+  //   @media screen and (min-width: $desktop-breakpoint) {
+  //     background-position: top;
+  //     background-image: linear-gradient(
+  //         0deg,
+  //         rgba(21, 21, 21, 0.38),
+  //         rgba(21, 21, 21, 0.38)
+  //       ),
+  //       url("https://images.pexels.com/photos/837745/pexels-photo-837745.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  //   }
+  // }
 
   .page-home-container {
     position: relative;
@@ -82,10 +92,25 @@
       }
     }
   }
+
+  #homeVideo {
+    position: fixed;
+    right: 0;
+    // bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
 </style>
 
 <div class="overlay">
+
+  <video autoplay muted loop id="homeVideo">
+    <source src="./video/plane.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
   <Header />
+
   <div class="page-home-container">
     <div class="homepage-content" in:fade={{ duration: 1500 }}>
       <div class="title-container centered-container">

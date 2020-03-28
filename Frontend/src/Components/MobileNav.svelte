@@ -65,20 +65,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    .login-btn {
-      border: 1px solid black;
-      border-radius: 7px;
-      padding: 0.5rem 3rem;
-      display: flex;
-      align-items: center;
-    }
-
-    img {
-      width: 25px;
-      height: 25px;
-      margin-right: 1rem;
-    }
   }
 </style>
 

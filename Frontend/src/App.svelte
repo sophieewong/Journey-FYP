@@ -6,6 +6,7 @@
   import NotFound from "./Pages/NotFound.svelte";
   import ItineraryCreator from "./Pages/ItineraryCreator.svelte";
   import Login from "./Pages/Login.svelte";
+  import Profile from "./Pages/Profile.svelte";
 
   const routes = {
     "/": Home,
@@ -13,6 +14,7 @@
     "/new-itinerary": ItineraryCreator,
     "/login": Login,
     "/signup": Login,
+    "/profile": Profile,
 
     "*": NotFound
   };
