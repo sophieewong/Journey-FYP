@@ -23,7 +23,9 @@
           password = "";
 
           //redirect to relevant page
-          location.replace(location.protocol + "//" + location.host + "/");
+          location.replace(
+            location.protocol + "//" + location.host + "/#/itineraries"
+          );
           console.log("We've signed in");
         }
       })
@@ -125,13 +127,8 @@
   }
 </style>
 
-<!-- <section class="headings">
-  <Header />
-</section> -->
 <section class="sign-in-page">
   <Header />
-  <!-- <button on:click={() => (action = 'login')}>Login</button>
-  <button on:click={() => (action = 'signup')}>SignUp</button> -->
 
   <div class="fields-div">
     <div class="fields-container">
@@ -171,8 +168,6 @@
         <input type="text" name="email" bind:value={email} />
         <p class="input-label">Password</p>
         <input type="password" name="password" bind:value={password} />
-        <!-- <TextInputField title="Email" />
-        <TextInputField title="Password" /> -->
         <button on:click={signUp} class="btn primary-btn">Sign Up</button>
       {/if}
 

@@ -46,7 +46,7 @@
   let activeTab = 0;
 
   $: if (!$auth.isAuthenticated) {
-    location.replace(location.protocol + "//" + location.host + "/");
+    location.replace(location.protocol + "//" + location.host + "/#/about");
   }
 </script>
 

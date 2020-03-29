@@ -47,7 +47,7 @@
       color: $white;
       font-family: $page-heading;
       font-weight: lighter;
-      letter-spacing: 8px;
+      letter-spacing: 5px;
       font-size: 24px;
       margin: 0;
       text-align: center;
@@ -106,7 +106,6 @@
 
   <video autoplay muted loop id="homeVideo">
     <source src="./video/plane.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
   </video>
 
   <Header />

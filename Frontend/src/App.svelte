@@ -7,6 +7,7 @@
   import ItineraryCreator from "./Pages/ItineraryCreator.svelte";
   import Login from "./Pages/Login.svelte";
   import Profile from "./Pages/Profile.svelte";
+  import AboutUs from "./Pages/AboutUs.svelte";
 
   const routes = {
     "/": Home,
@@ -15,6 +16,7 @@
     "/login": Login,
     "/signup": Login,
     "/profile": Profile,
+    "/about": AboutUs,
 
     "*": NotFound
   };
