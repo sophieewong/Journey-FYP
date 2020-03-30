@@ -3,6 +3,11 @@
   import "@firebase/auth";
 
   import { auth } from "../stores.js";
+  import {
+    firebaseSignOut,
+    firebaseDeleteUser,
+    firebaseUpdateUser
+  } from "../utils/authentication.js";
   import Header from "../Components/Header.svelte";
   import Tabs from "../Components/Tabs.svelte";
   import TextInputField from "../Components/TextInputField.svelte";
@@ -14,54 +19,25 @@
   let action = 0;
   let errorMessage;
 
-  function signIn() {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        if ($auth.isAuthenticated) {
-          errorMessage = undefined;
-          email = "";
-          password = "";
-
-          //redirect to relevant page
-          location.replace(location.protocol + "//" + location.host + "/");
-          console.log("We've signed in");
-        }
-      })
-      .catch(function(error) {
-        errorMessage = error.message;
-        console.error(error.code + ": " + error.message);
-      });
-  }
-
-  function signUp() {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
-        errorMessage = error.message;
-        console.error(error.code + ": " + error.message);
-      });
-  }
-
   function signOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(function() {
+    firebaseSignOut()
+      .then(() => {
         //do anything that you want to happen once a user signs out here
         location.replace(location.protocol + "//" + location.host + "/");
       })
-      .catch(function(error) {
+      .catch(error => {
         // An error happened.
         console.error(error.code + ": " + error.message);
       });
   }
 
-  function updateProfile() {}
+  function updateProfile() {
+    firebaseUpdateUser(email, newpassword);
+  }
 
-  function deleteProfile() {}
+  function deleteProfile() {
+    firebaseDeleteUser();
+  }
 </script>
 
 <style type="text/scss">
@@ -182,8 +158,6 @@
     </div>
     <p class="input-label">Email</p>
     <input type="text" name="email" bind:value={email} />
-    <p class="input-label">Old Password</p>
-    <input type="password" name="password" bind:value={password} />
     <p class="input-label">New Password</p>
     <input type="password" name="password" bind:value={newpassword} />
     <button on:click={updateProfile} class="btn primary-btn update-btn">

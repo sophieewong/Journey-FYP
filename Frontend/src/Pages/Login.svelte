@@ -1,7 +1,5 @@
 <script>
-  import { firebase } from "@firebase/app";
-  import "@firebase/auth";
-
+  import { firebaseSignIn, firebaseSignUp } from "../utils/authentication.js";
   import { auth } from "../stores.js";
   import Header from "../Components/Header.svelte";
   import Tabs from "../Components/Tabs.svelte";
@@ -13,36 +11,30 @@
   let errorMessage;
 
   function signIn() {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
+    firebaseSignIn(email, password)
       .then(() => {
-        if ($auth.isAuthenticated) {
-          errorMessage = undefined;
-          email = "";
-          password = "";
+        errorMessage = undefined;
+        email = "";
+        password = "";
 
-          //redirect to relevant page
-          location.replace(
-            location.protocol + "//" + location.host + "/#/itineraries"
-          );
-          console.log("We've signed in");
-        }
+        //redirect to relevant page
+        location.replace(
+          location.protocol + "//" + location.host + "/#/itineraries"
+        );
+
+        console.log("We've signed in");
       })
-      .catch(function(error) {
+      .catch(error => {
         errorMessage = error.message;
         console.error(error.code + ": " + error.message);
       });
   }
 
   function signUp() {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
-        errorMessage = error.message;
-        console.error(error.code + ": " + error.message);
-      });
+    firebaseSignUp(email, password).catch(error => {
+      errorMessage = error.message;
+      console.error(error.code + ": " + error.message);
+    });
   }
 </script>
 

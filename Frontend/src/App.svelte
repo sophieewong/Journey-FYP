@@ -3,6 +3,7 @@
 
   import Home from "./Pages/Home.svelte";
   import Itineraries from "./Pages/Itineraries.svelte";
+  import Itinerary from "./Pages/Itinerary.svelte";
   import NotFound from "./Pages/NotFound.svelte";
   import ItineraryCreator from "./Pages/ItineraryCreator.svelte";
   import Login from "./Pages/Login.svelte";
@@ -12,6 +13,7 @@
   const routes = {
     "/": Home,
     "/itineraries": Itineraries,
+    "/itinerary": Itinerary,
     "/new-itinerary": ItineraryCreator,
     "/login": Login,
     "/signup": Login,

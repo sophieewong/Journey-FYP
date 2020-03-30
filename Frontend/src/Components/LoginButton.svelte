@@ -1,21 +1,9 @@
 <script>
-  import { firebase } from "@firebase/app";
-  import "@firebase/auth";
-
   import { auth } from "../stores.js";
+  import { firebaseSignOut } from "../utils/authentication.js";
 
   function signOut() {
-    firebase
-      .auth()
-      .signOut()
-      .then(function() {
-        //do anything that you want to happen once a user signs out here
-        location.replace(location.protocol + "//" + location.host + "/");
-      })
-      .catch(function(error) {
-        // An error happened.
-        console.error(error.code + ": " + error.message);
-      });
+    firebaseSignOut();
   }
 </script>
 

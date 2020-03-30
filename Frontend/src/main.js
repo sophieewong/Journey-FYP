@@ -1,6 +1,8 @@
 import { firebase } from "@firebase/app";
 import "@firebase/auth";
 
+import { auth } from "./stores.js";
+
 import App from "./App.svelte";
 
 firebase.initializeApp({
@@ -12,6 +14,8 @@ firebase.initializeApp({
   messagingSenderId: "235762750865",
   appId: "1:235762750865:web:9f6e38fa492abed04d3630"
 });
+
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 const app = new App({
   target: document.body,

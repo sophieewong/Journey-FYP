@@ -54,12 +54,6 @@
    * }} */
 
   $: if (currentStep === 6) {
-    console.log(
-      JSON.stringify({
-        name: name,
-        places: chosenPlaces
-      })
-    );
     //1 Ask backend to generate us an itinerary
     fetch("/api/itinerary/create", {
       method: "POST",
@@ -69,13 +63,14 @@
       body: JSON.stringify({
         name: name,
         places: chosenPlaces,
-        userId: $auth.userId,
-        authToken: $auth.authToken
+        userId: $auth.user.uid
       })
     })
       .then(res => res.json())
       .then(({ id }) => {
-        //3 Redirect to the /itinerary?{id}
+        location.replace(
+          location.protocol + "//" + location.host + "/#/itinerary?id=" + id
+        );
       });
   }
 </script>
