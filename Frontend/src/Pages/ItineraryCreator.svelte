@@ -17,6 +17,12 @@
 
   let startDate = new Date();
   let endDate = new Date();
+
+  //! TODO
+  //console logging the dates above (reactivley) to see if they match what you've selected
+  //if they don't, this is most likely an issue within itienerarycreatorwhen component
+  $: numberOfDays = ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+
   let budget = "All";
   let categories = [
     { name: "Theme Parks", selected: false },
@@ -42,7 +48,7 @@
       return category.selected;
     }).length > 0;
 
-  let currentStep = 5; //test data
+  let currentStep = 0; //test data
 
   /** @type {{
    *  name: string,
@@ -62,15 +68,20 @@
       },
       body: JSON.stringify({
         name: name,
+        destination,
+        startDate,
+        endDate,
+        duration: numberOfDays,
         places: chosenPlaces,
         userId: $auth.user.uid
       })
     })
       .then(res => res.json())
-      .then(({ id }) => {
-        location.replace(
-          location.protocol + "//" + location.host + "/#/itinerary?id=" + id
-        );
+      .then((data) => {
+        // location.replace(
+        //   location.protocol + "//" + location.host + "/#/itinerary?id=" + id
+        // );
+        console.log(JSON.parse(data))
       });
   }
 </script>
@@ -110,13 +121,13 @@
 {:else if currentStep === 1}
   <ItineraryCreatorWhere bind:destination />
 {:else if currentStep === 2}
-  <ItineraryCreatorWhen {destination} />
+  <ItineraryCreatorWhen {destination} bind:startDateSelected={startDate} bind:endDateSelected={endDate}/>
 {:else if currentStep === 3}
   <ItineraryCreatorBudget bind:budget {destination} />
 {:else if currentStep === 4}
   <ItineraryCreatorRefine bind:categories {destination} />
 {:else if currentStep === 5}
-  <ItineraryCreatorPOIs {destination} {budget} {categories} bind:chosenPlaces />
+  <ItineraryCreatorPOIs {destination} {budget} {categories} bind:chosenPlaces {numberOfDays}/>
 {:else}
   <!-- Itinerary Generator -->
 {/if}

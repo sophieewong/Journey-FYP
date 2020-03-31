@@ -4,139 +4,54 @@
     "name": "Tate Modern",
     "category": "Art Museum",
     "image": "https://fastly.4sqi.net/img/general/1920x1440/26480953_UsIlLZ_QfliTy6dKY9dZQVvL3ruUAby7OnR5fL8sM_w.jpg",
-    "description": "No Description"
-  },
-  {
-    "id": "4ac518cef964a520f7a520e3",
-    "name": "Tower of London",
-    "category": "Castle",
-    "image": "https://fastly.4sqi.net/img/general/960x720/54686014_OI_BX4rAnROX_4Bq9eerDEm6QmKYbtTnuLpdIiCg3kI.jpg",
-    "description": "Explore this mighty fortress and see the Crown Jewels, then discover more stories from this royal palace that once housed a zoo!"
-  },
-  {
-    "id": "4ac518cdf964a520e8a520e3",
-    "name": "Natural History Museum",
-    "category": "Science Museum",
-    "image": "https://fastly.4sqi.net/img/general/612x612/14704741_m8aBdg8f6K3db_eAZMwhwGmZqmJJYkMuAn8DRY_Krg0.jpg",
-    "description": "The Museum is open every day except 24-26 December. Last admission is at 5:30 pm."
+    "description": "No Description",
+    "latLng": {
+      "lat": 51.50770408386703,
+      "lng": -0.0994563102722168
+    }
   },
   {
     "id": "4ac518d2f964a5203da720e3",
     "name": "British Museum",
     "category": "History Museum",
     "image": "https://fastly.4sqi.net/img/general/1920x1440/54210783_uqTxLkW2RUApfa4x8XtvX9rbDNinXo2HeylfxFaE95o.jpg",
-    "description": "A museum of the world, for the world. Discover over two million years of human history and culture. Some of the world-famous objects include the Rosetta Stone, the Parthenon sculptures and Egyptian mummies."
+    "description": "A museum of the world, for the world. Discover over two million years of human history and culture. Some of the world-famous objects include the Rosetta Stone, the Parthenon sculptures and Egyptian mummies.",
+    "latLng": {
+      "lat": 51.51900874337275,
+      "lng": -0.12643718771869317
+    }
+  },
+  {
+    "id": "4ac518cdf964a520e8a520e3",
+    "name": "Natural History Museum",
+    "category": "Science Museum",
+    "image": "https://fastly.4sqi.net/img/general/612x612/14704741_m8aBdg8f6K3db_eAZMwhwGmZqmJJYkMuAn8DRY_Krg0.jpg",
+    "description": "The Museum is open every day except 24-26 December. Last admission is at 5:30 pm.",
+    "latLng": {
+      "lat": 51.49652085547838,
+      "lng": -0.17653226852416992
+    }
   },
   {
     "id": "4ae2d9f8f964a5208d8f21e3",
     "name": "Victoria and Albert Museum (V&A)",
     "category": "Art Museum",
     "image": "https://fastly.4sqi.net/img/general/612x612/28194255_aIKZu4fgPMzV5fDAOPoMKBbhwiCEqNa9qlmTFNAopUY.jpg",
-    "description": "The Victoria and Albert Museum is the world's greatest museum of art and design. The V&A's collections are unrivalled in their diversity. Explore historical and contemporary art and design, including works of art from many of the world's richest cultures. Admission free"
+    "description": "The Victoria and Albert Museum is the world's greatest museum of art and design. The V&A's collections are unrivalled in their diversity. Explore historical and contemporary art and design, including works of art from many of the world's richest cultures. Admission free",
+    "latLng": {
+      "lat": 51.49654531037934,
+      "lng": -0.17219832647848585
+    }
   },
   {
     "id": "4ac518cdf964a520e6a520e3",
     "name": "National Gallery",
     "category": "Art Museum",
     "image": "https://fastly.4sqi.net/img/general/537x720/E73W9kk7I6fMdVWd3BrXKV5INakw_e7S35rGhNRZDGw.jpg",
-    "description": "Located in Trafalgar Square, the National Gallery houses one of the greatest collections of Western European painting in the world, from van Eyck to Van Gogh."
-  },
-  {
-    "id": "4ac518cef964a520fca520e3",
-    "name": "Madame Tussauds",
-    "category": "Museum",
-    "image": "https://fastly.4sqi.net/img/general/720x540/14013205_LrqUquc4xtQuFC1AZ4a7i6AmrWh3C9HPKcgXy8BUT0s.jpg",
-    "description": "No Description"
-  },
-  {
-    "id": "4ac518cdf964a520e9a520e3",
-    "name": "Science Museum",
-    "category": "Science Museum",
-    "image": "https://fastly.4sqi.net/img/general/717x959/27771214_PphIdMSVnYYnAKfnK-spJDGg_Pfg4qB3ESFGrorEgms.jpg",
-    "description": "We curate a world-renowned collection and organise exhibitions, events and IMAX films for 3 million visitors each year."
-  },
-  {
-    "id": "4ac518d3f964a52067a720e3",
-    "name": "Royal Academy of Arts",
-    "category": "Art Museum",
-    "image": "https://fastly.4sqi.net/img/general/1918x1440/595707_hKyC9Ogt074hPYBVnK-MTSBWJBWBAFJ42ky6DRp5SCs.jpg",
-    "description": "The Royal Academy of Arts has a unique position in being an independent, privately funded institution led by eminent artists and architects whose purpose is to promote the creation, enjoyment and appreciation of the visual arts through exhibitions, education and debate."
-  },
-  {
-    "id": "4ac518cef964a5203aa620e3",
-    "name": "Royal Observatory",
-    "category": "Observatory",
-    "image": "https://fastly.4sqi.net/img/general/720x540/IxkMjcu-Q9g6fMpf-LDpUoFWkxGAaI5EmpFYLV0cCr0.jpg",
-    "description": "Home of the Prime Meridian of the World, London's only planetarium, the Harrison timekeepers and the UK's largest refracting telescope."
-  },
-  {
-    "id": "4ac51183f964a52049a020e3",
-    "name": "Tate Britain",
-    "category": "Art Museum",
-    "image": "https://fastly.4sqi.net/img/general/720x540/19576563_tBr-lNJWl8St6dk5aae610mz1RBclxsH0KqaSl7vkNY.jpg",
-    "description": "No Description"
-  },
-  {
-    "id": "4ac518d2f964a52047a720e3",
-    "name": "National Portrait Gallery",
-    "category": "Art Gallery",
-    "image": "https://fastly.4sqi.net/img/general/1920x1440/42325385_CP85lWpMGhCpxp9CBLClB1arFo7rUnbTiQB53v1A_g4.jpg",
-    "description": "No Description"
-  },
-  {
-    "id": "4ad64197f964a5201d0621e3",
-    "name": "Shakespeare's Globe Theatre",
-    "category": "Theater",
-    "image": "https://fastly.4sqi.net/img/general/720x540/R_-Tko2buDoU79smdVoVpzP7vmT45NnU9K53xUbZthE.jpg",
-    "description": "Shakespeare's Globe is a unique international resource dedicated to Shakespeare's work and the playhouse for which he wrote, through performances and education."
-  },
-  {
-    "id": "57d5606a498e432cab0a7099",
-    "name": "The Design Museum",
-    "category": "Museum",
-    "image": "https://fastly.4sqi.net/img/general/1920x827/129889_-Mn3YI5nHx87MryG1YH1KYgBrYPQF0KZaPJrFIz79WY.jpg",
-    "description": "No Description"
-  },
-  {
-    "id": "4ac518d3f964a52054a720e3",
-    "name": "The Sherlock Holmes Museum",
-    "category": "Museum",
-    "image": "https://fastly.4sqi.net/img/general/720x537/YKrRtfoiLLaeAnQf3Ca_MUnSViSxFPDyNAQwEiQ51uw.jpg",
-    "description": "Admission: Adult £15 Child £10 (under 16yrs)"
-  },
-  {
-    "id": "4ac518cef964a520fba520e3",
-    "name": "The London Dungeon",
-    "category": "General Entertainment",
-    "image": "https://fastly.4sqi.net/img/general/540x720/-an3tv3TaSNEwT6FMFg5DsdFkRO3U5XLhYf8GW28Kz8.jpg",
-    "description": "The ultimate thrill-filled journey through London's murky past."
-  },
-  {
-    "id": "4ac518d3f964a52078a720e3",
-    "name": "Imperial War Museum",
-    "category": "History Museum",
-    "image": "https://fastly.4sqi.net/img/general/720x540/D4PZENMP5ENGPORXF1IQBBZBAENEY400GN5PHAHYV1MY0ESJ.jpg",
-    "description": "No Description"
-  },
-  {
-    "id": "4ac518d2f964a52040a720e3",
-    "name": "National Maritime Museum",
-    "category": "History Museum",
-    "image": "https://fastly.4sqi.net/img/general/720x540/LfZY6GCaTtaeURAFSKJh9VEKKC5KnhMKzBnuNY2D8a4.jpg",
-    "description": "Discover the history of our relationship with the sea and how it shapes our lives today. Find us on Facebook at http://www.facebook.com/nationalmaritimemuseum"
-  },
-  {
-    "id": "4ac518cdf964a520eca520e3",
-    "name": "London Transport Museum",
-    "category": "Museum",
-    "image": "https://fastly.4sqi.net/img/general/612x612/8JCYf0cbeyZ8e4WaVV3wTDhgfGNEZgJAOmXni0sf3zs.jpg",
-    "description": "No Description"
-  },
-  {
-    "id": "4ad06c8ef964a52009d820e3",
-    "name": "Wellcome Collection",
-    "category": "Science Museum",
-    "image": "https://fastly.4sqi.net/img/general/612x612/24946461_MVfTx_AwHPzCl37QlGqAOPzjxNtOWmZmaQFjuKzhyww.jpg",
-    "description": "Wellcome Collection is the free destination for the incurably curious, exploring the connections between medicine, life and art in the past, present and future."
+    "description": "Located in Trafalgar Square, the National Gallery houses one of the greatest collections of Western European painting in the world, from van Eyck to Van Gogh.",
+    "latLng": {
+      "lat": 51.50887601013219,
+      "lng": -0.1284778118133545
+    }
   }
 ]

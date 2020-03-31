@@ -9,31 +9,33 @@
   $: if (!$auth.isAuthenticated) {
     location.replace(location.protocol + "//" + location.host + "/#/about");
   } else {
+
+    
     //Make a request to the backend for the relevant itinerary
-    fetch("/api/itinerary/get", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: $auth.user.uid,
-        itineraryId: id
-      })
-    })
-      .then(res => {
-        console.log(res);
-        if (res.status === 400) {
-          location.replace(location.protocol + "//" + location.host + "/#/404");
-        } else {
-          return res.json();
-        }
-      })
-      .then(data => {
-        itineraryData = JSON.parse(data);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    // fetch("/api/itinerary/get", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     userId: $auth.user.uid,
+    //     itineraryId: id
+    //   })
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //     if (res.status === 400) {
+    //       location.replace(location.protocol + "//" + location.host + "/#/404");
+    //     } else {
+    //       return res.json();
+    //     }
+    //   })
+    //   .then(data => {
+    //     itineraryData = JSON.parse(data);
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //   });
   }
 </script>
 

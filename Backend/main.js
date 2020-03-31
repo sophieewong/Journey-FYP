@@ -1,3 +1,5 @@
+const calculateDistance = require("./utils/calculateDistance.js");
+
 // package that allows to get variables from the .env file
 require("dotenv").config();
 
@@ -37,27 +39,146 @@ app.get(
 );
 
 app.post("/api/itinerary/create", (req, res) => {
-  const { name, places, userId } = req.body;
+  const {
+    name,
+    destination,
+    startDate,
+    endDate,
+    places,
+    duration,
+    userId
+  } = req.body;
+
+  let itinerary = {
+    name,
+    destination,
+    startDate,
+    endDate,
+    duration
+  };
+
+  let sortedPlaces = [];
+
+  let currentPlace = places[0];
+
+  sortedPlaces.push(currentPlace);
+
+  places.shift();
+
+  let nextClosest = places[Math.floor(Math.random() * (places.length - 1 + 1))];
+
+  //nextClosest = create a variable to store the next shortest distance place
+
+  while (places.length > 0) {
+    //loop over places array (excluding firstPlace)
+    places.forEach(place => {
+      let distBetweenCurrentAndThis = calculateDistance(
+        currentPlace.latLng,
+        place.latLng
+      );
+      let distBetweenCurrentAndNextClosest = calculateDistance(
+        currentPlace.latLng,
+        nextClosest.latLng
+      );
+
+      console.log(currentPlace.name);
+
+      if (distBetweenCurrentAndThis < distBetweenCurrentAndNextClosest) {
+        nextClosest = place;
+      }
+    });
+
+    // for the last item in the places array...
+    if (places.length === 1) {
+      sortedPlaces.push(places[0]);
+      places.pop();
+    } else {
+      sortedPlaces.push(nextClosest);
+      currentPlace = nextClosest;
+
+      //remove nextClosest place from places array
+      places.splice(places.indexOf(nextClosest), 1);
+
+      nextClosest = places[Math.floor(Math.random() * (places.length - 1 + 1))];
+    }
+  }
+
+  //if the distance from the firstPlace to the current place in the loop is shorter than the distance between the firstPlace and the nextClosest, set the nextClosest to be the current place in the loop
+
+  //at the end of the loop, push next closest to the sortedPlaces array
+
+  //set firstPlace = next closest place
+
+  //remove firstPlace from the places array
+
+  //repeat until places.length == 0;
+
+  // used to hold an obj with a property of day
+
+  /** @type {{
+   *  date: string;
+   *  places: []
+   * }[]} */
+  let days = [];
+
+  //loop thorugh sortedPlaces[], and divide sortedPlaces by number of days, floor it to roundup/down
+  let placesPerDay = Math.round(sortedPlaces.length / duration); //5 places and 2 days (3 places per day)
+
+  let currentDay = 0;
+
+  //Loop through the places in blocks of placesPerDay (ie. blocks of 3)
+  for (let i = 0; i < sortedPlaces.length; i += placesPerDay) {
+    //Create a new array
+    let day = [];
+
+    //Push the place at the start of a block ([(place1), place2, place3])
+    day.push(sortedPlaces[i]);
+
+    //Loop through the rest of the block to complete a day
+    for (let j = 1; j < placesPerDay; j++) {
+      //so if placesPerDay was 3, each loop would produce
+      //([place1, (place2), place3])
+      //([place1, place2, (place3)])
+      if (i + j < sortedPlaces.length) {
+        day.push(sortedPlaces[i + j]);
+      }
+    }
+
+    let currentDate = new Date(startDate);
+    currentDate.setDate(currentDate.getDate() + currentDay);
+
+    days.push({
+      date: currentDate.toString(),
+      places: day
+    });
+
+    currentDay++;
+  }
+
+  //Next Steps:
+  //* Write loads of pseudo code to figure out whatever is in your head
+
+  //loop through
 
   //Create an itinerary using the chosen place ids...
-  const itinerary = {
-    name: name,
-    days: [
-      {
-        date: "18/12/2019",
-        times: [
-          {
-            time: "11:00",
-            place: places[0]
-          },
-          {
-            time: "12:30",
-            place: places[1]
-          }
-        ]
-      }
-    ]
-  };
+  // const itinerary = {
+  //   name: name,
+  //   days: [
+  //     {
+  //       date: "18/12/2019",
+  //       times: [
+  //         {
+  //           time: "11:00",
+  //           place: places[0]
+  //         },
+  //         {
+  //           time: "12:30",
+  //           place: places[1]
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // };
 
   //Create this itinerary in firebase under the relevant userId probably using the authtoken
 

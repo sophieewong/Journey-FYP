@@ -3,8 +3,8 @@
   import TextInputField from "../../Components/TextInputField.svelte";
   import Datepicker from "../../External/Datepicker/Datepicker.svelte";
 
-  let startDateSelected = new Date();
-  let endDateSelected = new Date();
+  export let startDateSelected = new Date();
+  export let endDateSelected = new Date();
   let endDateChosen = false;
 
   export let destination = "";

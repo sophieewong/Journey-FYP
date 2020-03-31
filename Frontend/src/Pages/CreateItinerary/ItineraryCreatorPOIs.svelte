@@ -7,6 +7,10 @@
   // export let destination = "";
   export let destination = "London"; //test data
 
+  export let numberOfDays;
+
+  console.log(numberOfDays);
+
   export let budget = "All";
   export let categories;
   export let chosenPlaces = [];
@@ -37,10 +41,17 @@
       places = data;
       console.log(places);
     });
+
+
+    $: reachedMaximumNumOfPlaces = chosenPlaces.length === (numberOfDays * 7);
 </script>
 
 <style type="text/scss">
   @import "../../styles/shared";
+
+  .isDisabled {
+    color: gray;
+  }
 
   section {
     margin-right: 6rem;
@@ -240,6 +251,10 @@
   }
 </style>
 
+{#if reachedMaximumNumOfPlaces}
+  <h1>NO MORE PLACES ALLOWED</h1>
+{/if}
+
 {#if isModalOpened}
   <POIInfoModal
     onClose={() => (isModalOpened = false)}
@@ -283,6 +298,9 @@
           </div>
           <div
             on:click={() => {
+              if (reachedMaximumNumOfPlaces && chosenPlaces.indexOf(place) === -1) {
+                return;
+              }
               place.selected = !place.selected;
               if (place.selected) {
                 chosenPlaces.push(place);
@@ -296,12 +314,14 @@
               }
             }}
             class="checkbox-container"
-            class:poi-control-selected={place.selected}>
+            class:poi-control-selected={place.selected}
+            class:isDisabled={reachedMaximumNumOfPlaces && chosenPlaces.indexOf(place) === -1 }>
             <label class="poi-label" for={place.name} />
             <input
               name={place.name}
               class="poi-checkbox"
               type="checkbox"
+              
               checked={place.selected}
               on:change={event => {
                 place.selected = event.target.checked;

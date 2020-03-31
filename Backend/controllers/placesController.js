@@ -97,56 +97,60 @@ const placesController = (req, resFromBackend) => {
     3. send final data to FE as json
     */
 
-  //   getFoursquareVenues(
-  //     req.params.destination,
-  //     req.params.categories,
-  //     req.params.budget
-  //   )
-  //     .then(placeIds => {
-  //       let placeDetailPromises = [];
+  // getFoursquareVenues(
+  //   req.params.destination,
+  //   req.params.categories,
+  //   req.params.budget
+  // )
+  //   .then(placeIds => {
+  //     let placeDetailPromises = [];
 
-  //       placeIds.forEach(id => {
-  //         placeDetailPromises.push(getFoursquareVenueDetails(id));
-  //       });
-
-  //       Promise.all(placeDetailPromises).then(detailedFoursquareVenues => {
-  //         let places = [];
-
-  //         detailedFoursquareVenues.forEach(response => {
-  //           const venue = response.response.venue;
-
-  //           const venueImageObj =
-  //             venue.photos.groups.length > 0
-  //               ? venue.photos.groups[0].items[0]
-  //               : undefined;
-
-  //           places.push({
-  //             id: venue.id,
-  //             name: venue.name,
-  //             category:
-  //               venue.categories.length > 0
-  //                 ? venue.categories[0].name
-  //                 : "No Category",
-  //             image: venueImageObj
-  //               ? `${venueImageObj.prefix}${venueImageObj.width}x${venueImageObj.height}${venueImageObj.suffix}`
-  //               : "./placeholder.png",
-  //             description: venue.description
-  //               ? venue.description
-  //               : "No Description"
-  //           });
-  //         });
-
-  //         resFromBackend.json(places); // and sends response back with json data to FE
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-
-  //       //If there's an error, let the Frontend know about it.
-  //       //   resFromBackend.json({
-  //       //     error
-  //       //   });
+  //     placeIds.forEach(id => {
+  //       placeDetailPromises.push(getFoursquareVenueDetails(id));
   //     });
+
+  //     Promise.all(placeDetailPromises).then(detailedFoursquareVenues => {
+  //       let places = [];
+
+  //       detailedFoursquareVenues.forEach(response => {
+  //         const venue = response.response.venue;
+
+  //         const venueImageObj =
+  //           venue.photos.groups.length > 0
+  //             ? venue.photos.groups[0].items[0]
+  //             : undefined;
+
+  //         places.push({
+  //           id: venue.id,
+  //           name: venue.name,
+  //           category:
+  //             venue.categories.length > 0
+  //               ? venue.categories[0].name
+  //               : "No Category",
+  //           image: venueImageObj
+  //             ? `${venueImageObj.prefix}${venueImageObj.width}x${venueImageObj.height}${venueImageObj.suffix}`
+  //             : "./placeholder.png",
+  //           description: venue.description
+  //             ? venue.description
+  //             : "No Description",
+  //           latLng: {
+  //             lat: venue.location.lat,
+  //             lng: venue.location.lng
+  //           }
+  //         });
+  //       });
+
+  //       resFromBackend.json(places); // and sends response back with json data to FE
+  //     });
+  //   })
+  //   .catch(error => {
+  //     console.error(error);
+
+  //     //If there's an error, let the Frontend know about it.
+  //     //   resFromBackend.json({
+  //     //     error
+  //     //   });
+  //   });
 
   getTestData()
     .then(testData => {
