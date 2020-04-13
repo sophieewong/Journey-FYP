@@ -1,9 +1,7 @@
 <script>
+  import {currentItineraryDestination, currentItineraryBudget} from "../../stores";
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
-
-  export let destination = "";
-  export let budget = "All";
 </script>
 
 <style type="text/scss">
@@ -101,7 +99,7 @@
   <div class="itinerary-creator-field">
     <div class="itinerary-title-field">
       <p class="itinerary-step-title">What is the budget per activity?</p>
-      <p class="itinerary-place-title">To {destination}</p>
+      <p class="itinerary-place-title">To {$currentItineraryDestination}</p>
       <p class="itinerary-budget-content">
         *Pick the average price for an activity per person.
       </p>
@@ -115,7 +113,7 @@
 
   <div class="itinerary-creator-budget">
     <input
-      bind:group={budget}
+      bind:group={$currentItineraryBudget}
       type="radio"
       name="budget"
       value="All"
@@ -125,7 +123,7 @@
     <label for="all-budget">Include all cost range</label>
     <br />
     <input
-      bind:group={budget}
+      bind:group={$currentItineraryBudget}
       type="radio"
       name="budget"
       value="Low"
@@ -134,7 +132,7 @@
     <label for="low-budget">Low: Free - £20</label>
     <br />
     <input
-      bind:group={budget}
+      bind:group={$currentItineraryBudget}
       type="radio"
       name="budget"
       value="Medium"
@@ -143,7 +141,7 @@
     <label for="medium-budget">Medium: £20 - £50</label>
     <br />
     <input
-      bind:group={budget}
+      bind:group={$currentItineraryBudget}
       type="radio"
       name="budget"
       value="High"

@@ -1,18 +1,52 @@
 <script>
+  import {onMount, onDestroy} from "svelte";
+  import flatpickr from "flatpickr";
+  import {currentItineraryDestination, currentItineraryStartDate, currentItineraryEndDate} from "../../stores"
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
   import Datepicker from "../../External/Datepicker/Datepicker.svelte";
 
-  export let startDateSelected = new Date();
-  export let endDateSelected = new Date();
-  let endDateChosen = false;
+  //The actual date objects
+  let endDate = $currentItineraryEndDate;
 
-  export let destination = "";
+  //HTML elements
+  let startDateInput;
+  let endDateInput;
 
-  $: if (!endDateChosen || endDateSelected < startDateSelected) {
-    endDateSelected.setDate(startDateSelected.getDate() + 1);
-    endDateSelected = endDateSelected;
-  }
+  //The flatpickr instances
+  let startDatePicker;
+  let endDatePicker;
+
+  onMount(() => {
+    startDatePicker = flatpickr(startDateInput, {
+        enableTime: false,
+        dateFormat: "D M d Y",
+        defaultDate: $currentItineraryStartDate,
+        minDate: $currentItineraryStartDate,
+        onChange: ([date]) => {
+          currentItineraryStartDate.set(date);
+
+          endDatePicker.set("minDate", $currentItineraryStartDate)
+
+          if ($currentItineraryEndDate < $currentItineraryStartDate) {
+            endDatePicker.setDate($currentItineraryStartDate);
+          }
+        }
+      });
+
+    endDatePicker = flatpickr(endDateInput, {
+        enableTime: false,
+        dateFormat: "D M d Y",
+        defaultDate: $currentItineraryEndDate,
+        minDate: $currentItineraryStartDate,
+        onChange: ([date]) => currentItineraryEndDate.set(date)
+      });
+  });
+
+  onDestroy(() => {
+    startDatePicker.destroy();
+    endDatePicker.destroy();
+  });
 </script>
 
 <style type="text/scss">
@@ -54,6 +88,10 @@
   }
 </style>
 
+<svelte:head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</svelte:head>
+
 <section class="itinerary-steps">
   <!-- Add itinerary steps component -->
 </section>
@@ -63,24 +101,15 @@
       <p class="itinerary-step-title">When is the trip?</p>
     </div>
     <div class="itinerary-place-container">
-      <p class="itinerary-place-title">To {destination}</p>
+      <p class="itinerary-place-title">To {$currentItineraryDestination}</p>
     </div>
     <div class="start-date-container">
       <p class="date-picker-title">Start Date</p>
-      <Datepicker
-        start={new Date(2000, 1, 1)}
-        end={new Date(2090, 12, 31)}
-        format={'#{D} #{M} #{d} #{Y}'}
-        bind:selected={startDateSelected} />
+        <input type="text" bind:this={startDateInput}>
     </div>
     <div class="end-date-container">
       <p class="date-picker-title">End Date</p>
-      <Datepicker
-        start={startDateSelected}
-        bind:selected={endDateSelected}
-        bind:dateChosen={endDateChosen}
-        end={new Date(2090, 12, 31)}
-        format={'#{D} #{M} #{d} #{Y}'} />
+        <input type="text" bind:this={endDateInput}>
     </div>
   </div>
 </section>

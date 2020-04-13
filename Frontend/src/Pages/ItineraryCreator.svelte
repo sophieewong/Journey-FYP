@@ -1,5 +1,6 @@
 <script>
-  import { auth } from "../stores.js";
+  import { auth, currentItineraryName, currentItineraryDestination, currentItineraryCategories, currentItineraryStartDate, currentItineraryEndDate, currentItineraryNumberOfDays, currentItineraryChosenPlaces} from "../stores.js";
+
   import ItineraryCreatorHeader from "../Components/ItineraryCreatorHeader.svelte";
   import ItineraryCreatorButtons from "../Components/ItineraryCreatorButtons.svelte";
   import Tabs from "../Components/Tabs.svelte";
@@ -11,53 +12,12 @@
   import ItineraryCreatorRefine from "./CreateItinerary/ItineraryCreatorRefine.svelte";
   import ItineraryCreatorPOIs from "./CreateItinerary/ItineraryCreatorPOIs.svelte";
 
-  let name = "New Itinerary";
-  let destination = "London"; // test data
-  // let destination = "";
-
-  let startDate = new Date();
-  let endDate = new Date();
-
-  //! TODO
-  //console logging the dates above (reactivley) to see if they match what you've selected
-  //if they don't, this is most likely an issue within itienerarycreatorwhen component
-  $: numberOfDays = ((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
-
-  let budget = "All";
-  let categories = [
-    { name: "Theme Parks", selected: false },
-    { name: "Museums", selected: true },
-    { name: "Nature & Wildlife", selected: false },
-    { name: "Shopping & Markets", selected: false },
-    { name: "Theatre & Movies", selected: false },
-    { name: "Historical", selected: false },
-    { name: "Food", selected: false },
-    { name: "Arts & Culture", selected: false },
-    { name: "Sports", selected: false },
-    { name: "Landmarks", selected: false },
-    { name: "Beaches, Coasts & Islands", selected: false },
-    { name: "City Views", selected: false },
-    { name: "Nightlife", selected: false },
-    { name: "Entertainment & Events", selected: false }
-  ];
-
-  let chosenPlaces = [];
-
   $: categoryHasBeenSelected =
-    categories.filter(category => {
+    $currentItineraryCategories.filter(category => {
       return category.selected;
     }).length > 0;
 
-  let currentStep = 0; //test data
-
-  /** @type {{
-   *  name: string,
-   *  places: {
-   *    name: string,
-   *    image: string,
-   *    category: string
-   * }[]
-   * }} */
+  let currentStep = 0;
 
   $: if (currentStep === 6) {
     //1 Ask backend to generate us an itinerary
@@ -67,21 +27,21 @@
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: name,
-        destination,
-        startDate,
-        endDate,
-        duration: numberOfDays,
-        places: chosenPlaces,
+        name: $currentItineraryName,
+        destination: $currentItineraryDestination,
+        startDate: $currentItineraryStartDate,
+        endDate: $currentItineraryEndDate,
+        duration: $currentItineraryNumberOfDays,
+        places: $currentItineraryChosenPlaces,
         userId: $auth.user.uid
       })
     })
       .then(res => res.json())
       .then((data) => {
-        // location.replace(
-        //   location.protocol + "//" + location.host + "/#/itinerary?id=" + id
-        // );
-        console.log(JSON.parse(data))
+        location.replace(
+          location.protocol + "//" + location.host + "/#/itinerary?id=" + data.id
+        );
+        // console.log(data);
       });
   }
 </script>
@@ -102,7 +62,7 @@
 </style>
 
 <section class="itinerary-creator-header">
-  <ItineraryCreatorHeader itineraryTitle={name} />
+  <ItineraryCreatorHeader itineraryTitle={$currentItineraryName} />
 </section>
 
 <section class="itinerary-creator-tabs">
@@ -115,26 +75,26 @@
 {#if currentStep === 0}
   <ItineraryCreatorName
     onNextStep={itineraryName => {
-      name = itineraryName;
+      currentItineraryName.set(itineraryName);
       currentStep++;
     }} />
 {:else if currentStep === 1}
-  <ItineraryCreatorWhere bind:destination />
+  <ItineraryCreatorWhere />
 {:else if currentStep === 2}
-  <ItineraryCreatorWhen {destination} bind:startDateSelected={startDate} bind:endDateSelected={endDate}/>
+  <ItineraryCreatorWhen />
 {:else if currentStep === 3}
-  <ItineraryCreatorBudget bind:budget {destination} />
+  <ItineraryCreatorBudget />
 {:else if currentStep === 4}
-  <ItineraryCreatorRefine bind:categories {destination} />
+  <ItineraryCreatorRefine />
 {:else if currentStep === 5}
-  <ItineraryCreatorPOIs {destination} {budget} {categories} bind:chosenPlaces {numberOfDays}/>
+  <ItineraryCreatorPOIs/>
 {:else}
   <!-- Itinerary Generator -->
 {/if}
 
 {#if currentStep > 0}
   <ItineraryCreatorButtons
-    disableNextButton={destination === '' || !categoryHasBeenSelected}
+    disableNextButton={$currentItineraryDestination === '' || !categoryHasBeenSelected}
     nextButtonName={currentStep === 5 ? 'Generate Itinerary' : 'Next'}
     onPrevClick={() => currentStep--}
     onNextClick={() => currentStep++} />

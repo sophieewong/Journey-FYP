@@ -1,27 +1,17 @@
 <script>
+  import {currentItineraryDestination, currentItineraryNumberOfDays, currentItineraryBudget, currentItineraryCategories, currentItineraryChosenPlaces} from "../../stores";
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
   import POIInfoModal from "../../Components/POIInfoModal.svelte";
-
-  // export let destination = "";
-  export let destination = "London"; //test data
-
-  export let numberOfDays;
-
-  console.log(numberOfDays);
-
-  export let budget = "All";
-  export let categories;
-  export let chosenPlaces = [];
 
   let isModalOpened = false;
   let activePOI;
 
   let chosenCategories = [];
 
-  categories.forEach(category => {
-    if (category.selected === true) {
+  $currentItineraryCategories.forEach(category => {
+    if (category.selected) {
       chosenCategories.push(category.name);
     }
   });
@@ -30,7 +20,7 @@
 
   // asks BE for data, returns a promise
   fetch(
-    `/api/places/${destination}&categories=${chosenCategories.toString()}&budget=${budget}`
+    `/api/places/${$currentItineraryDestination}&categories=${chosenCategories.toString()}&budget=${$currentItineraryBudget}`
   )
     // once promise is resolved
     .then(response => {
@@ -43,7 +33,7 @@
     });
 
 
-    $: reachedMaximumNumOfPlaces = chosenPlaces.length === (numberOfDays * 7);
+    $: reachedMaximumNumOfPlaces = $currentItineraryChosenPlaces.length === ($currentItineraryNumberOfDays * 5);
 </script>
 
 <style type="text/scss">
@@ -260,16 +250,16 @@
     onClose={() => (isModalOpened = false)}
     image={activePOI.image}
     name={activePOI.name}
-    {destination}
+    {$currentItineraryDestination}
     category={activePOI.category}
     description={activePOI.description}
-    {budget} />
+    {$currentItineraryBudget} />
 {/if}
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
     <div class="itinerary-title-field">
       <p class="itinerary-step-title">
-        Add the places you'd like to visit in {destination} to build your
+        Add the places you'd like to visit in {$currentItineraryDestination} to build your
         itinerary.
       </p>
     </div>
@@ -288,7 +278,6 @@
               <p class="labels poi-name">{place.name}</p>
               <p class="labels poi-category-type">{place.category}</p>
               <p class="labels poi-description">{place.description}</p>
-
               <div class="labels card-footer">
                 <p class="poi-rating-label">{place.ratings}</p>
                 <p class="poi-detail-label">Details</p>
@@ -298,24 +287,24 @@
           </div>
           <div
             on:click={() => {
-              if (reachedMaximumNumOfPlaces && chosenPlaces.indexOf(place) === -1) {
+              if (reachedMaximumNumOfPlaces && $currentItineraryChosenPlaces.indexOf(place) === -1) {
                 return;
               }
               place.selected = !place.selected;
               if (place.selected) {
-                chosenPlaces.push(place);
-                chosenPlaces = chosenPlaces;
+                $currentItineraryChosenPlaces.push(place);
+                $currentItineraryChosenPlaces = $currentItineraryChosenPlaces;
               } else if (place.selected === false) {
-                let index = chosenPlaces.indexOf(place);
+                let index = $currentItineraryChosenPlaces.indexOf(place);
                 if (index > -1) {
-                  chosenPlaces.splice(index, 1);
-                  chosenPlaces = chosenPlaces;
+                  $currentItineraryChosenPlaces.splice(index, 1);
+                  $currentItineraryChosenPlaces = $currentItineraryChosenPlaces;
                 }
               }
             }}
             class="checkbox-container"
             class:poi-control-selected={place.selected}
-            class:isDisabled={reachedMaximumNumOfPlaces && chosenPlaces.indexOf(place) === -1 }>
+            class:isDisabled={reachedMaximumNumOfPlaces && $currentItineraryChosenPlaces.indexOf(place) === -1 }>
             <label class="poi-label" for={place.name} />
             <input
               name={place.name}
@@ -329,7 +318,7 @@
           </div>
         </div>
       {:else}
-        No places found for {destination}. 😔
+        No places found for {$currentItineraryDestination}. 😔
         <br />
         Please enter another destination to explore.
       {/each}

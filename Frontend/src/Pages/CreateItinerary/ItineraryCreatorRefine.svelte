@@ -1,12 +1,10 @@
 <script>
+  import {currentItineraryCategories} from "../../stores";
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
 
   import getCategoryIcon from "../../utils/getCategoryIcon.js";
-
-  export let categories;
-  export let destination = "";
 </script>
 
 <style type="text/scss">
@@ -87,9 +85,6 @@
   }
 </style>
 
-<section class="itinerary-steps">
-  <!-- Add itinerary steps component -->
-</section>
 <section class="itinerary-creator-content">
   <div class="itinerary-creator-field">
     <div class="itinerary-title-field">
@@ -99,7 +94,7 @@
     </div>
   </div>
   <div class="icons">
-    {#each categories as category}
+    {#each $currentItineraryCategories as category}
       <div
         on:click={() => (category.selected = !category.selected)}
         class="icon-container"

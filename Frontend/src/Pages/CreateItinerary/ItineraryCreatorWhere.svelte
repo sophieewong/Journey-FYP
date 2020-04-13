@@ -1,8 +1,7 @@
 <script>
+  import {currentItineraryDestination} from "../../stores";
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
-
-  export let destination = "";
 </script>
 
 <style type="text/scss">
@@ -28,7 +27,7 @@
     <TextInputField
       list="cities-input"
       title="Where is your next city destination?"
-      bind:value={destination} />
+      bind:value={$currentItineraryDestination} />
 
     <datalist id="cities-input">
       <option value="Nottingham" />

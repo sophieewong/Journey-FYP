@@ -52,6 +52,7 @@ app.post("/api/itinerary/create", (req, res) => {
   let itinerary = {
     name,
     destination,
+    days: [],
     startDate,
     endDate,
     duration
@@ -80,8 +81,6 @@ app.post("/api/itinerary/create", (req, res) => {
         currentPlace.latLng,
         nextClosest.latLng
       );
-
-      console.log(currentPlace.name);
 
       if (distBetweenCurrentAndThis < distBetweenCurrentAndNextClosest) {
         nextClosest = place;
@@ -115,12 +114,6 @@ app.post("/api/itinerary/create", (req, res) => {
 
   // used to hold an obj with a property of day
 
-  /** @type {{
-   *  date: string;
-   *  places: []
-   * }[]} */
-  let days = [];
-
   //loop thorugh sortedPlaces[], and divide sortedPlaces by number of days, floor it to roundup/down
   let placesPerDay = Math.round(sortedPlaces.length / duration); //5 places and 2 days (3 places per day)
 
@@ -147,7 +140,7 @@ app.post("/api/itinerary/create", (req, res) => {
     let currentDate = new Date(startDate);
     currentDate.setDate(currentDate.getDate() + currentDay);
 
-    days.push({
+    itinerary.days.push({
       date: currentDate.toString(),
       places: day
     });
@@ -156,7 +149,7 @@ app.post("/api/itinerary/create", (req, res) => {
   }
 
   //Next Steps:
-  //* Write loads of pseudo code to figure out whatever is in your head
+  //* Write loads of pseudo code to figure out places opening hours
 
   //loop through
 
@@ -201,7 +194,12 @@ app.post("/api/itinerary/create", (req, res) => {
           res.json({ id: itineraries.length - 1 });
         });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err);
+      res.status(400).json({
+        error: "Itinerary creation failed!"
+      });
+    });
 });
 
 app.post("/api/itinerary/get", (req, res) => {
