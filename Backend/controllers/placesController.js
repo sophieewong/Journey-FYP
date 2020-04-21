@@ -136,7 +136,15 @@ const placesController = (req, resFromBackend) => {
   //           latLng: {
   //             lat: venue.location.lat,
   //             lng: venue.location.lng
-  //           }
+  //           },
+  //           openingTimes:
+  //             venue.hours.timeframes.length > 0
+  //               ? `${venue.hours.timeframes[0].days} ${
+  //                   venue.hours.timeframes[0].open.length > 0
+  //                     ? venue.hours.timeframes[0].open[0].renderedTime
+  //                     : ""
+  //                 }`
+  //               : ``
   //         });
   //       });
 

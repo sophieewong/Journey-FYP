@@ -60,6 +60,8 @@ app.post("/api/itinerary/create", (req, res) => {
 
   let sortedPlaces = [];
 
+  console.log(places);
+
   let currentPlace = places[0];
 
   sortedPlaces.push(currentPlace);
