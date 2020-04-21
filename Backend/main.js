@@ -150,31 +150,6 @@ app.post("/api/itinerary/create", (req, res) => {
     currentDay++;
   }
 
-  //Next Steps:
-  //* Write loads of pseudo code to figure out places opening hours
-
-  //loop through
-
-  //Create an itinerary using the chosen place ids...
-  // const itinerary = {
-  //   name: name,
-  //   days: [
-  //     {
-  //       date: "18/12/2019",
-  //       times: [
-  //         {
-  //           time: "11:00",
-  //           place: places[0]
-  //         },
-  //         {
-  //           time: "12:30",
-  //           place: places[1]
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // };
-
   //Create this itinerary in firebase under the relevant userId probably using the authtoken
 
   let docRef = db.collection("users").doc(userId);
@@ -223,6 +198,54 @@ app.post("/api/itinerary/get", (req, res) => {
             error: "Itinerary with that ID doesn't exist!"
           });
         }
+      } else {
+        res.status(400).json({
+          error: "This user doesn't have any itineraries!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(400).json({
+        error: "ID parameter is invalid!"
+      });
+    });
+});
+
+app.post("/api/itinerary/getAll", (req, res) => {
+  const { userId } = req.body;
+
+  let docRef = db.collection("users").doc(userId);
+
+  docRef
+    .get()
+    .then(doc => {
+      let itineraries = doc.get("itineraries");
+
+      if (itineraries) {
+        const pastTrips = [];
+        const upcomingTrips = [];
+
+        const today = new Date().getTime();
+        itineraries.forEach((itineraryAsJSON, index) => {
+          const itinerary = JSON.parse(itineraryAsJSON);
+
+          if (Date.parse(itinerary.endDate) < today) {
+            pastTrips.push({
+              id: index,
+              ...itinerary
+            });
+          } else {
+            upcomingTrips.push({
+              id: index,
+              ...itinerary
+            });
+          }
+        });
+
+        res.json({
+          upcomingTrips,
+          pastTrips
+        });
       } else {
         res.status(400).json({
           error: "This user doesn't have any itineraries!"

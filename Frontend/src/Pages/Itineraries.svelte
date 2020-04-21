@@ -5,43 +5,34 @@
   import HeroBanner from "../Components/HeroBanner.svelte";
   import Tabs from "../Components/Tabs.svelte";
 
-  //This will eventually come from the backend as an api
-  let data = {
-    upcomingTrips: [
-      {
-        name: "Eid 2020",
-        location: "Johor, Malaysia",
-        date: "25/4/2020 - 10/5/2020",
-        duration: "15 Days"
+let itineraries = {
+  upcomingTrips: [],
+  pastTrips: []
+}
+let userHasItineraries = false;
+
+      fetch("/api/itinerary/getAll", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      {
-        name: "Graduation Trip 2020",
-        location: "Paris, France",
-        date: "25/6/2020 - 19/7/2020",
-        duration: "21 Days"
-      },
-      {
-        name: "Christmas 2020",
-        location: "Bradford, United Kingdom",
-        date: "25/12/2020 - 1/1/2021",
-        duration: "7 Days"
-      },
-      {
-        name: "CNY 2021",
-        location: "Kuala Lumpur, Malaysia",
-        date: "25/1/2021 - 10/2/2021",
-        duration: "14 Days"
-      }
-    ],
-    pastTrips: [
-      {
-        name: "York 2019",
-        location: "York, United Kingdom",
-        date: "25/11/2019 - 10/12/2019",
-        duration: "8 Days"
-      }
-    ]
-  };
+      body: JSON.stringify({
+        userId: $auth.user.uid
+      })
+    })
+      .then(res => {
+        if (res.status !== 400) {
+          userHasItineraries = true;
+          return res.json();
+        }
+      })
+      .then(data => {
+        itineraries = data;
+        console.log(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
   let activeTab = 0;
 
@@ -182,41 +173,44 @@
     onTabClicked={tab => (activeTab = tab)} />
 
   <!-- create an upcoming array & a past array, return objects based on which tab is selected -->
-
+{#if userHasItineraries}
   {#if activeTab === 0}
     <div class="itineraries">
-      {#each data.upcomingTrips as { name, location, duration, startDate, endDate }}
+      {#each itineraries.upcomingTrips as {id, name, destination, duration, startDate, endDate }}
         <!--<TripPreview name location startDate endDate/>-->
+        <a href="/#/itinerary?id={id}">
         <div class="itinerary active-itinerary">
           <h4>{name}</h4>
           <p class="destination-text">
             <img src="./images/destination.png" alt="Destination" />
-            {location}
+            {destination}
           </p>
           <p class="time-label">
             <img src="./images/calendar.png" alt="Calender" />
-            25/1/2021 - 10/2/2021
+            {startDate.substring(0, startDate.indexOf('T')).replace(/-/g, '/')} - {endDate.substring(0, endDate.indexOf('T')).replace(/-/g, '/')}
           </p>
           <p class="time-label">
             <img src="./images/clock.png" alt="Duration" />
-            {duration}
+            {duration} Days
           </p>
-        </div>
+        </div></a>
       {:else}
         <p>No upcoming trips found :(</p>
       {/each}
     </div>
   {/if}
 
+
   {#if activeTab === 1}
     <div class="itineraries">
-      {#each data.pastTrips as { name, location, duration, startDate, endDate }}
-        <!--<TripPreview name location startDate endDate/>-->
+      {#each itineraries.pastTrips as { id, name, destination, duration, startDate, endDate }}
+        <!--<TripPreview name destination startDate endDate/>-->
+        <a href="/#/itinerary?id={id}">
         <div class="itinerary past-itinerary">
           <h4>{name}</h4>
           <p class="destination-text">
             <img src="./images/destination.png" alt="Destination" />
-            {location}
+            {destination}
           </p>
           <p class="time-label">
             <img src="./images/calendar.png" alt="Calender" />
@@ -227,10 +221,11 @@
             {duration}
           </p>
         </div>
+        </a>
       {:else}
         <p>No past trips found :(</p>
       {/each}
     </div>
   {/if}
-
+{/if}
 </section>
