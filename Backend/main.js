@@ -179,6 +179,7 @@ app.post("/api/itinerary/create", (req, res) => {
     });
 });
 
+//returns one itinerary for the specific user
 app.post("/api/itinerary/get", (req, res) => {
   const { userId, itineraryId } = req.body;
 
@@ -246,6 +247,102 @@ app.post("/api/itinerary/getAll", (req, res) => {
           upcomingTrips,
           pastTrips
         });
+      } else {
+        res.status(400).json({
+          error: "This user doesn't have any itineraries!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(400).json({
+        error:
+          "Itineraries structure is not coming back as expected from firebase!"
+      });
+    });
+});
+
+app.post("/api/itinerary/delete", (req, res) => {
+  //receive the user ID and itinerary from FE
+  const { userId, itineraryId } = req.body;
+
+  //grabs user with userID from firebase
+  let docRef = db.collection("users").doc(userId);
+
+  docRef
+    .get()
+    .then(doc => {
+      //get all itineraries for the user
+      let itineraries = doc.get("itineraries");
+      let itineraryIndex = parseInt(itineraryId);
+
+      //if this user has itineraries
+      if (itineraries) {
+        //and the given itineraryID is a valid ID within the itinerary array
+        if (itineraries.length > itineraryIndex) {
+          //removes the itinerary from the array of itineraries
+          itineraries.splice(itineraryIndex, 1);
+
+          //override existing array with new array without the deleted itinerary
+          docRef.set({
+            itineraries
+          });
+
+          //Tell the frontend that we've done it!
+          res.status(200).json({
+            success: "Sucessfully deleted itinerary"
+          });
+        } else {
+          res.status(400).json({
+            error: "Itinerary with that ID doesn't exist!"
+          });
+        }
+      } else {
+        res.status(400).json({
+          error: "This user doesn't have any itineraries!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(400).json({
+        error: "ID parameter is invalid!"
+      });
+    });
+});
+
+app.post("/api/itinerary/edit", (req, res) => {
+  const { userId, itineraryId, updatedItinerary } = req.body;
+
+  //grabs user with userID from firebase
+  let docRef = db.collection("users").doc(userId);
+
+  docRef
+    .get()
+    .then(doc => {
+      //get all itineraries for the user
+      let itineraries = doc.get("itineraries");
+      let itineraryIndex = parseInt(itineraryId);
+
+      //if this user has itineraries
+      if (itineraries) {
+        //and the given itineraryID is a valid ID within the itinerary array
+        if (itineraries.length > itineraryIndex) {
+          //removes the itinerary from the array of itineraries
+          itineraries[itineraryIndex] = updatedItinerary;
+
+          //override existing array with new array without the deleted itinerary
+          docRef.set({
+            itineraries
+          });
+
+          //Tell the frontend that we've done it!
+          res.status(200).json({
+            success: "Sucessfully edited itinerary"
+          });
+        } else {
+          res.status(400).json({
+            error: "Itinerary with that ID doesn't exist!"
+          });
+        }
       } else {
         res.status(400).json({
           error: "This user doesn't have any itineraries!"

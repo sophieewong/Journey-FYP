@@ -1,5 +1,15 @@
 <script>
-  import { auth, currentItineraryName, currentItineraryDestination, currentItineraryCategories, currentItineraryStartDate, currentItineraryEndDate, currentItineraryNumberOfDays, currentItineraryChosenPlaces} from "../stores.js";
+  import {
+    auth,
+    currentItineraryName,
+    currentItineraryDestination,
+    currentItineraryCategories,
+    currentItineraryStartDate,
+    currentItineraryEndDate,
+    currentItineraryNumberOfDays,
+    currentItineraryChosenPlaces,
+    currentItineraryBudget
+  } from "../stores.js";
 
   import ItineraryCreatorHeader from "../Components/ItineraryCreatorHeader.svelte";
   import ItineraryCreatorButtons from "../Components/ItineraryCreatorButtons.svelte";
@@ -33,13 +43,19 @@
         endDate: $currentItineraryEndDate,
         duration: $currentItineraryNumberOfDays,
         places: $currentItineraryChosenPlaces,
+        categories: $currentItineraryCategories,
+        budget: currentItineraryBudget,
         userId: $auth.user.uid
       })
     })
       .then(res => res.json())
-      .then((data) => {
+      .then(data => {
         location.replace(
-          location.protocol + "//" + location.host + "/#/itinerary?id=" + data.id
+          location.protocol +
+            "//" +
+            location.host +
+            "/#/itinerary?id=" +
+            data.id
         );
         // console.log(data);
       });
@@ -87,7 +103,7 @@
 {:else if currentStep === 4}
   <ItineraryCreatorRefine />
 {:else if currentStep === 5}
-  <ItineraryCreatorPOIs/>
+  <ItineraryCreatorPOIs />
 {:else}
   <!-- Itinerary Generator -->
 {/if}
