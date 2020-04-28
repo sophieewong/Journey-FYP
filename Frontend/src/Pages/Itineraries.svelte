@@ -84,13 +84,13 @@
   }
 
   .created-itineraries {
-    padding-left: 6rem;
-    padding-right: 6rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
     margin-bottom: 3rem;
 
     @media screen and (max-width: $mobile-breakpoint) {
-      padding-left: 3rem;
-      padding-right: 3rem;
+      margin-left: 3rem;
+      margin-right: 3rem;
     }
   }
 
@@ -98,11 +98,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-
-    @media screen and (min-width: $desktop-breakpoint) {
-      justify-content: space-between;
-    }
   }
 
   .active-itinerary {
@@ -116,10 +111,8 @@
   .itinerary {
     box-shadow: 0px 4px 4px #8c8c8c;
     border-radius: 11px;
-    margin-bottom: 2rem;
     padding: 1rem;
     margin: 10px;
-    width: 100%;
     font-family: $body-text;
     cursor: pointer;
 
@@ -130,14 +123,6 @@
 
     h4 {
       margin-bottom: 0.5rem;
-    }
-
-    @media screen and (min-width: $sm-tablet-breakpoint) {
-      max-width: 20rem;
-    }
-
-    @media screen and (min-width: $desktop-breakpoint) {
-      max-width: 13rem;
     }
 
     img {
@@ -154,13 +139,27 @@
       font-weight: 300;
     }
   }
+
+  .itinerary-preview {
+    text-decoration: none;
+    width: 100%;
+    max-width: 24rem;
+    color: black;
+  }
+
+  .no-itinerary-msg {
+    margin: 3rem auto;
+    text-align: center;
+    font-family: $body-text;
+    font-size: 1.25rem;
+  }
 </style>
 
 <section>
   <HeroBanner
     title="My Trips"
     image="./images/hero/ItineraryPlanner.jpg"
-    showSearchBox={true} />
+    showSearchBox={false} />
 </section>
 <section class="itinerary-creator-button">
   <div class="planner-btn-container">
@@ -180,7 +179,7 @@
       <div class="itineraries">
         {#each itineraries.upcomingTrips as { id, name, destination, duration, startDate, endDate }}
           <!--<TripPreview name location startDate endDate/>-->
-          <a href="/#/itinerary?id={id}">
+          <a class="itinerary-preview" href="/#/itinerary?id={id}">
             <div class="itinerary active-itinerary">
               <h4>{name}</h4>
               <p class="destination-text">
@@ -198,7 +197,12 @@
             </div>
           </a>
         {:else}
-          <p>No upcoming trips found :(</p>
+          <p class="no-itinerary-msg">
+            No itineraries found 😔
+            <br />
+            Click on the Add Itinerary button to plan for your next adventure!
+            😉
+          </p>
         {/each}
       </div>
     {/if}
@@ -225,7 +229,7 @@
             </div>
           </a>
         {:else}
-          <p>No past trips found :(</p>
+          <p class="no-itinerary-msg">Sorry, no itineraries found 🙁</p>
         {/each}
       </div>
     {/if}

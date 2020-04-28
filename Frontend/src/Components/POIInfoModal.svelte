@@ -31,7 +31,8 @@
 
   .hero-title {
     color: $white;
-    padding-bottom: 3rem;
+    padding-bottom: 5rem;
+    padding-top: 5rem;
     display: flex;
     justify-content: center;
     font-family: $body-text;
@@ -64,6 +65,7 @@
 
   .category {
     font-style: italic;
+    margin-top: 0;
   }
 
   .description {
@@ -119,10 +121,10 @@
         background-position: center; background-repeat: no-repeat; left: 0px;
         top: 0px;">
         <div class="centered-container logo-container">
-          <img class="logo" src="./images/JourneyLogo.png" alt="Journey Logo" />
+          <!-- <img class="logo" src="./images/JourneyLogo.png" alt="Journey Logo" /> -->
         </div>
         <div class="page-hero">
-          <h2 class="hero-title">{name}, {destination}</h2>
+          <h2 class="hero-title">{name}</h2>
         </div>
       </div>
     </header>

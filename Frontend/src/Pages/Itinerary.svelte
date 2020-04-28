@@ -12,6 +12,7 @@
   } from "../stores.js";
   import getQueryParams from "../utils/getQueryParams.js";
   import formatDateString from "../utils/formatDateString.js";
+  import HeroBanner from "../Components/HeroBanner.svelte";
 
   const id = getQueryParams("id", location.href);
 
@@ -304,53 +305,86 @@
     padding-right: 1.5rem;
     color: $blue;
   }
+
+  .itinerary-details {
+    position: absolute;
+    width: 300px;
+    height: 120px;
+    left: 30%;
+    top: 45%;
+
+    background: $white;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
 </style>
 
-<div>
-  {#if itineraryData}
-    <h1>{itineraryData.name}</h1>
-    {#if userIsEditing}
-      <button class="" on:click={saveItinerary}>Save Itinerary</button>
-    {:else}
-      <button class="" on:click={() => (userIsEditing = true)}>Edit</button>
-    {/if}
-    <button class="" on:click={deleteItinerary}>DELETE</button>
-    {#each itineraryData.days as { date, places }, dayIndex}
-      <h2>{formatDateString(date)}</h2>
-      {#each places as place, placeIndex}
-        <div>
-          <button
-            on:click={() => {
-              movePlace({ day: dayIndex, place: placeIndex }, -1);
-            }}>
-            Up
-          </button>
-          <button
-            on:click={() => {
-              movePlace({ day: dayIndex, place: placeIndex }, 1);
-            }}>
-            Down
-          </button>
-          <button
-            on:click={() => removePlace({ day: dayIndex, place: placeIndex })}>
-            Remove
-          </button>
-        </div>
-        <div class="place">
-          <div class="place-img">
-            <img src={place.image} alt={place.name} />
-            <div class="poi-details">
-              <p class="labels poi-name">{place.name}</p>
-              <p class="labels poi-category-type">{place.category}</p>
-              <p class="labels poi-description">{place.description}</p>
-              <div class="labels card-footer">
-                <p class="poi-rating-label">{place.ratings}</p>
-                <p class="poi-detail-label">Details</p>
+<section>
+  <div>
+    {#if itineraryData}
+      <HeroBanner
+        title={itineraryData.name}
+        image="./images/hero/mapHero.jpg"
+        showSubtitle={true}
+        subtitle={itineraryData.destination} />
+      <div class="itinerary-details">
+        <p>Trip Detail</p>
+        <p>
+          Dates: {formatDateString(itineraryData.startDate)} - {formatDateString(itineraryData.endDate)}
+        </p>
+        <p>Duration: {itineraryData.duration}</p>
+      </div>
+
+      {#if userIsEditing}
+        <button class="" on:click={saveItinerary}>Save Itinerary</button>
+      {:else}
+        <button class="" on:click={() => (userIsEditing = true)}>Edit</button>
+      {/if}
+
+      <button class="" on:click={deleteItinerary}>DELETE ITINERARY</button>
+
+      {#each itineraryData.days as { date, places }, dayIndex}
+        <h2>{formatDateString(date)}</h2>
+        {#each places as place, placeIndex}
+          {#if userIsEditing}
+            <div>
+              <button
+                on:click={() => {
+                  movePlace({ day: dayIndex, place: placeIndex }, -1);
+                }}>
+                Up
+              </button>
+              <button
+                on:click={() => {
+                  movePlace({ day: dayIndex, place: placeIndex }, 1);
+                }}>
+                Down
+              </button>
+              <button
+                on:click={() => removePlace({
+                    day: dayIndex,
+                    place: placeIndex
+                  })}>
+                Remove
+              </button>
+            </div>
+          {/if}
+          <div class="place">
+            <div class="place-img">
+              <img src={place.image} alt={place.name} />
+              <div class="poi-details">
+                <p class="labels poi-name">{place.name}</p>
+                <p class="labels poi-category-type">{place.category}</p>
+                <p class="labels poi-description">{place.description}</p>
+                <div class="labels card-footer">
+                  <p class="poi-rating-label">{place.ratings}</p>
+                  <p class="poi-detail-label">Details</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        {/each}
       {/each}
-    {/each}
-  {:else}...Loading{/if}
-</div>
+    {:else}...Loading{/if}
+  </div>
+</section>

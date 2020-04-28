@@ -1,5 +1,11 @@
 <script>
-  import {currentItineraryDestination, currentItineraryNumberOfDays, currentItineraryBudget, currentItineraryCategories, currentItineraryChosenPlaces} from "../../stores";
+  import {
+    currentItineraryDestination,
+    currentItineraryNumberOfDays,
+    currentItineraryBudget,
+    currentItineraryCategories,
+    currentItineraryChosenPlaces
+  } from "../../stores";
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
   import ItineraryCreatorButtons from "../../Components/ItineraryCreatorButtons.svelte";
@@ -32,8 +38,8 @@
       console.log(places);
     });
 
-
-    $: reachedMaximumNumOfPlaces = $currentItineraryChosenPlaces.length === ($currentItineraryNumberOfDays * 5);
+  $: reachedMaximumNumOfPlaces =
+    $currentItineraryChosenPlaces.length === $currentItineraryNumberOfDays * 5;
 </script>
 
 <style type="text/scss">
@@ -66,23 +72,35 @@
     font-family: $body-text;
   }
 
+  .selection-suggestion {
+    font-style: normal;
+    font-weight: normal;
+    font-family: $body-text;
+  }
+
   .places {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: center;
 
-    @media screen and (max-width: $mobile-breakpoint) {
-      justify-content: center;
-    }
+    // @media screen and (max-width: $mobile-breakpoint) {
+    //   justify-content: center;
+    // }
   }
 
   .place {
-    margin-right: 10px;
-    max-width: 17rem;
+    // margin-right: 10px;
+    // max-width: 17rem;
+    margin-right: 5%;
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
+    margin: 25px;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
 
     @media screen and (max-width: $mobile-breakpoint) {
       min-width: 17rem;
@@ -239,11 +257,11 @@
     padding-right: 1.5rem;
     color: $blue;
   }
-</style>
 
-{#if reachedMaximumNumOfPlaces}
-  <h1>NO MORE PLACES ALLOWED</h1>
-{/if}
+  .maximum-warning {
+    color: red;
+  }
+</style>
 
 {#if isModalOpened}
   <POIInfoModal
@@ -259,9 +277,26 @@
   <div class="itinerary-creator-field">
     <div class="itinerary-title-field">
       <p class="itinerary-step-title">
-        Add the places you'd like to visit in {$currentItineraryDestination} to build your
-        itinerary.
+        Add the places you'd like to visit in {$currentItineraryDestination} to
+        build your itinerary.
       </p>
+    </div>
+
+    <div class="selection-suggestion">
+      {#if reachedMaximumNumOfPlaces}
+        <p class="maximum-warning">
+          Oops! You have unfortunately reached the maximum number of places to
+          select for your itinerary.😭
+        </p>
+        <p class="suggestion-msg">
+          Feel free to change your options or click on the Generate Itinerary
+          button to continue. 😬
+        </p>
+      {:else}
+        <p class="suggestion-msg">
+          {'We recommend 5 activities a day.🖐️ Please select ' + $currentItineraryNumberOfDays * 5 + ' places to add to your itinerary! '}
+        </p>
+      {/if}
     </div>
 
     <div class="places">
@@ -304,13 +339,12 @@
             }}
             class="checkbox-container"
             class:poi-control-selected={place.selected}
-            class:isDisabled={reachedMaximumNumOfPlaces && $currentItineraryChosenPlaces.indexOf(place) === -1 }>
+            class:isDisabled={reachedMaximumNumOfPlaces && $currentItineraryChosenPlaces.indexOf(place) === -1}>
             <label class="poi-label" for={place.name} />
             <input
               name={place.name}
               class="poi-checkbox"
               type="checkbox"
-              
               checked={place.selected}
               on:change={event => {
                 place.selected = event.target.checked;

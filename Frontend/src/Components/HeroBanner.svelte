@@ -3,8 +3,10 @@
   //import searchbox
 
   export let title;
+  export let subtitle;
   export let image;
   export let showSearchBox = false;
+  export let showSubtitle = false;
 </script>
 
 <style type="text/scss">
@@ -69,6 +71,21 @@
       }
     }
   }
+
+  .hero-subtitle {
+    font-family: $body-text;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 40px;
+    letter-spacing: 0.06em;
+
+    color: $white;
+    border-bottom: 3px solid $blue;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+  }
 </style>
 
 <div
@@ -79,6 +96,9 @@
   <Header />
   <div class="page-hero">
     <h2 class="hero-title">{title}</h2>
+    {#if showSubtitle}
+      <p class="hero-subtitle">{subtitle}</p>
+    {/if}
 
     {#if showSearchBox}
       <!--SearchBox-->

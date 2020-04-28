@@ -91,6 +91,17 @@
     line-height: 150%;
     letter-spacing: 0.1em;
   }
+
+  .start-date-container,
+  .end-date-container {
+    input {
+      font-family: $body-text !important;
+      font-size: 1.25rem;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      border-radius: 5px;
+    }
+  }
 </style>
 
 <svelte:head>

@@ -141,7 +141,7 @@
 <section>
   <HeroBanner
     title="My Profile"
-    image="./images/hero/ItineraryPlanner.jpg"
+    image="./images/hero/essentials.jpg"
     showSearchBox={false} />
 </section>
 

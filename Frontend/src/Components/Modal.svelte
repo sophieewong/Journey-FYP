@@ -6,7 +6,9 @@
   export let title;
 </script>
 
-<style>
+<style type="text/scss">
+  @import "../styles/shared";
+
   .modal-overlay {
     position: fixed;
     left: 0;
@@ -24,25 +26,33 @@
     left: 0;
     right: 0;
     bottom: 0;
+
+    @media screen and (max-width: $sm-tablet-breakpoint) {
+      top: 0;
+    }
   }
 
   .modal {
-    padding: 10px;
+    /* padding: 10px; */
     overflow-y: scroll;
     text-align: center;
     border-radius: 7px;
     background-color: #fff;
     box-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.25);
     height: 420px;
-  }
 
-  @media (min-width: 400px) {
-    .modal {
-      height: 520px;
+    @media screen and (max-width: $tablet-breakpoint) {
+      height: 100%;
     }
   }
 
-  @media (min-width: 820px) {
+  // @media (min-width: 400px) {
+  //   .modal {
+  //     height: 520px;
+  //   }
+  // }
+
+  @media (min-width: 720px) {
     .container {
       top: 0;
       left: 0;
@@ -89,7 +99,7 @@
     display: flex;
     flex-direction: column;
     font-size: 1.2em;
-    padding: 20px;
+    /* padding: 20px; */
   }
 </style>
 
@@ -98,7 +108,7 @@
   class="container"
   transition:slide={{ duration: 200, easing: quintInOut }}>
   <div class="modal">
-    <header class="header">
+    <!-- <header class="header">
       <div class="header-back-button">
         <button on:click={onClose}>
           <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -111,9 +121,9 @@
       <div class="header-title">
         <h1>{title}</h1>
       </div>
-    </header>
+    </header> -->
     <section class="body">
-      <slot></slot>
+      <slot />
     </section>
   </div>
 </section>
