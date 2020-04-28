@@ -11,10 +11,13 @@
     currentItineraryStartDate
   } from "../stores.js";
   import getQueryParams from "../utils/getQueryParams.js";
+  import formatDateString from "../utils/formatDateString.js";
 
   const id = getQueryParams("id", location.href);
 
   let itineraryData;
+
+  $: console.log(itineraryData);
 
   let userIsEditing = false;
 
@@ -41,7 +44,6 @@
       })
       .then(data => {
         itineraryData = JSON.parse(data);
-        console.log(itineraryData);
       })
       .catch(err => {
         console.error(err);
@@ -133,6 +135,8 @@
     arrayWithPlaceRemoved.splice(placePos.place, 1);
     itineraryData.days[placePos.day].places = arrayWithPlaceRemoved;
   };
+
+  let test = false;
 </script>
 
 <style type="text/scss">
@@ -302,49 +306,51 @@
   }
 </style>
 
-{#if itineraryData}
-  <h1>{itineraryData.name}</h1>
-  {#if userIsEditing}
-    <button class="" on:click={saveItinerary}>Save Itinerary</button>
-  {:else}
-    <button class="" on:click={() => (userIsEditing = true)}>Edit</button>
-  {/if}
-  <button class="" on:click={deleteItinerary}>DELETE</button>
-  {#each itineraryData.days as { date, places }, dayIndex}
-    <h2>{date}</h2>
-    {#each places as place, placeIndex}
-      <div>
-        <button
-          on:click={() => {
-            movePlace({ day: dayIndex, place: placeIndex }, -1);
-          }}>
-          Up
-        </button>
-        <button
-          on:click={() => {
-            movePlace({ day: dayIndex, place: placeIndex }, 1);
-          }}>
-          Down
-        </button>
-        <button
-          on:click={() => removePlace({ day: dayIndex, place: placeIndex })}>
-          Remove
-        </button>
-      </div>
-      <div class="place">
-        <div class="place-img">
-          <img src={place.image} alt={place.name} />
-          <div class="poi-details">
-            <p class="labels poi-name">{place.name}</p>
-            <p class="labels poi-category-type">{place.category}</p>
-            <p class="labels poi-description">{place.description}</p>
-            <div class="labels card-footer">
-              <p class="poi-rating-label">{place.ratings}</p>
-              <p class="poi-detail-label">Details</p>
+<div>
+  {#if itineraryData}
+    <h1>{itineraryData.name}</h1>
+    {#if userIsEditing}
+      <button class="" on:click={saveItinerary}>Save Itinerary</button>
+    {:else}
+      <button class="" on:click={() => (userIsEditing = true)}>Edit</button>
+    {/if}
+    <button class="" on:click={deleteItinerary}>DELETE</button>
+    {#each itineraryData.days as { date, places }, dayIndex}
+      <h2>{formatDateString(date)}</h2>
+      {#each places as place, placeIndex}
+        <div>
+          <button
+            on:click={() => {
+              movePlace({ day: dayIndex, place: placeIndex }, -1);
+            }}>
+            Up
+          </button>
+          <button
+            on:click={() => {
+              movePlace({ day: dayIndex, place: placeIndex }, 1);
+            }}>
+            Down
+          </button>
+          <button
+            on:click={() => removePlace({ day: dayIndex, place: placeIndex })}>
+            Remove
+          </button>
+        </div>
+        <div class="place">
+          <div class="place-img">
+            <img src={place.image} alt={place.name} />
+            <div class="poi-details">
+              <p class="labels poi-name">{place.name}</p>
+              <p class="labels poi-category-type">{place.category}</p>
+              <p class="labels poi-description">{place.description}</p>
+              <div class="labels card-footer">
+                <p class="poi-rating-label">{place.ratings}</p>
+                <p class="poi-detail-label">Details</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      {/each}
     {/each}
-  {/each}
-{:else}...Loading{/if}
+  {:else}...Loading{/if}
+</div>

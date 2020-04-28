@@ -49,6 +49,8 @@ app.post("/api/itinerary/create", (req, res) => {
     userId
   } = req.body;
 
+  console.log(startDate);
+
   let itinerary = {
     name,
     destination,
@@ -139,7 +141,12 @@ app.post("/api/itinerary/create", (req, res) => {
       }
     }
 
+    //ISSUE: startDate is passed to the backend as the user's timezone string, but the call below
+    //converts the date into UTC time.
+    //THIS IS NOT AN ISSUE WITH PARSING THE DATE AS LOCAL TIME, AS THE ITINERARIES ARE BEING
+    //SORTED INTO UPCOMING/PAST HERE BASED ON UTC WHICH IS WRONG.
     let currentDate = new Date(startDate);
+    console.log(currentDate);
     currentDate.setDate(currentDate.getDate() + currentDay);
 
     itinerary.days.push({
@@ -226,11 +233,15 @@ app.post("/api/itinerary/getAll", (req, res) => {
         const pastTrips = [];
         const upcomingTrips = [];
 
-        const today = new Date().getTime();
+        const todayNonUTC = new Date();
+        todayNonUTC.setHours(0, 0, 0, 0);
+        const today = new Date(todayNonUTC.toUTCString());
         itineraries.forEach((itineraryAsJSON, index) => {
           const itinerary = JSON.parse(itineraryAsJSON);
-
-          if (Date.parse(itinerary.endDate) < today) {
+          const endDate = new Date(itinerary.endDate);
+          console.log(today);
+          console.log(endDate);
+          if (endDate.getTime() < today.getTime()) {
             pastTrips.push({
               id: index,
               ...itinerary

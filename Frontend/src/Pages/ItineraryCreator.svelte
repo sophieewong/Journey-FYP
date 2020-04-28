@@ -27,8 +27,11 @@
       return category.selected;
     }).length > 0;
 
-  let currentStep = 0;
+  console.log($currentItineraryStartDate);
+  console.log(JSON.stringify($currentItineraryStartDate));
+  console.log($currentItineraryStartDate.toString());
 
+  let currentStep = 0;
   $: if (currentStep === 6) {
     //1 Ask backend to generate us an itinerary
     fetch("/api/itinerary/create", {
@@ -39,8 +42,8 @@
       body: JSON.stringify({
         name: $currentItineraryName,
         destination: $currentItineraryDestination,
-        startDate: $currentItineraryStartDate,
-        endDate: $currentItineraryEndDate,
+        startDate: $currentItineraryStartDate.toUTCString(),
+        endDate: $currentItineraryEndDate.toUTCString(),
         duration: $currentItineraryNumberOfDays,
         places: $currentItineraryChosenPlaces,
         categories: $currentItineraryCategories,

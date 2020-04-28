@@ -1,7 +1,11 @@
 <script>
-  import {onMount, onDestroy} from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import flatpickr from "flatpickr";
-  import {currentItineraryDestination, currentItineraryStartDate, currentItineraryEndDate} from "../../stores"
+  import {
+    currentItineraryDestination,
+    currentItineraryStartDate,
+    currentItineraryEndDate
+  } from "../../stores";
   import ItineraryCreatorHeader from "../../Components/ItineraryCreatorHeader.svelte";
   import TextInputField from "../../Components/TextInputField.svelte";
   import Datepicker from "../../External/Datepicker/Datepicker.svelte";
@@ -19,28 +23,29 @@
 
   onMount(() => {
     startDatePicker = flatpickr(startDateInput, {
-        enableTime: false,
-        dateFormat: "D M d Y",
-        defaultDate: $currentItineraryStartDate,
-        minDate: $currentItineraryStartDate,
-        onChange: ([date]) => {
-          currentItineraryStartDate.set(date);
+      enableTime: false,
+      dateFormat: "D M d Y",
+      defaultDate: $currentItineraryStartDate,
+      minDate: $currentItineraryStartDate,
+      onChange: ([date]) => {
+        currentItineraryStartDate.set(date);
 
-          endDatePicker.set("minDate", $currentItineraryStartDate)
+        endDatePicker.set("minDate", $currentItineraryStartDate);
 
-          if ($currentItineraryEndDate < $currentItineraryStartDate) {
-            endDatePicker.setDate($currentItineraryStartDate);
-          }
+        if ($currentItineraryEndDate < $currentItineraryStartDate) {
+          endDatePicker.setDate($currentItineraryStartDate);
         }
-      });
+      }
+    });
 
     endDatePicker = flatpickr(endDateInput, {
-        enableTime: false,
-        dateFormat: "D M d Y",
-        defaultDate: $currentItineraryEndDate,
-        minDate: $currentItineraryStartDate,
-        onChange: ([date]) => currentItineraryEndDate.set(date)
-      });
+      enableTime: false,
+      defaultHour: 9,
+      dateFormat: "D M d Y",
+      defaultDate: $currentItineraryEndDate,
+      minDate: $currentItineraryStartDate,
+      onChange: ([date]) => currentItineraryEndDate.set(date)
+    });
   });
 
   onDestroy(() => {
@@ -89,7 +94,9 @@
 </style>
 
 <svelte:head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 </svelte:head>
 
 <section class="itinerary-steps">
@@ -105,11 +112,11 @@
     </div>
     <div class="start-date-container">
       <p class="date-picker-title">Start Date</p>
-        <input type="text" bind:this={startDateInput}>
+      <input type="text" bind:this={startDateInput} />
     </div>
     <div class="end-date-container">
       <p class="date-picker-title">End Date</p>
-        <input type="text" bind:this={endDateInput}>
+      <input type="text" bind:this={endDateInput} />
     </div>
   </div>
 </section>

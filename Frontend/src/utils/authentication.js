@@ -11,12 +11,7 @@ export const firebaseSignIn = (email, password) => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        if (get(auth).isAuthenticated) {
-          location.replace(
-            location.protocol + "//" + location.host + "/#/itineraries"
-          );
-          resolve();
-        }
+        resolve();
       })
       .catch(error => {
         reject(error);

@@ -4,19 +4,30 @@ import "@firebase/auth";
 
 export const auth = readable(
   {
-    isAuthenticated: true,
-    user: null
+    isAuthenticated: sessionStorage.getItem("isAuthenticated")
+      ? sessionStorage.getItem("isAuthenticated")
+      : false,
+    user: sessionStorage.getItem("user")
+      ? JSON.parse(sessionStorage.getItem("user"))
+      : null
   },
   set => {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // User is signed in.
+
+        sessionStorage.setItem("isAuthenticated", true);
+        sessionStorage.setItem("user", JSON.stringify(user));
+
         set({
           isAuthenticated: true,
           user
         });
       } else {
         // No user is signed in.
+
+        sessionStorage.clear();
+
         set({
           isAuthenticated: false,
           user: null
