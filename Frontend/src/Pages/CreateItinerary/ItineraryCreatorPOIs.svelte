@@ -40,6 +40,8 @@
 
   $: reachedMaximumNumOfPlaces =
     $currentItineraryChosenPlaces.length === $currentItineraryNumberOfDays * 5;
+
+  $: console.log($currentItineraryChosenPlaces);
 </script>
 
 <style type="text/scss">

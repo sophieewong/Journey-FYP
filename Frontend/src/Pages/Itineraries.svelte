@@ -24,9 +24,11 @@
       })
     })
       .then(res => {
-        if (res.status !== 400) {
-          return res.json();
+        if (res.status !== 200) {
+          throw new Error();
         }
+
+        return res.json();
       })
       .then(data => {
         itineraries = data;

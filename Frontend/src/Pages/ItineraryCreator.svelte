@@ -30,7 +30,6 @@
   console.log($currentItineraryStartDate);
   console.log(JSON.stringify($currentItineraryStartDate));
   console.log($currentItineraryStartDate.toString());
-
   let currentStep = 0;
   $: if (currentStep === 6) {
     //1 Ask backend to generate us an itinerary
@@ -53,6 +52,7 @@
     })
       .then(res => res.json())
       .then(data => {
+        currentItineraryChosenPlaces.set([]);
         location.replace(
           location.protocol +
             "//" +
