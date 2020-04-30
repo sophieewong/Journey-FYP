@@ -21,6 +21,7 @@
     font-family: $body-text;
     color: $white;
     cursor: default;
+    text-align: center;
   }
 
   .app-overview {
@@ -135,6 +136,10 @@
     display: flex;
     margin-bottom: 4rem;
     margin-top: 2rem;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-bottom: 6rem;
+    }
   }
 
   .app-intro-content {

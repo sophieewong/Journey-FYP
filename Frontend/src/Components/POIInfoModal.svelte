@@ -6,7 +6,7 @@
   export let destination;
   export let category;
   export let description;
-  export let openingHours = "";
+  export let openingTimes = "";
   export let budget;
   export let ratings = "";
 </script>
@@ -135,7 +135,7 @@
       <p class="description">{description}</p>
       <p class="opening-hours">
         <b>Opeing Hours:</b>
-        {openingHours}
+        {openingTimes}
       </p>
       <p class="budget">
         <b>Budget:</b>

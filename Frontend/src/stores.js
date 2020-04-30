@@ -9,10 +9,10 @@ export const auth = readable(
       : false,
     user: sessionStorage.getItem("user")
       ? JSON.parse(sessionStorage.getItem("user"))
-      : null
+      : null,
   },
-  set => {
-    firebase.auth().onAuthStateChanged(function(user) {
+  (set) => {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
 
@@ -21,7 +21,7 @@ export const auth = readable(
 
         set({
           isAuthenticated: true,
-          user
+          user,
         });
       } else {
         // No user is signed in.
@@ -30,7 +30,7 @@ export const auth = readable(
 
         set({
           isAuthenticated: false,
-          user: null
+          user: null,
         });
       }
     });
@@ -58,7 +58,7 @@ export const currentItineraryNumberOfDays = derived(
 export const currentItineraryBudget = writable("All");
 export const currentItineraryCategories = writable([
   { name: "Theme Parks", selected: false },
-  { name: "Museums", selected: true },
+  { name: "Museums", selected: false },
   { name: "Nature & Wildlife", selected: false },
   { name: "Shopping & Markets", selected: false },
   { name: "Theatre & Movies", selected: false },
@@ -70,6 +70,6 @@ export const currentItineraryCategories = writable([
   { name: "Beaches, Coasts & Islands", selected: false },
   { name: "City Views", selected: false },
   { name: "Nightlife", selected: false },
-  { name: "Entertainment & Events", selected: false }
+  { name: "Entertainment & Events", selected: false },
 ]);
 export const currentItineraryChosenPlaces = writable([]);

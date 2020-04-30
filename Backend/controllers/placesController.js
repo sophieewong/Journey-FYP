@@ -18,15 +18,15 @@ const getFoursquareVenues = (destination, categories, budget) => {
           client_secret: process.env.FOURSQUARE_CLIENT_SECRET,
           v: "20180323",
           categoryId: mapCategoriesToFoursquareAPI(categories),
-          limit: 5,
+          limit: 10,
           near: destination,
           sortByPopularity: 1,
           day: "any",
           time: "any",
-          price: mapBudgetToFoursquareAPI(budget)
-        }
+          price: mapBudgetToFoursquareAPI(budget),
+        },
       },
-      function(err, resFromApi, body) {
+      function (err, resFromApi, body) {
         if (err) {
           reject(err);
         } else {
@@ -35,7 +35,7 @@ const getFoursquareVenues = (destination, categories, budget) => {
           if (placesFromFoursquare.meta.code === 200) {
             let placeIds = [];
 
-            placesFromFoursquare.response.groups[0].items.forEach(item => {
+            placesFromFoursquare.response.groups[0].items.forEach((item) => {
               placeIds.push(item.venue.id);
             });
 
@@ -49,7 +49,7 @@ const getFoursquareVenues = (destination, categories, budget) => {
   });
 };
 
-const getFoursquareVenueDetails = id => {
+const getFoursquareVenueDetails = (id) => {
   //Use the ID and make a call to Foursquare asking for details of given ID
 
   return new Promise((resolve, reject) => {
@@ -60,10 +60,10 @@ const getFoursquareVenueDetails = id => {
         qs: {
           client_id: process.env.FOURSQUARE_CLIENT_ID,
           client_secret: process.env.FOURSQUARE_CLIENT_SECRET,
-          v: "20180323"
-        }
+          v: "20180323",
+        },
       },
-      function(err, resFromApi, body) {
+      function (err, resFromApi, body) {
         if (err) {
           reject(err);
         } else {
@@ -102,17 +102,17 @@ const placesController = (req, resFromBackend) => {
   //   req.params.categories,
   //   req.params.budget
   // )
-  //   .then(placeIds => {
+  //   .then((placeIds) => {
   //     let placeDetailPromises = [];
 
-  //     placeIds.forEach(id => {
+  //     placeIds.forEach((id) => {
   //       placeDetailPromises.push(getFoursquareVenueDetails(id));
   //     });
 
-  //     Promise.all(placeDetailPromises).then(detailedFoursquareVenues => {
+  //     Promise.all(placeDetailPromises).then((detailedFoursquareVenues) => {
   //       let places = [];
 
-  //       detailedFoursquareVenues.forEach(response => {
+  //       detailedFoursquareVenues.forEach((response) => {
   //         const venue = response.response.venue;
 
   //         const venueImageObj =
@@ -135,7 +135,7 @@ const placesController = (req, resFromBackend) => {
   //             : "No Description",
   //           latLng: {
   //             lat: venue.location.lat,
-  //             lng: venue.location.lng
+  //             lng: venue.location.lng,
   //           },
   //           openingTimes:
   //             venue.hours.timeframes.length > 0
@@ -144,14 +144,14 @@ const placesController = (req, resFromBackend) => {
   //                     ? venue.hours.timeframes[0].open[0].renderedTime
   //                     : ""
   //                 }`
-  //               : ``
+  //               : ``,
   //         });
   //       });
 
   //       resFromBackend.json(places); // and sends response back with json data to FE
   //     });
   //   })
-  //   .catch(error => {
+  //   .catch((error) => {
   //     console.error(error);
 
   //     //If there's an error, let the Frontend know about it.
@@ -161,10 +161,10 @@ const placesController = (req, resFromBackend) => {
   //   });
 
   getTestData()
-    .then(testData => {
+    .then((testData) => {
       resFromBackend.json(testData);
     })
-    .catch(error => console.error(error));
+    .catch((error) => console.error(error));
 };
 
 module.exports = placesController;

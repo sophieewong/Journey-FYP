@@ -6,7 +6,10 @@
   import Tabs from "../Components/Tabs.svelte";
   import formatDateString from "../utils/formatDateString.js";
 
-  let userHasItineraries = false;
+  let itineraries = {
+    upcomingTrips: [],
+    pastTrips: []
+  };
 
   $: if (!$auth.isAuthenticated) {
     location.replace(location.protocol + "//" + location.host + "/#/about");
@@ -22,7 +25,6 @@
     })
       .then(res => {
         if (res.status !== 400) {
-          userHasItineraries = true;
           return res.json();
         }
       })
@@ -34,11 +36,6 @@
         console.error(err);
       });
   }
-
-  let itineraries = {
-    upcomingTrips: [],
-    pastTrips: []
-  };
 
   let activeTab = 0;
 </script>
@@ -174,64 +171,61 @@
     onTabClicked={tab => (activeTab = tab)} />
 
   <!-- create an upcoming array & a past array, return objects based on which tab is selected -->
-  {#if userHasItineraries}
-    {#if activeTab === 0}
-      <div class="itineraries">
-        {#each itineraries.upcomingTrips as { id, name, destination, duration, startDate, endDate }}
-          <!--<TripPreview name location startDate endDate/>-->
-          <a class="itinerary-preview" href="/#/itinerary?id={id}">
-            <div class="itinerary active-itinerary">
-              <h4>{name}</h4>
-              <p class="destination-text">
-                <img src="./images/destination.png" alt="Destination" />
-                {destination}
-              </p>
-              <p class="time-label">
-                <img src="./images/calendar.png" alt="Calender" />
-                {formatDateString(startDate)} - {formatDateString(endDate)}
-              </p>
-              <p class="time-label">
-                <img src="./images/clock.png" alt="Duration" />
-                {duration} Days
-              </p>
-            </div>
-          </a>
-        {:else}
-          <p class="no-itinerary-msg">
-            No itineraries found 😔
-            <br />
-            Click on the Add Itinerary button to plan for your next adventure!
-            😉
-          </p>
-        {/each}
-      </div>
-    {/if}
+  {#if activeTab === 0}
+    <div class="itineraries">
+      {#each itineraries.upcomingTrips as { id, name, destination, duration, startDate, endDate }}
+        <!--<TripPreview name location startDate endDate/>-->
+        <a class="itinerary-preview" href="/#/itinerary?id={id}">
+          <div class="itinerary active-itinerary">
+            <h4>{name}</h4>
+            <p class="destination-text">
+              <img src="./images/destination.png" alt="Destination" />
+              {destination}
+            </p>
+            <p class="time-label">
+              <img src="./images/calendar.png" alt="Calender" />
+              {formatDateString(startDate)} - {formatDateString(endDate)}
+            </p>
+            <p class="time-label">
+              <img src="./images/clock.png" alt="Duration" />
+              {duration} Days
+            </p>
+          </div>
+        </a>
+      {:else}
+        <p class="no-itinerary-msg">
+          No itineraries found 😔
+          <br />
+          Click on the Add Itinerary button to plan for your next adventure! 😉
+        </p>
+      {/each}
+    </div>
+  {/if}
 
-    {#if activeTab === 1}
-      <div class="itineraries">
-        {#each itineraries.pastTrips as { id, name, destination, duration, startDate, endDate }}
-          <!--<TripPreview name destination startDate endDate/>-->
-          <a href="/#/itinerary?id={id}">
-            <div class="itinerary past-itinerary">
-              <h4>{name}</h4>
-              <p class="destination-text">
-                <img src="./images/destination.png" alt="Destination" />
-                {destination}
-              </p>
-              <p class="time-label">
-                <img src="./images/calendar.png" alt="Calender" />
-                {formatDateString(startDate)} - {formatDateString(endDate)}
-              </p>
-              <p class="time-label">
-                <img src="./images/clock.png" alt="Duration" />
-                {duration}
-              </p>
-            </div>
-          </a>
-        {:else}
-          <p class="no-itinerary-msg">Sorry, no itineraries found 🙁</p>
-        {/each}
-      </div>
-    {/if}
+  {#if activeTab === 1}
+    <div class="itineraries">
+      {#each itineraries.pastTrips as { id, name, destination, duration, startDate, endDate }}
+        <!--<TripPreview name destination startDate endDate/>-->
+        <a href="/#/itinerary?id={id}">
+          <div class="itinerary past-itinerary">
+            <h4>{name}</h4>
+            <p class="destination-text">
+              <img src="./images/destination.png" alt="Destination" />
+              {destination}
+            </p>
+            <p class="time-label">
+              <img src="./images/calendar.png" alt="Calender" />
+              {formatDateString(startDate)} - {formatDateString(endDate)}
+            </p>
+            <p class="time-label">
+              <img src="./images/clock.png" alt="Duration" />
+              {duration}
+            </p>
+          </div>
+        </a>
+      {:else}
+        <p class="no-itinerary-msg">Sorry, no itineraries found 🙁</p>
+      {/each}
+    </div>
   {/if}
 </section>

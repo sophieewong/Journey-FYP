@@ -113,7 +113,7 @@
 
 {#if currentStep > 0}
   <ItineraryCreatorButtons
-    disableNextButton={$currentItineraryDestination === '' || !categoryHasBeenSelected}
+    disableNextButton={$currentItineraryDestination === '' || (currentStep === 4 && !categoryHasBeenSelected)}
     nextButtonName={currentStep === 5 ? 'Generate Itinerary' : 'Next'}
     onPrevClick={() => currentStep--}
     onNextClick={() => currentStep++} />
