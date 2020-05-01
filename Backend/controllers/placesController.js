@@ -18,7 +18,7 @@ const getFoursquareVenues = (destination, categories, budget) => {
           client_secret: process.env.FOURSQUARE_CLIENT_SECRET,
           v: "20180323",
           categoryId: mapCategoriesToFoursquareAPI(categories),
-          limit: 10,
+          limit: 15,
           near: destination,
           sortByPopularity: 1,
           day: "any",
@@ -28,6 +28,7 @@ const getFoursquareVenues = (destination, categories, budget) => {
       },
       function (err, resFromApi, body) {
         if (err) {
+          console.error(err);
           reject(err);
         } else {
           const placesFromFoursquare = JSON.parse(body); // converts string from body to JS objects
@@ -65,6 +66,7 @@ const getFoursquareVenueDetails = (id) => {
       },
       function (err, resFromApi, body) {
         if (err) {
+          console.error(err);
           reject(err);
         } else {
           const details = JSON.parse(body);
@@ -82,7 +84,7 @@ const getFoursquareVenueDetails = (id) => {
 
 const getTestData = () => {
   return new Promise((resolve, reject) => {
-    fs.readFile("./TestData/londonMuseumData.json", (err, data) => {
+    fs.readFile("./TestData/NYCData.json", (err, data) => {
       if (err) reject(err);
 
       resolve(JSON.parse(data));
@@ -96,7 +98,6 @@ const placesController = (req, resFromBackend) => {
     2. transform returned data from foursquare into something FE expects
     3. send final data to FE as json
     */
-
   // getFoursquareVenues(
   //   req.params.destination,
   //   req.params.categories,
@@ -104,22 +105,33 @@ const placesController = (req, resFromBackend) => {
   // )
   //   .then((placeIds) => {
   //     let placeDetailPromises = [];
-
   //     placeIds.forEach((id) => {
   //       placeDetailPromises.push(getFoursquareVenueDetails(id));
   //     });
-
   //     Promise.all(placeDetailPromises).then((detailedFoursquareVenues) => {
   //       let places = [];
-
   //       detailedFoursquareVenues.forEach((response) => {
   //         const venue = response.response.venue;
-
+  //         let openingTimes = "No opening times found";
+  //         if (
+  //           venue.hours &&
+  //           venue.hours.timeframes &&
+  //           venue.hours.timeframes.length > 0
+  //         ) {
+  //           if (
+  //             venue.hours.timeframes[0].days &&
+  //             venue.hours.timeframes[0].open &&
+  //             venue.hours.timeframes[0].open.length > 0
+  //           ) {
+  //             if (venue.hours.timeframes[0].open[0].renderedTime) {
+  //               openingTimes = venue.hours.timeframes[0].open[0].renderedTime;
+  //             }
+  //           }
+  //         }
   //         const venueImageObj =
   //           venue.photos.groups.length > 0
   //             ? venue.photos.groups[0].items[0]
   //             : undefined;
-
   //         places.push({
   //           id: venue.id,
   //           name: venue.name,
@@ -137,23 +149,14 @@ const placesController = (req, resFromBackend) => {
   //             lat: venue.location.lat,
   //             lng: venue.location.lng,
   //           },
-  //           openingTimes:
-  //             venue.hours.timeframes.length > 0
-  //               ? `${venue.hours.timeframes[0].days} ${
-  //                   venue.hours.timeframes[0].open.length > 0
-  //                     ? venue.hours.timeframes[0].open[0].renderedTime
-  //                     : ""
-  //                 }`
-  //               : ``,
+  //           openingTimes,
   //         });
   //       });
-
   //       resFromBackend.json(places); // and sends response back with json data to FE
   //     });
   //   })
   //   .catch((error) => {
   //     console.error(error);
-
   //     //If there's an error, let the Frontend know about it.
   //     //   resFromBackend.json({
   //     //     error

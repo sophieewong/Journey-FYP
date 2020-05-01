@@ -39,6 +39,7 @@ app.get(
 );
 
 app.post("/api/itinerary/create", (req, res) => {
+  //data sent from the frontend
   const {
     name,
     destination,
@@ -48,8 +49,6 @@ app.post("/api/itinerary/create", (req, res) => {
     duration,
     userId,
   } = req.body;
-
-  // console.log(startDate);
 
   let itinerary = {
     name,
@@ -61,8 +60,6 @@ app.post("/api/itinerary/create", (req, res) => {
   };
 
   let sortedPlaces = [];
-
-  console.log(places);
 
   let currentPlace = places[0];
 
@@ -131,8 +128,6 @@ app.post("/api/itinerary/create", (req, res) => {
 
   let currentDay = 0;
 
-  console.log("We're looping here: " + places.length);
-
   //Loop through the places in blocks of placesPerDay (ie. blocks of 3)
   for (let i = 0; i < sortedPlaces.length; i += placesPerDay) {
     //Create a new array
@@ -156,7 +151,6 @@ app.post("/api/itinerary/create", (req, res) => {
     //THIS IS NOT AN ISSUE WITH PARSING THE DATE AS LOCAL TIME, AS THE ITINERARIES ARE BEING
     //SORTED INTO UPCOMING/PAST HERE BASED ON UTC WHICH IS WRONG.
     let currentDate = new Date(startDate);
-    // console.log(currentDate);
     currentDate.setDate(currentDate.getDate() + currentDay);
 
     itinerary.days.push({
@@ -167,8 +161,7 @@ app.post("/api/itinerary/create", (req, res) => {
     currentDay++;
   }
 
-  //Create this itinerary in firebase under the relevant userId probably using the authtoken
-
+  //Create this itinerary in firebase under the relevant userId
   let docRef = db.collection("users").doc(userId);
 
   docRef
@@ -199,9 +192,7 @@ app.post("/api/itinerary/create", (req, res) => {
 //returns one itinerary for the specific user
 app.post("/api/itinerary/get", (req, res) => {
   const { userId, itineraryId } = req.body;
-
   let docRef = db.collection("users").doc(userId);
-
   docRef
     .get()
     .then((doc) => {
@@ -229,11 +220,10 @@ app.post("/api/itinerary/get", (req, res) => {
     });
 });
 
+//returns all itineraries for the specific user
 app.post("/api/itinerary/getAll", (req, res) => {
   const { userId } = req.body;
-
   let docRef = db.collection("users").doc(userId);
-
   docRef
     .get()
     .then((doc) => {

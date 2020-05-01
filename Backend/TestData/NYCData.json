@@ -1,0 +1,110 @@
+[
+  {
+    "id": "427c0500f964a52097211fe3",
+    "name": "The Metropolitan Museum of Art (Metropolitan Museum of Art)",
+    "category": "Art Museum",
+    "image": "https://fastly.4sqi.net/img/general/612x612/1022386_wEd7VXnWzp5lajvRLtAPunoiufDSIq8PMEtEuIH2Tzg.jpg",
+    "description": "The Metropolitan Museum of Art is the largest art museum in the United States with among the most significant art collections. Its permanent collection contains more than two million works, divided among nineteen curatorial departments.",
+    "latLng": {
+      "lat": 40.77972902126812,
+      "lng": -73.96341562271118
+    },
+    "openingTimes": "10:00 AM–5:30 PM"
+  },
+  {
+    "id": "4297b480f964a52062241fe3",
+    "name": "American Museum of Natural History",
+    "category": "Science Museum",
+    "image": "https://fastly.4sqi.net/img/general/640x640/25293_FewZotIUvhzCkn1s9QCen5oeBwwBIzykIauedM0NA-4.jpg",
+    "description": "The American Museum of Natural History is one of the world’s preeminent scientific and cultural institutions. It is renowned for its exhibitions and scientific collections, which serve as a field guide to the entire planet and present a panorama of the world's cultures.",
+    "latLng": {
+      "lat": 40.78097440058094,
+      "lng": -73.97345562813142
+    },
+    "openingTimes": "10:00 AM–5:45 PM"
+  },
+  {
+    "id": "4af5a46af964a520b5fa21e3",
+    "name": "Museum of Modern Art (MoMA)",
+    "category": "Art Museum",
+    "image": "https://fastly.4sqi.net/img/general/720x960/32471604_N1pF6WinIDAPiXB2VpTgvhVTfhCmTAPblBrahkfDk5M.jpg",
+    "description": "No Description",
+    "latLng": {
+      "lat": 40.76141150395245,
+      "lng": -73.97746170919268
+    },
+    "openingTimes": "10:30 AM–5:30 PM"
+  },
+  {
+    "id": "41706480f964a520a51d1fe3",
+    "name": "Solomon R Guggenheim Museum",
+    "category": "Art Museum",
+    "image": "https://fastly.4sqi.net/img/general/959x672/7710316_Z1GEzVfKcmsSyQltmdqJTDJKfM9ChN1RA5iOBbUZNy8.jpg",
+    "description": "Frank Lloyd Wright's architectural masterpiece home to a world-renowned collection of modern and contemporary art.",
+    "latLng": {
+      "lat": 40.78305146085593,
+      "lng": -73.95926526701106
+    },
+    "openingTimes": "10:00 AM–5:45 PM"
+  },
+  {
+    "id": "4b135e9bf964a520ad9623e3",
+    "name": "Madame Tussauds",
+    "category": "Museum",
+    "image": "https://fastly.4sqi.net/img/general/720x960/40551984_9nTy6_RWB5NM9wyjspp1wRaMmLMcwdfyF4xprVLMiJE.jpg",
+    "description": "Mingle with over 200 wax celebrities in 85,000 sq ft of interactive entertainment located in Times Square!",
+    "latLng": {
+      "lat": 40.756432,
+      "lng": -73.988828
+    },
+    "openingTimes": "No opening times found"
+  },
+  {
+    "id": "4b9af865f964a520fde735e3",
+    "name": "Hayden Planetarium",
+    "category": "Planetarium",
+    "image": "https://fastly.4sqi.net/img/general/960x618/33804857_ypbggKwnuqF5qMcEyH7xR9D53Gixp9VpFS8n4NEI6JU.jpg",
+    "description": "The Hayden Planetarium is a public planetarium, part of the Rose Center for Earth and Space.",
+    "latLng": {
+      "lat": 40.78171789252808,
+      "lng": -73.9732388050449
+    },
+    "openingTimes": "No opening times found"
+  },
+  {
+    "id": "42893400f964a52055231fe3",
+    "name": "The Cloisters",
+    "category": "Museum",
+    "image": "https://fastly.4sqi.net/img/general/612x612/YwMZljJTXDy1t_MIMLNDLs8OmdXvuijpBp4KqEWLbmM.jpg",
+    "description": "No Description",
+    "latLng": {
+      "lat": 40.864888622461464,
+      "lng": -73.93187284469604
+    },
+    "openingTimes": "10:00 AM–5:15 PM"
+  },
+  {
+    "id": "49c54c1bf964a520ed561fe3",
+    "name": "The Morgan Library & Museum",
+    "category": "Museum",
+    "image": "https://fastly.4sqi.net/img/general/612x612/762130_jQbBMG0BrQtYWNgnqSzj3PlbMrMoszpxjkrUtHLm1lw.jpg",
+    "description": "The private library of financier Pierpont Morgan—now a museum, research library, music venue, architectural landmark, and historic site.",
+    "latLng": {
+      "lat": 40.74930521896097,
+      "lng": -73.9814293384552
+    },
+    "openingTimes": "10:30 AM–5:00 PM"
+  },
+  {
+    "id": "4a2fc4d3f964a520da981fe3",
+    "name": "Cooper Hewitt Smithsonian Design Museum",
+    "category": "Art Museum",
+    "image": "https://fastly.4sqi.net/img/general/1440x1920/11711270_piXQipgibeJjN7QR310t5b5Pm_UH-pm9vESQk-LC7Zw.jpg",
+    "description": "The Smithsonian's design museum, located in Andrew Carnegie's former mansion on 91st & 5th. Legal: http://si.edu/termsofuse",
+    "latLng": {
+      "lat": 40.78433310928044,
+      "lng": -73.9577650572561
+    },
+    "openingTimes": "10:00 AM–6:00 PM"
+  }
+]
