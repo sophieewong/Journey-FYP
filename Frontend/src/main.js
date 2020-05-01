@@ -1,22 +1,25 @@
-// const attractionsContainer = document.getElementById("attractions");
+import { firebase } from "@firebase/app";
+import "@firebase/auth";
 
-// fetch("/api/get/attractions")
-//     .then((response) => response.json())
-//     .then(displayAttractions);
+import { auth } from "./stores.js";
 
-// /**
-//  *
-//  * @param {{name: string, attractionType: string, category: string, hours: string, entryFee: number, rating: number}[]} attractions
-//  */
-// const displayAttractions = (attractions) => {
-//     console.log(JSON.parse(attractions))
-//     attractions.forEach(attraction => {
-//         const attractionDiv = document.createElement("div");
-//         attractionDiv.innerText = attraction.name;
-//         attractionsContainer.appendChild(attractionDiv)
-//     });
-// }
+import App from "./App.svelte";
 
-import itineraryPlanner from './Pages/ItineraryPlanner/ItineraryPlanner';
-import home from './Pages/Home/Home';
-import itineraryCreator from './Pages/ItineraryCreator/ItineraryCreator';
+firebase.initializeApp({
+  apiKey: "AIzaSyDkVWHkMptZNdZJyB6TPvvaPc8HPythjpQ",
+  authDomain: "journey-fyp.firebaseapp.com",
+  databaseURL: "https://journey-fyp.firebaseio.com",
+  projectId: "journey-fyp",
+  storageBucket: "journey-fyp.appspot.com",
+  messagingSenderId: "235762750865",
+  appId: "1:235762750865:web:9f6e38fa492abed04d3630"
+});
+
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+const app = new App({
+  target: document.body,
+  intro: true
+});
+
+export default app;

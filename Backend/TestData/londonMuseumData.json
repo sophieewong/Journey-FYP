@@ -1,0 +1,62 @@
+[
+  {
+    "id": "4acaf933f964a52031c320e3",
+    "name": "Portobello Road Market",
+    "category": "Market",
+    "image": "https://fastly.4sqi.net/img/general/612x612/25685495_8HDDmbqbJWB_-7t5V1v03E4DYbE7wTr0SpeqktRRp7E.jpg",
+    "description": "No Description",
+    "latLng": {
+      "lat": 51.514331247292404,
+      "lng": -0.20407319068908691
+    },
+    "openingTimes": "Mon–Wed 9:00 AM–6:00 PM"
+  },
+  {
+    "id": "5b64726f66fc65002c234a74",
+    "name": "Threesixty360",
+    "category": "Hookah Bar",
+    "image": "https://fastly.4sqi.net/img/general/1079x1920/63164214_oVVeXNdvhJeAnjSDd5HwwrOAL5Yo06EN_tgu03gEXpw.jpg",
+    "description": "No Description",
+    "latLng": {
+      "lat": 51.498069,
+      "lng": -0.166864
+    },
+    "openingTimes": "Mon–Sun 10:00 AM–5:00 AM"
+  },
+  {
+    "id": "577e6189498e861ea3422691",
+    "name": "Mercato Metropolitano",
+    "category": "Street Food Gathering",
+    "image": "https://fastly.4sqi.net/img/general/1536x1024/219747335_eda-n2N17s7-1iliSeXjCm0CUNNGRU2am_713i6kTMk.jpg",
+    "description": "The urban farmers' market of Turin, now open in London!",
+    "latLng": {
+      "lat": 51.498318,
+      "lng": -0.098162144
+    },
+    "openingTimes": "Mon–Fri 8:00 AM–11:00 PM"
+  },
+  {
+    "id": "4ac518eef964a52021ad20e3",
+    "name": "Whitecross Street Market",
+    "category": "Street Food Gathering",
+    "image": "https://fastly.4sqi.net/img/general/612x612/12879940_4XU-qlKteC3t8NBxJ-e72of76iSd4KNKZ42mRvf9zAE.jpg",
+    "description": "Whitecross Street Market is one of the oldest markets in London. Located between Old St and Fortune St in the south of the borough, this is a highly acclaimed haven of street foods with a variety of other commodities in between and is very popular at lunchtimes.",
+    "latLng": {
+      "lat": 51.52348342351405,
+      "lng": -0.09317372951900009
+    },
+    "openingTimes": "Mon–Fri 10:00 AM–2:00 PM"
+  },
+  {
+    "id": "4ac518f3f964a5209fae20e3",
+    "name": "Columbia Road Flower Market",
+    "category": "Market",
+    "image": "https://fastly.4sqi.net/img/general/612x612/11656917_GSC_75rWo-LYBmdlU3ZSsBLAs6xLlofMGWTWpFsBeLw.jpg",
+    "description": "No Description",
+    "latLng": {
+      "lat": 51.529358148183654,
+      "lng": -0.0695657730102539
+    },
+    "openingTimes": "Sun 8:00 AM–3:00 PM"
+  }
+]

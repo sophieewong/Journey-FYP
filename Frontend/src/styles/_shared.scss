@@ -1,0 +1,128 @@
+// fonts
+$logo: "Pacifico", cursive;
+$page-heading: "Libre Franklin", sans-serif;
+$body-text: "Josefin Sans", sans-serif;
+$description: "Open Sans";
+
+// colours
+$white: #ffffff;
+$blue: #1ba8f1;
+$grey: #c4c4c4;
+$boxshadow-blue: #5ac1f6;
+
+// media query
+$mobile-breakpoint: 550px;
+$sm-tablet-breakpoint: 600px;
+$tablet-breakpoint: 720px;
+$lg-tablet-breakpoint: 825px;
+$desktop-breakpoint: 1024px;
+
+// mixin
+@mixin padded-container {
+  position: relative;
+  height: 100%;
+  padding: 0 3rem;
+
+  @media screen and (min-width: $tablet-breakpoint) {
+    padding: 0 5rem;
+  }
+}
+
+//global classes
+.tabs {
+  @include padded-container;
+
+  @media screen and (min-width: $desktop-breakpoint) {
+    padding: 0 7rem !important;
+  }
+
+  .tab {
+    font-family: $body-text;
+    background-color: $white;
+    color: $grey;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem 0.5rem 0;
+    font-size: 1.25rem;
+    min-width: 15%;
+  }
+
+  .active {
+    border-bottom: 3px solid $blue;
+    color: black;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  margin: 2rem;
+  border-radius: 0.75rem;
+  font-family: $body-text;
+  font-size: 1.25rem;
+  box-shadow: none;
+  cursor: pointer;
+  border: none;
+  padding: 1.25rem 1.5rem;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100%;
+  }
+
+  &:hover {
+    transition: transform 0.5s ease;
+    transform: scale(1.1);
+  }
+}
+
+.primary-btn {
+  background-color: $blue;
+  outline-color: $blue;
+  color: $white;
+  box-shadow: 0px 4px 4px #5ac1f6;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:disabled {
+    background-color: $grey;
+    outline-color: $grey;
+    color: $white;
+    box-shadow: 0px 4px 4px $grey;
+    transition: none;
+    transform: none;
+    cursor: not-allowed;
+  }
+}
+
+.secondary-btn {
+  background-color: transparent;
+  outline-color: $blue;
+  color: $blue;
+  box-shadow: 0px 4px 4px $boxshadow-blue;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $blue;
+
+  &:disabled {
+    background-color: $grey;
+    outline-color: $grey;
+    color: $white;
+    box-shadow: 0px 4px 4px $grey;
+    transition: none;
+    transform: none;
+    cursor: not-allowed;
+  }
+}
+
+.warning-text {
+  color: red;
+  font-family: $body-text;
+}
