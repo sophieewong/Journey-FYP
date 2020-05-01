@@ -146,10 +146,6 @@ app.post("/api/itinerary/create", (req, res) => {
       }
     }
 
-    //ISSUE: startDate is passed to the backend as the user's timezone string, but the call below
-    //converts the date into UTC time.
-    //THIS IS NOT AN ISSUE WITH PARSING THE DATE AS LOCAL TIME, AS THE ITINERARIES ARE BEING
-    //SORTED INTO UPCOMING/PAST HERE BASED ON UTC WHICH IS WRONG.
     let currentDate = new Date(startDate);
     currentDate.setDate(currentDate.getDate() + currentDay);
 
